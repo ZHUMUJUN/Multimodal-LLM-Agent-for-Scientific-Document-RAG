@@ -1,0 +1,216 @@
+{
+  "generated_at": "2026-03-18T16:26:50",
+  "benchmark_type": "retrieval",
+  "retrieval_mode": "baseline_hybrid",
+  "reranker_enabled": true,
+  "reranker_model": "cross-encoder/ms-marco-MiniLM-L2-v2",
+  "top_k": 2,
+  "summary": {
+    "dataset_path": "/home/suity/worksapce/PycharmProjects/FindJob/agentic-rag-for-dummies-main/project/evaluation/datasets/quick_eval_5.jsonl",
+    "mode": "baseline_hybrid",
+    "case_count": 5,
+    "avg_latency_ms": 12.45,
+    "p95_latency_ms": 14.61,
+    "source_hit_rate": 1.0,
+    "mrr": 1.0,
+    "avg_top1_keyword_ratio": 0.0667
+  },
+  "cases": [
+    {
+      "id": "quick-001",
+      "collection": "default",
+      "question": "上传文档的主题是什么？",
+      "ground_truth": "文档主题是光污染对生态环境影响的智能监测与评估，目标是构建多源感知、智能识别、综合评估和报告生成一体化方案。",
+      "expected_sources": [
+        "光污染与生态环境大模型评估.pdf"
+      ],
+      "expected_keywords": [
+        "多源感知",
+        "智能识别",
+        "综合评估",
+        "报告生成"
+      ],
+      "latency_ms": 14.61,
+      "source_hit": true,
+      "first_hit_rank": 1,
+      "top1_keyword_ratio": 0.0,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "光污染与生态环境大模型评估.pdf",
+          "parent_id": "光污染与生态环境大模型评估_parent_0",
+          "preview": "3. 提升模型在夜间复杂环境下的目标识别、信息理解和风险判别能力，满足典型业务场景应用需要。   4. 形成光污染智能监测评估原型系统，具备数据接入、模型分析、结果展示和报告输出等基本功能。   5. 在典型区域开展应用验证，形成可推广的监测评估流程和治理建议方法。   ##   1. 形成光污染与生态环境多模态数据资源、基础样本及相关技术文档。   2. 形成生态环境大模型光污染评估基准、指标体系和方法框架。   3. 形成光污染智能",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 2,
+          "source": "光污染与生态环境大模型评估.pdf",
+          "parent_id": "光污染与生态环境大模型评估_parent_0",
+          "preview": "5. 形成论文、专利、软件著作权、标准建议稿等阶段性成果，为后续推广应用和项目深化提供支撑。   --- end of page.page_number=1 ---   ##   - 截至2026年3月17日，《生态环境法典》仍处于草案审议阶段。2025年4月27日草案首次提请审 议，2026年3月5日提请十四届全国人大四次会议审议；草案第三十六章已专设“光污染防治”。 参考：https://www.npc.gov.cn/npc/c2/",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        }
+      ]
+    },
+    {
+      "id": "quick-002",
+      "collection": "default",
+      "question": "文档提到要构建什么数据资源库？",
+      "ground_truth": "文档提出建设光污染与生态环境多模态样本库，整合卫星夜间灯光、无人机影像、全天空相机、照度监测、气象、土地利用和生物多样性样点等数据。",
+      "expected_sources": [
+        "光污染与生态环境大模型评估.pdf"
+      ],
+      "expected_keywords": [
+        "多模态样本库",
+        "卫星夜间灯光",
+        "无人机低空影像",
+        "全天空相机"
+      ],
+      "latency_ms": 12.15,
+      "source_hit": true,
+      "first_hit_rank": 1,
+      "top1_keyword_ratio": 0.0,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "光污染与生态环境大模型评估.pdf",
+          "parent_id": "光污染与生态环境大模型评估_parent_0",
+          "preview": "3. 提升模型在夜间复杂环境下的目标识别、信息理解和风险判别能力，满足典型业务场景应用需要。   4. 形成光污染智能监测评估原型系统，具备数据接入、模型分析、结果展示和报告输出等基本功能。   5. 在典型区域开展应用验证，形成可推广的监测评估流程和治理建议方法。   ##   1. 形成光污染与生态环境多模态数据资源、基础样本及相关技术文档。   2. 形成生态环境大模型光污染评估基准、指标体系和方法框架。   3. 形成光污染智能",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 2,
+          "source": "光污染与生态环境大模型评估.pdf",
+          "parent_id": "光污染与生态环境大模型评估_parent_0",
+          "preview": "5. 形成论文、专利、软件著作权、标准建议稿等阶段性成果，为后续推广应用和项目深化提供支撑。   --- end of page.page_number=1 ---   ##   - 截至2026年3月17日，《生态环境法典》仍处于草案审议阶段。2025年4月27日草案首次提请审 议，2026年3月5日提请十四届全国人大四次会议审议；草案第三十六章已专设“光污染防治”。 参考：https://www.npc.gov.cn/npc/c2/",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        }
+      ]
+    },
+    {
+      "id": "quick-003",
+      "collection": "default",
+      "question": "文档中的评估基准体系覆盖哪些任务？",
+      "ground_truth": "评估基准体系覆盖光源识别、污染强度估算、生态风险分级、成因分析和治理建议生成等任务。",
+      "expected_sources": [
+        "光污染与生态环境大模型评估.pdf"
+      ],
+      "expected_keywords": [
+        "光源识别",
+        "污染强度估算",
+        "生态风险分级",
+        "成因分析",
+        "治理建议生成"
+      ],
+      "latency_ms": 12.09,
+      "source_hit": true,
+      "first_hit_rank": 1,
+      "top1_keyword_ratio": 0.0,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "光污染与生态环境大模型评估.pdf",
+          "parent_id": "光污染与生态环境大模型评估_parent_0",
+          "preview": "3. 提升模型在夜间复杂环境下的目标识别、信息理解和风险判别能力，满足典型业务场景应用需要。   4. 形成光污染智能监测评估原型系统，具备数据接入、模型分析、结果展示和报告输出等基本功能。   5. 在典型区域开展应用验证，形成可推广的监测评估流程和治理建议方法。   ##   1. 形成光污染与生态环境多模态数据资源、基础样本及相关技术文档。   2. 形成生态环境大模型光污染评估基准、指标体系和方法框架。   3. 形成光污染智能",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 2,
+          "source": "光污染与生态环境大模型评估.pdf",
+          "parent_id": "光污染与生态环境大模型评估_parent_0",
+          "preview": "5. 形成论文、专利、软件著作权、标准建议稿等阶段性成果，为后续推广应用和项目深化提供支撑。   --- end of page.page_number=1 ---   ##   - 截至2026年3月17日，《生态环境法典》仍处于草案审议阶段。2025年4月27日草案首次提请审 议，2026年3月5日提请十四届全国人大四次会议审议；草案第三十六章已专设“光污染防治”。 参考：https://www.npc.gov.cn/npc/c2/",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        }
+      ]
+    },
+    {
+      "id": "quick-004",
+      "collection": "default",
+      "question": "文档提到在哪些场景验证应用？",
+      "ground_truth": "文档计划在城市建成区、生态敏感区和景区园区等典型夜间场景开展应用验证。",
+      "expected_sources": [
+        "光污染与生态环境大模型评估.pdf"
+      ],
+      "expected_keywords": [
+        "城市建成区",
+        "生态敏感区",
+        "景区园区"
+      ],
+      "latency_ms": 12.07,
+      "source_hit": true,
+      "first_hit_rank": 1,
+      "top1_keyword_ratio": 0.0,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "光污染与生态环境大模型评估.pdf",
+          "parent_id": "光污染与生态环境大模型评估_parent_0",
+          "preview": "3. 提升模型在夜间复杂环境下的目标识别、信息理解和风险判别能力，满足典型业务场景应用需要。   4. 形成光污染智能监测评估原型系统，具备数据接入、模型分析、结果展示和报告输出等基本功能。   5. 在典型区域开展应用验证，形成可推广的监测评估流程和治理建议方法。   ##   1. 形成光污染与生态环境多模态数据资源、基础样本及相关技术文档。   2. 形成生态环境大模型光污染评估基准、指标体系和方法框架。   3. 形成光污染智能",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 2,
+          "source": "光污染与生态环境大模型评估.pdf",
+          "parent_id": "光污染与生态环境大模型评估_parent_0",
+          "preview": "5. 形成论文、专利、软件著作权、标准建议稿等阶段性成果，为后续推广应用和项目深化提供支撑。   --- end of page.page_number=1 ---   ##   - 截至2026年3月17日，《生态环境法典》仍处于草案审议阶段。2025年4月27日草案首次提请审 议，2026年3月5日提请十四届全国人大四次会议审议；草案第三十六章已专设“光污染防治”。 参考：https://www.npc.gov.cn/npc/c2/",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        }
+      ]
+    },
+    {
+      "id": "quick-005",
+      "collection": "default",
+      "question": "请用三句话概括文档的核心目标。",
+      "ground_truth": "文档旨在建设光污染与生态环境多模态数据基础，建立面向光污染场景的大模型评估体系，并形成可复用的智能监测评估原型系统与治理支撑方案。",
+      "expected_sources": [
+        "光污染与生态环境大模型评估.pdf"
+      ],
+      "expected_keywords": [
+        "数据基础",
+        "评估体系",
+        "原型系统"
+      ],
+      "latency_ms": 11.33,
+      "source_hit": true,
+      "first_hit_rank": 1,
+      "top1_keyword_ratio": 0.3333,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "光污染与生态环境大模型评估.pdf",
+          "parent_id": "光污染与生态环境大模型评估_parent_0",
+          "preview": "3. 提升模型在夜间复杂环境下的目标识别、信息理解和风险判别能力，满足典型业务场景应用需要。   4. 形成光污染智能监测评估原型系统，具备数据接入、模型分析、结果展示和报告输出等基本功能。   5. 在典型区域开展应用验证，形成可推广的监测评估流程和治理建议方法。   ##   1. 形成光污染与生态环境多模态数据资源、基础样本及相关技术文档。   2. 形成生态环境大模型光污染评估基准、指标体系和方法框架。   3. 形成光污染智能",
+          "matched_keywords": [
+            "原型系统"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 2,
+          "source": "光污染与生态环境大模型评估.pdf",
+          "parent_id": "光污染与生态环境大模型评估_parent_0",
+          "preview": "5. 形成论文、专利、软件著作权、标准建议稿等阶段性成果，为后续推广应用和项目深化提供支撑。   --- end of page.page_number=1 ---   ##   - 截至2026年3月17日，《生态环境法典》仍处于草案审议阶段。2025年4月27日草案首次提请审 议，2026年3月5日提请十四届全国人大四次会议审议；草案第三十六章已专设“光污染防治”。 参考：https://www.npc.gov.cn/npc/c2/",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        }
+      ]
+    }
+  ]
+}

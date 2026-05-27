@@ -1,0 +1,110 @@
+{
+  "generated_at": "2026-03-18T19:26:13",
+  "benchmark_type": "light_answer",
+  "retrieval_mode": "baseline_hybrid",
+  "model": "qwen3:14b",
+  "provider": "ollama",
+  "reranker_enabled": true,
+  "reranker_model": "BAAI/bge-reranker-base",
+  "top_k": 4,
+  "summary": {
+    "dataset_path": "/home/suity/worksapce/PycharmProjects/FindJob/agentic-rag-for-dummies-main/project/evaluation/datasets/public_light_pollution_answer_eval_mini.jsonl",
+    "mode": "baseline_hybrid",
+    "case_count": 3,
+    "avg_latency_ms": 4422.07,
+    "p95_latency_ms": 4902.32,
+    "avg_answer_length": 123.33,
+    "ragas": {
+      "enabled": true,
+      "available": true,
+      "evaluated_cases": 3,
+      "scores": {
+        "answer_relevancy": 0.29695071356437,
+        "faithfulness": 0.8055555555555555
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "answer-mini-001",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档把 artificial light at night 描述为 global disruptor，它强调的环境对象是什么？",
+      "answer": "文档“08_artificial_light_at_night_global_disruptor_arxiv”将“artificial light at night”描述为global disruptor，其强调的环境对象是“nighttime environment”。该文档标题及内容明确指出人工光对夜间环境的全球性破坏作用。",
+      "ground_truth": "《Artificial light at night: a global disruptor of the nighttime environment》将人工夜间照明描述为夜间环境的全球性干扰因素，强调 nighttime environment。",
+      "expected_sources": [
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf"
+      ],
+      "notes": "mini review",
+      "retrieval_latency_ms": 88.57,
+      "answer_latency_ms": 4127.91,
+      "latency_ms": 4216.48,
+      "answer_length": 165,
+      "retrieved_contexts": [
+        "# 08_artificial_light_at_night_global_disruptor_arxiv  \n## Page 1  \nThis is the Accepted Author Manuscript of an article whose version of record has been\npublished as Bará S, Falchi F. 2023 Artificial light at night: a global disruptor of the night-\ntime environment. Phil. Trans. R. Soc. B 378: 20220352. doi: 10.1098/rstb.2022.0352  \n1\nArtificial light at night: a global disruptor of the\nnighttime environment\nSalvador Bará1,* and Fabio Falchi1,2",
+        "## Page 2  \n2  \n1. Introduction\nArtificial light at night is a key factor for the improvement of the living conditions of\nhumankind. Its production and control have provided us an essential level of freedom,\nenabling many activities at nighttime that otherwise would be limited by the low\nperformance of the human visual system under typical natural night light levels. Artificial\nlight at night is also a longtime recognized air pollutant. Already in 1979, the UN",
+        "Kimberly Baugh,6 Boris A. Portnov,7 Nataliya A. Rybnikova,7 Riccardo Furgoni1,8\nArtificial lights raise night sky luminance, creating the most visible effect of light pollution—artificial skyglow. Despite\nthe increasing interest among scientists in fields such as ecology, astronomy, health care, and land-use planning, light\npollution lacks a current quantification of its magnitude on a global scale. To overcome this, we present the world atlas",
+        "Keywords: Light pollution, artificial light at night, environmental pollutants  \nSummary  \nLight pollution is the alteration of the natural levels of darkness by an increased concentration of light\nparticles in the nighttime environment, resulting from human activity. Light pollution is changing in a deep\nway the environmental conditions of the night in wide areas of the planet, and is a relevant stressor whose"
+      ],
+      "retrieved_sources": [
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+        "09_world_atlas_artificial_night_sky_brightness_arxiv.pdf",
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf"
+      ]
+    },
+    {
+      "id": "answer-mini-002",
+      "collection": "public_light_pollution_corpus",
+      "question": "自然夜空亮度地图那篇文档依赖哪些核心数据来源？",
+      "answer": "提供的上下文未提及“自然夜空亮度地图”文档的相关内容，也未说明其依赖的核心数据来源。上下文主要涉及光传播的物理公式、光子密度计算及辐射度量学推导，与夜空亮度地图的数据来源无直接关联。因此，无法根据现有信息回答该问题。",
+      "ground_truth": "《A multi-band map of the natural night sky brightness including Gaia and Hipparcos integrated starlight》依赖 Gaia 和 Hipparcos integrated starlight 数据。",
+      "expected_sources": [
+        "10_natural_night_sky_brightness_gaia_arxiv.pdf"
+      ],
+      "notes": "mini data source",
+      "retrieval_latency_ms": 87.62,
+      "answer_latency_ms": 4059.79,
+      "latency_ms": 4147.41,
+      "answer_length": 108,
+      "retrieved_contexts": [
+        "is the exact value of the speed of light (BIPM, 2018).  \nFigure 1. Geometry of the light propagation. The quantity 𝑛𝜆(𝛂) is the volume density\nof photons propagating towards the surface d𝑆 per unit solid angle along the direction\n𝛂 (at an angle 𝑧 with the normal to the surface) and per unit wavelength interval. The\nslanted cylinder volume is d𝑉=  d𝑆 𝑐 d𝑡cos 𝑧.  \nSince the energy d𝑄 is the same in Eqs.(1) and (4), and 𝜈= 𝑐/𝜆 we get\n𝐿𝜆(𝛂) = ℎ𝑐2",
+        "𝐸= ℎ𝑐2𝐾0 ∫∫𝑛𝜆(𝛂) Λ(𝜆)\n𝜆\nd𝜆cos 𝑧dΩ\nΩ\n𝑊· 𝑚−2                  (10)\nwhich can be read as\n𝐸= ℎ𝑐2𝐾0 𝑁                                                              (11)\nwhere\n𝑁= ∫∫𝑛𝜆(𝛂) Λ(𝜆)\n𝜆\nd𝜆cos 𝑧dΩ =\nΩ\n∫𝑁(𝛂) cos 𝑧dΩ\nΩ\n(12)\nis the photon concentration per unit volume (𝑝ℎ𝑜𝑡𝑜𝑛𝑠· 𝑚−3) within the spectral band\nΛ(𝜆), propagating along all directions from the front-facing hemisphere (0 ≤𝑧≤\n90°, 0 ≤𝜙< 360°;  Ω = 2𝜋 𝑠𝑟) towards the element of surface on which the irradiance",
+        "weighted 𝑝ℎ𝑜𝑡𝑜𝑛𝑠· 𝑚−3, 𝑁, that after multiplication by 𝜇𝑉, transforms into 𝑙𝑥. It is\nimportant to keep in mind that 𝑁 is a band-weighted volume density: this means that",
+        "𝐿ag(𝜆, 𝑧), although it could be deemed approximately valid (with\nthe same values for 𝑅and 𝐻) for 𝐿ag(𝜆, 𝑧). Second, the van Rhĳn\nformulation is meant to describe the at-the-layer radiance, 𝐿ag(𝑧),\nas seen at zenith angles 𝑧from the reference frame of an observer\nlocated at sea level (ℎ= 0 m). Strictly speaking, for observers lo-\ncated at heights ℎ> 0 m this equation should be slightly modiﬁed,\nto take into account that regions of the airglow layer seen at zenith"
+      ],
+      "retrieved_sources": [
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+        "10_natural_night_sky_brightness_gaia_arxiv.pdf"
+      ]
+    },
+    {
+      "id": "answer-mini-003",
+      "collection": "public_light_pollution_corpus",
+      "question": "关于 space objects 的文档认为什么因素正在增加人工夜空亮度？",
+      "answer": "文档指出，空间物体数量的增加及其反射特性是导致人工夜空亮度上升的主要因素。随着卫星和空间碎片数量的持续增长（如图4所示），这些物体因形状和材质差异产生的复杂反射作用，显著加剧了夜空的人工光污染。",
+      "ground_truth": "《The proliferation of space objects is a rapidly increasing source of artificial night sky brightness》认为不断增加的空间物体是人工夜空亮度上升的来源。",
+      "expected_sources": [
+        "12_space_objects_artificial_night_sky_brightness_arxiv.pdf"
+      ],
+      "notes": "mini cause",
+      "retrieval_latency_ms": 89.65,
+      "answer_latency_ms": 4812.67,
+      "latency_ms": 4902.32,
+      "answer_length": 97,
+      "retrieved_contexts": [
+        "1\nINTRODUCTION\nArtiﬁcial satellites orbiting the Earth have been a concern of\nastronomers since the launch of the ﬁrst such object, Sputnik\n1, in 1957. As of 1 January 2021, some 3,372 satellites are\nin orbit (UCS 2021) along with many tens of thousands of\npieces of space debris; we refer to both satellites and space\ndebris here as “space objects.”\nThe orbital altitudes of space objects range from a few\nhundred kilometres in the case of objects in Low-Earth Or-",
+        "σ\n=\n2π\nZ 5 m\n5×10−7 m\nr2R(r)dr\n(8)\nand the contribution from the space objects to the zenith\nluminance is\nL\n=\nσαE0,vis\n4π\nZ 4×107 m\n2×105 m\nH(h)dh\n=\nE0,visα\n2\nZ 5 m\n5×10−7 m\nr2R(r)dr\nZ 4×107 m\n2×105 m\nH(h)dh\n≈\nα 7.2 µcd m−2,\n(9)\nwhere α is the average albedo of space objects.\nDue to their diﬀerent shapes and orientations, the reﬂec-\ntivity of space objects can vary substantially. Many space-\ncraft are made of composite materials, much of them highly",
+        "## Page 3  \nSpace objects are a new skyglow threat\n3\n100\n1000\n10000\n10\n-8\n10\n-7\n10\n-6\n10\n-5\n10\n-4\nSpatial Density (1/km\n3\n)\nAltitude (km)\nFigure 2. Spatial density of space objects larger than 1 mm as a\nfunction of altitude. Dots are data published by Bendisch et al.\n(2004), while the solid line represents our ﬁtted model.\nArtiﬁcial satellites and pieces of space debris have di-\nverse shapes and are oriented randomly in the line of sight,\nscattering and reﬂecting light in a complex manner. How-",
+        "## Page 4  \n4\nM. Kocifaj et al.\n1980\n1990\n2000\n2010\n2020\n0\n5000\n10000\n15000\n20000\n25000\nObject Count (-)\nReference Epoch\nFigure 4. Trend of the absolute number of all counted space ob-\njects. Vertical lines with dots represent data provided by ESA\n(2020). The solid line is an analytical model.\nof a spherical object asymptotically approaches Csca =\nπr2Qsca(r) with the average value for all objects\nσ\n=\n2π\nZ 5 m\n5×10−7 m\nr2R(r)dr\n(8)\nand the contribution from the space objects to the zenith"
+      ],
+      "retrieved_sources": [
+        "12_space_objects_artificial_night_sky_brightness_arxiv.pdf",
+        "12_space_objects_artificial_night_sky_brightness_arxiv.pdf",
+        "12_space_objects_artificial_night_sky_brightness_arxiv.pdf",
+        "12_space_objects_artificial_night_sky_brightness_arxiv.pdf"
+      ]
+    }
+  ]
+}

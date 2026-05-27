@@ -1,0 +1,156 @@
+{
+  "generated_at": "2026-05-07T17:20:49",
+  "dataset_path": "/home/suity/worksapce/PycharmProjects/FindJob/agentic-rag-for-dummies-main/project/evaluation/datasets/agentic_feature_eval.jsonl",
+  "qdrant_db_path": "/tmp/agentic_feature_qdrant_20260507_171705",
+  "summary": [
+    {
+      "config": "skills_only",
+      "case_count": 1,
+      "avg_latency_ms": 52343.69,
+      "max_latency_ms": 52343.69,
+      "avg_keyword_coverage": 1.0,
+      "avg_worker_count": 5,
+      "avg_tool_call_count": 12,
+      "reflection_count": 0,
+      "reflection_search_count": 0,
+      "selected_models": {
+        "gemini-2.5-flash": 1
+      },
+      "worker_roles": {
+        "research_worker": 5
+      },
+      "ragas": {
+        "enabled": true,
+        "available": true,
+        "evaluated_cases": 1,
+        "scores": {
+          "answer_relevancy": -0.04460452536288033,
+          "faithfulness": 0.0
+        }
+      },
+      "llm_judge": {
+        "enabled": true,
+        "evaluated_cases": 1,
+        "scores": {
+          "method_accuracy": 5.0,
+          "dataset_completeness": 2.0,
+          "metric_correctness": 5.0,
+          "evidence_grounding": 3.0,
+          "chinese_clarity": 5.0,
+          "overall": 3.8
+        },
+        "cases": [
+          {
+            "id": "paper_multi_aspect",
+            "method_accuracy": 5,
+            "dataset_completeness": 2,
+            "metric_correctness": 5,
+            "evidence_grounding": 3,
+            "chinese_clarity": 5,
+            "overall": 3.8,
+            "rationale": "The answer provides a very detailed and accurate description of the paper's background, main content, innovation points, and metrics, aligning well with the ground truth. However, it makes a significant factual error in the '数据集' (datasets) section. It incorrectly states that CloudSEN12 High and L8 Biome were only mentioned for 'comparative background introduction' and '并未明确说明在论文的实验中被使用', whereas the ground truth explicitly states these five datasets were used for validation. This error in experimental setup details significantly impacts the dataset completeness and evidence grounding scores. The retrieved contexts were irrelevant author bios and did not contribute to grounding the technical content."
+          }
+        ]
+      }
+    }
+  ],
+  "runs": [
+    {
+      "config": "skills_only",
+      "cases": [
+        {
+          "id": "paper_multi_aspect",
+          "collection": "paper_test",
+          "question": "这篇论文的背景、主要内容、创新点、数据集和指标是什么？",
+          "ground_truth": "【背景】云分割是遥感图像分析的基础任务，但云的空间分布复杂、光谱特征因传感器不同而差异显著，且现有视觉基础模型（VFM）在自然图像上预训练，存在明显的领域迁移鸿沟，导致其直接应用于遥感云分割效果有限。【主要内容】论文提出 DinoCloudNet，一种基于双分支参数高效微调（PEFT）的云分割网络。模型以冻结的 DINOv3 ViT 为语义主干，配合专用卷积分支提取局部纹理特征，二者通过适配器模块融合，实现高效微调。【创新点】①ECA-SPM（Efficient Channel Attention Spatial Perception Module，高效通道注意力空间感知模块）：多尺度卷积结合通道注意力，专门捕捉云边界与局部纹理；②MGFF Adapter（Multi-Scale Global-Local Feature Fusion Adapter，多尺度全局-局部特征融合适配器）：采用可变形门控机制，将卷积分支特征注入冻结主干的选定层，是连接双分支的核心桥梁；③整体采用 PEFT 策略，重点训练 ECA-SPM 和 MGFF 等适配组件，保留 DINOv3 的泛化能力。【数据集】在 5 个遥感云分割基准上验证：HRC_WHU、GF1MS_WHU、GF2MS_WHU、L8 Biome、CloudSEN12 High（L1C 和 L2A）。【指标与结果】评估指标为 mIoU、mDice、mAcc、aAcc。在 5 个数据集中达到 4 个 SOTA：HRC_WHU mIoU 92.18%、GF2MS_WHU mIoU 87.13%、GF1MS_WHU mIoU 93.15%（第 2）；CloudSEN12 High L1C mIoU 74.95%、mDice 85.02%，L2A mIoU 74.53%，L8 Biome mIoU 75.78%，均达到最优。",
+          "latency_ms": 52343.69,
+          "answer_length": 3092,
+          "keyword_coverage": 1.0,
+          "hit_keywords": [
+            "DinoCloudNet",
+            "DINOv3",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "expected_keywords": [
+            "DinoCloudNet",
+            "DINOv3",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "active_skill": "paper_qa_zh",
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "research_worker",
+            "research_worker",
+            "research_worker",
+            "research_worker",
+            "research_worker"
+          ],
+          "worker_count": 5,
+          "tool_call_count": 12,
+          "reflection_count": 0,
+          "reflection_search_count": 0,
+          "retrieved_contexts": [
+            "He\n:is::::::\ncurrently::::\nwith ::\nthe::::\nHefei::::::\nInstitutes::\nof::::::\nPhysical ::::::\nScience, :::::\nChinese:::::::\nAcademy :of\n::::::\nSciences,:::\nand ::\nthe:::\nKey::::::::\nLaboratory ::\nof :::::\nOptical :::::::\nCalibration:::\nand::::::::::::\nCharacterization,\n:::::\nChinese:::::::\nAcademy::\nof:::::::\nSciences, ::::\nHefei,:::::\nChina.:::\nHis::::::\nresearch::::::\ninterests:::::\ninclude\n::::\nimage::::::::\nprocessing, :::\ndeep::::::\nlearning,:::::\nobject:::::::\ndetection, :::\nand ::::",
+            "Hefei:::::::\nUniversity::of:::::::::\nTechnology,\n::::\nHefei,:::::\nChina,::in:::::\n2024.:::\nHe ::\nis ::::::\ncurrently:::::::\npursuing\n::\nthe::::\nM.S.:::::\ndegree::in::::::::\nelectronic ::::::::\ninformation::at:::\nthe\n:::::::\nUniversity ::\nof::::::\nScience:::\nand:::::::::\nTechnology ::\nof:::::\nChina,\n::::\nHefei,:::::\nChina. :::\nHis ::::::\nresearch ::::::\ninterests :::::\ninclude:::::\nremote\n:::::\nsensing :::::\nimage ::::::::\nprocessing,:::::::\ncomputer::::::\nvision, :::\nand\n::::::",
+            "He:::\nhas:::::::\npublished :::\nmore::::\nthan ::\n12\n::::\nSCI/EI::::::\narticles ::\nand::::\nholds:::\nfive::::::::\nauthorized :::::\npatents.:::\nDr. ::\nQiu::is:a::::::\nmember::\nof::\nthe\n::::\nYouth:::::::\nInnovation::::::::\nPromotion ::::::::\nAssociation,::::::\nChinese ::::::\nAcademy::of:::::::\nSciences.:\nJin Hong :::::\nreceived::\nthe:::\nB.S.:::::\ndegree::\nin ::::::::::\ncommunication\n::::::::\nengineering ::::\nfrom ::::::\nZhejiang::::::::\nUniversity,::::::::\nHangzhou,\n::::\nChina,::\nin::::\n1987.::::",
+            "Academy::of:::::::\nSciences,:::::\nHefei, :::::\nChina, :::\nand\n::\nthe::::\nKey ::::::::\nLaboratory::of::::::\nOptical::::::::\nCalibration::::\nand\n:::::::::::\nCharacterization,::::::\nChinese::::::::\nAcademy ::\nof:::::::\nSciences,\n::::\nHefei,:::::\nChina.:::\nHis ::::::\nresearch::::::\ninterests:::::\ninclude:::::\nimage\n:::::::\nprocessing,::::\ndeep:::::::\nlearning,:::::\nobject::::::::\ndetection, :::\nand\n::::\nimage:::::::::\nsegmentation.:\nHaoran Liu :::::\nreceived:::\nthe :::\nM.S.:::::\ndegree::in:::::::",
+            "China.::::\nHis::::::\nresearch:::::::\ninterests\n:::::\ninclude :::::::::\natmospheric::::::::\ncorrection,::::::\nremote ::::::\nsensing\n::::\nimage:::::::\nprocessing:::\nand:::::\nquality::::::::\nassessment,:::\nand::::\ndeep\n:::::\nlearning:::\nfor :::::\nremote :::::\nsensing:::::::::\napplications.\nShuming Shi ::::::\ngraduated::::\nfrom::::\nAnhui:::::::::\nAgricultural :::::::\nUniversity,::::\nHefei,:::::\nChina.::\nHe\n:is::::::\ncurrently::::\nwith ::\nthe::::\nHefei::::::\nInstitutes::\nof::::::\nPhysical ::::::"
+          ],
+          "retrieved_sources": [
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf"
+          ],
+          "error": "",
+          "answer": "这篇论文（JSTARS-2025-04970_Tracked_Manuscript.pdf）的背景、主要内容、创新点、数据集和指标如下：\n\n### 背景\n该论文的背景主要围绕遥感图像处理中的云分割展开。传统的云分割方法通常依赖光谱和统计特征来构建规则或分类器，常见的策略包括单阈值和多阈值分割、多光谱特征融合、边缘检测以及形态学后处理，例如Fmask和CFMask等方法。在更广泛的遥感图像处理领域，特别是图像分割方面，当前研究还包括遥感领域的“基础模型”（foundation models），如“When remote sensing meets foundation model: A survey and beyond”[18]中综述的，以及“Segment Anything Model”（SAM）[17]及其在遥感图像语义分割中的适配版本，如SAM-Adapter [46]和RSAM-Seg [47]。\n\n### 主要内容\n该论文提出了一种名为 **DinoCloudNet** 的参数高效双分支适配器网络，旨在实现高效准确的云分割。DinoCloudNet 的核心思想是将视觉基础模型（VFM）的全局特征和强大的泛化能力与基于卷积神经网络（CNN）的多尺度空间细节特征相结合。这种设计旨在提高模型表示云边界和薄云细节的能力，同时保持骨干网络的泛化能力，从而实现域适应并提高云分割的准确性和鲁棒性。\n\n论文的主要贡献包括：\n*   提出了 DinoCloudNet，一个双分支适配器网络，通过融合 VFM 全局特征与基于 CNN 的多尺度空间细节，实现高效准确的云分割。\n*   设计了两个协同模块：\n    *   **ECA-SPM (Efficient Channel Attention Spatial Perception Module)**：用于高效捕获多尺度局部空间细节。\n    *   **MGFF Adapter (Multi-scale Global Feature Fusion Adapter)**：用于自适应地将这些局部特征与冻结的骨干网络对齐和融合。\n*   通过广泛的实验证明了 DinoCloudNet 的有效性和强大的泛化能力，在涵盖不同传感器和区域的五个主要基准测试中取得了极具竞争力的性能，其中在 4/5 的基准测试中达到了 SOTA (state-of-the-art)。\n\n其中，MGFF Adapter 在冻结的 DINOv3 骨干网络上实现了参数高效的特征对齐和注入。它应用 FiLM 门控在残差控制下注入内容自适应信号，将冻结骨干网络的特征适应目标域，并将高质量的全局密集特征与来自 ECA-SPM 的多尺度空间局部细节融合。该论文指出，以往的方法通常会更新所有参数，导致参数数量增加和过拟合风险，或者使用基于 LoRA 的微调，但缺乏对局部空间细节特征的明确建模。DinoCloudNet 通过使用轻量级、可训练的空间感知模块和带有冻结基础模型的特征融合块来解决这些问题。\n\n### 创新点\n该论文的创新点主要体现在以下几个方面：\n*   **提出DinoCloudNet**：引入了一种参数高效的双分支适配器网络，专为高效准确的云分割而设计，它有效地结合了视觉基础模型（VFM）的全局特征和强大泛化能力与基于CNN的多尺度空间细节特征，并建立在冻结的DINOv3骨干网络之上。\n*   **双分支设计**：DinoCloudNet采用双分支架构，其中冻结的骨干网络提取全局语义，而并行的Efficient Channel Attention-Spatial Pyramid Module (ECA-SPM) 分支则捕获边缘感知、多尺度的局部空间细节。\n*   **高效通道注意力-空间金字塔模块 (ECA-SPM)**：该模块专门设计用于高效捕获多尺度局部空间细节，通过提供关键的局部信息来补充冻结的基础骨干网络。\n*   **多尺度全局特征融合 (MGFF) 适配器**：提出该适配器用于自适应地对齐和融合来自VFM（全局）和CNN（局部）分支的多尺度特征。它将这些融合后的特征注入到骨干网络的选定层中，以优化全局一致性和局部精度。\n*   **协同模块设计**：ECA-SPM和MGFF适配器被设计为协同模块，它们之间表现出强大的互补关系。消融研究证实，这两个模块都是必要的，并且相互增强，从而提高了性能。例如，它们的组合使用实现了最佳的整体mIoU (74.95%) 和mDice (85.02%)。\n*   **参数效率和泛化能力**：该方法具有参数效率高，能够有效适应云任务，同时保留冻结骨干网络的强大泛化能力。它在使用DINOv3-Large骨干网络时，实现了74.95%的SOTA mIoU，而使用的骨干网络参数不到SAM-Huge的一半。准确性的提升仅伴随着可训练参数的适度增加（从DinoCloudNet-S的22.09M增加到DinoCloudNet-L的24.50M）。\n*   **竞争性性能**：DinoCloudNet展示了极具竞争力的性能，在涵盖不同传感器和区域的5个主要基准测试中，有4个取得了SOTA结果。它在来自多个卫星源、传感器系列、数据处理级别、土地覆盖场景和注释粒度的各种云分割数据集上始终表现出色。\n\n### 数据集\n该论文在云分割任务中主要使用了以下三个数据集进行评估：\n1.  **HRC WHU**:\n    *   卫星来源：Google Earth\n    *   地面分辨率：0.5 m - 15 m\n    *   训练集：120张图像\n    *   测试集：30张图像\n    *   图像块大小：256×256\n    *   类别：2类（云或非云）\n    *   描述：一个包含150张高分辨率RGB三通道图像的高分辨率云检测基准。\n2.  **GF1MS WHU**:\n    *   卫星来源：GF-1\n    *   地面分辨率：8 m\n    *   训练集：6,344张图像\n    *   测试集：4,086张图像\n    *   图像块大小：256×256\n    *   类别：2类\n3.  **GF2MS WHU**:\n    *   卫星来源：GF-2\n    *   地面分辨率：4 m\n    *   训练集：14,357张图像\n    *   测试集：7,560张图像\n    *   图像块大小：256×256\n    *   类别：2类\n\n为了适应训练流程，所有图像都被裁剪成256 × 256大小的图像块用于二元分割任务。论文中还提到了其他常用的云分割数据集，如CloudSEN12 High和L8 Biome，但这些数据集主要用于比较性背景介绍，并未明确说明在论文的实验中被使用。\n\n### 指标\n该论文使用以下评估指标来评估云和云影分割：\n*   **总体准确度** (Overall Accuracy, aAcc)\n*   **平均交并比** (Mean Intersection over Union, mIoU)\n*   **平均准确度** (Mean Accuracy, mAcc)\n*   **平均Dice系数** (Mean Dice Coefficient, mDice)\n\n---\n**Sources:**\n*   JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        }
+      ],
+      "ragas": {
+        "enabled": true,
+        "available": true,
+        "evaluated_cases": 1,
+        "scores": {
+          "answer_relevancy": -0.04460452536288033,
+          "faithfulness": 0.0
+        }
+      },
+      "llm_judge": {
+        "enabled": true,
+        "evaluated_cases": 1,
+        "scores": {
+          "method_accuracy": 5.0,
+          "dataset_completeness": 2.0,
+          "metric_correctness": 5.0,
+          "evidence_grounding": 3.0,
+          "chinese_clarity": 5.0,
+          "overall": 3.8
+        },
+        "cases": [
+          {
+            "id": "paper_multi_aspect",
+            "method_accuracy": 5,
+            "dataset_completeness": 2,
+            "metric_correctness": 5,
+            "evidence_grounding": 3,
+            "chinese_clarity": 5,
+            "overall": 3.8,
+            "rationale": "The answer provides a very detailed and accurate description of the paper's background, main content, innovation points, and metrics, aligning well with the ground truth. However, it makes a significant factual error in the '数据集' (datasets) section. It incorrectly states that CloudSEN12 High and L8 Biome were only mentioned for 'comparative background introduction' and '并未明确说明在论文的实验中被使用', whereas the ground truth explicitly states these five datasets were used for validation. This error in experimental setup details significantly impacts the dataset completeness and evidence grounding scores. The retrieved contexts were irrelevant author bios and did not contribute to grounding the technical content."
+          }
+        ]
+      }
+    }
+  ]
+}

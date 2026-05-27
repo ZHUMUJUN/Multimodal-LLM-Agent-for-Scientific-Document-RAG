@@ -1,0 +1,545 @@
+{
+  "generated_at": "2026-05-07T14:33:05",
+  "dataset_path": "/home/suity/worksapce/PycharmProjects/FindJob/agentic-rag-for-dummies-main/project/evaluation/datasets/agentic_feature_eval.jsonl",
+  "qdrant_db_path": "/tmp/agentic_feature_qdrant_20260507_142405",
+  "summary": [
+    {
+      "config": "skills_only",
+      "case_count": 3,
+      "avg_latency_ms": 36223.42,
+      "max_latency_ms": 56161.77,
+      "avg_keyword_coverage": 0.7556,
+      "avg_worker_count": 2.33,
+      "avg_tool_call_count": 5,
+      "reflection_count": 0,
+      "reflection_search_count": 0,
+      "selected_models": {
+        "gemini-2.5-flash": 3
+      },
+      "worker_roles": {
+        "research_worker": 7
+      }
+    },
+    {
+      "config": "plus_reflection",
+      "case_count": 3,
+      "avg_latency_ms": 42654.25,
+      "max_latency_ms": 69479.01,
+      "avg_keyword_coverage": 0.7556,
+      "avg_worker_count": 2.33,
+      "avg_tool_call_count": 8,
+      "reflection_count": 7,
+      "reflection_search_count": 0,
+      "selected_models": {
+        "gemini-2.5-flash": 3
+      },
+      "worker_roles": {
+        "research_worker": 7
+      }
+    },
+    {
+      "config": "plus_roles",
+      "case_count": 3,
+      "avg_latency_ms": 54834.95,
+      "max_latency_ms": 84588.34,
+      "avg_keyword_coverage": 0.8889,
+      "avg_worker_count": 2.33,
+      "avg_tool_call_count": 6.33,
+      "reflection_count": 7,
+      "reflection_search_count": 0,
+      "selected_models": {
+        "gemini-2.5-flash": 3
+      },
+      "worker_roles": {
+        "paper_overview_worker": 1,
+        "research_worker": 2,
+        "method_worker": 2,
+        "data_eval_worker": 2
+      }
+    },
+    {
+      "config": "router_simple_cost",
+      "case_count": 3,
+      "avg_latency_ms": 42394.09,
+      "max_latency_ms": 71484.03,
+      "avg_keyword_coverage": 0.8889,
+      "avg_worker_count": 2.33,
+      "avg_tool_call_count": 7.33,
+      "reflection_count": 0,
+      "reflection_search_count": 0,
+      "selected_models": {
+        "gemini-2.5-flash": 3
+      },
+      "worker_roles": {
+        "paper_overview_worker": 1,
+        "research_worker": 2,
+        "method_worker": 2,
+        "data_eval_worker": 2
+      }
+    }
+  ],
+  "runs": [
+    {
+      "config": "skills_only",
+      "cases": [
+        {
+          "id": "paper_multi_aspect",
+          "collection": "paper_test",
+          "question": "这篇论文的背景、主要内容、创新点、数据集和指标是什么？",
+          "latency_ms": 56161.77,
+          "answer_length": 3111,
+          "keyword_coverage": 1.0,
+          "hit_keywords": [
+            "DinoCloudNet",
+            "DINOv3",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "expected_keywords": [
+            "DinoCloudNet",
+            "DINOv3",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "active_skill": "paper_qa_zh",
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "research_worker",
+            "research_worker",
+            "research_worker",
+            "research_worker",
+            "research_worker"
+          ],
+          "worker_count": 5,
+          "tool_call_count": 10,
+          "reflection_count": 0,
+          "reflection_search_count": 0,
+          "error": "",
+          "answer": "这篇论文（JSTARS-2025-04970_Tracked_Manuscript.pdf）主要关注遥感图像中的云分割任务，并提出了 **DinoCloudNet** 方法来解决该领域面临的挑战。\n\n### 背景与动机\n\n遥感图像中的云分割是一个复杂且具有挑战性的任务，主要原因包括：\n\n*   **云形态复杂性**：云的形态细节和边界多变，使得直接应用视觉基础模型（Vision Foundation Models, VFMs）效果不佳，因为它们对多尺度局部细节和边界高度敏感，导致迁移效果不理想。\n*   **现有模型局限性**：设计一个能够高精度分割云形态细节的空间特征，同时保留视觉基础模型强大泛化能力的有效云分割网络，仍然是一个紧迫的挑战。\n*   **复杂云边界处理**：复杂的云边界容易出现碎片化或过度平滑，可能导致预测的云区域出现虚假空洞或清晰区域出现随机斑点。\n*   **薄云和云影识别**：经过大气校正后，薄云（thin clouds）与雾霾相似，云影（cloud shadows）与自然地形阴影相似，这使得区分清晰天空区域（clear sky regions, CRS）、薄云（TNC）、厚云（thick clouds, TKC）和云影（CDS）之间的边界变得不那么明显。\n*   **大面积均匀云层稳定性**：对于大面积均匀的云层，不稳定的模型容易在预测中产生人工“空洞”。\n\n为了解决这些挑战，该论文提出了 DinoCloudNet 方法。\n\n### 主要内容\n\n论文的核心是提出了一种名为 **DinoCloudNet** 的新方法，用于遥感图像的云分割。该方法旨在通过结合视觉基础模型（VFM）的全局特征和基于卷积神经网络（CNN）的多尺度空间细节特征，实现高效准确的云分割。DinoCloudNet 在不同卫星平台、传感器系列和地物覆盖条件下展现出有效的泛化能力。\n\n在与 MCDNet、SCNN、Rein、SegMAN、CDNetv2、KappaMask、DBNet、UNetMobv2、SAM-Adapter 和 HRCloudNet 等现有分割模型的比较评估中，DinoCloudNet 持续表现出高水平的性能。例如，DinoCloudNet 在一项比较中取得了 96.10、92.18、95.86 和 95.92 的分数，优于 SegMAN 和 Rein。DinoCloudNet 及其变体（DinoCloudNet-S、DinoCloudNet-B、DinoCloudNet-L）也报告了 99.05、93.40、96.43、96.50 以及 99.08、93.48、96.52、96.58 等高分。\n\n### 创新点\n\n该论文的创新点主要包括：\n\n1.  **提出 DinoCloudNet**：引入了一种参数高效的双分支适配器网络 DinoCloudNet，旨在实现高效准确的云分割。\n2.  **结合 VFM 与 CNN 特征**：DinoCloudNet 有效地结合了视觉基础模型（VFM）的全局特征和强大的泛化能力，以及基于 CNN 的多尺度空间细节特征。它使用 **DINOv3** 作为冻结的主干网络来提取全局语义。\n3.  **设计协同模块**：\n    *   **高效通道注意力空间感知模块（ECA-SPM）**：该模块旨在高效捕获多尺度局部空间细节，并提供鲁棒的多尺度空间上下文。单独引入 ECA-SPM 时，mIoU 提升 0.80 个百分点（达到 74.43%），mAcc 提升 1.70 个百分点（从 84.20% 到 85.90%）。\n    *   **多尺度全局-局部特征融合适配器（MGFF Adapter）**：该模块负责自适应地对齐和融合来自两个分支（DINOv3 的全局特征和 ECA-SPM 的多尺度局部特征）的多尺度信息，并将融合后的特征注入到主干网络的选定层中。它负责将空间上下文精细地对齐并注入到主干特征中。单独引入 MGFF 模块时，mIoU 提升 0.82 个百分点（从 73.63% 到 74.45%），mDice 提升 0.60 个百分点（从 84.05% 到 84.65%）。\n4.  **模块协同作用**：ECA-SPM 和 MGFF 模块的结合实现了最佳的整体评估指标，mIoU 达到 74.95%，mDice 达到 85.02%，这表明它们之间存在强大的互补关系，共同推动了最终分割质量的持续稳定改进。\n\n### 数据集\n\n该论文使用了以下云分割数据集：\n\n*   **HRC WHU**: 来源于 Google Earth，地面分辨率为 0.5 m - 15 m。训练集包含 120 张图像，测试集包含 30 张图像，图像块大小为 256×256，分为 2 类。\n*   **GF1MS WHU**: 来源于 GF-1 卫星，地面分辨率为 8 m。训练集包含 6,344 张图像，测试集包含 4,086 张图像，图像块大小为 256×256，分为 2 类。\n*   **GF2MS WHU**: 来源于 GF-2 卫星，地面分辨率为 4 m。训练集包含 14,357 张图像，测试集包含 7,560 张图像，图像块大小为 256×256，分为 2 类。\n*   **CloudSEN12 High**: 来源于 Sentinel-2 卫星，地面分辨率为 10 m。训练集包含 8,490 张图像，测试集包含 975 张图像，图像块大小为 512×512，分为 4 类。\n*   **L8 Biome**: 来源于 Landsat 8 卫星，地面分辨率为 30 m。训练集包含 7,931 张图像，测试集包含 2,643 张图像，图像块大小为 512×512，分为 4 类。\n\n其中，HRC WHU、GF1MS WHU 和 GF2MS WHU 主要用于二分类任务，图像主要来自中国不同地区，涵盖 2014 年 6 月至 2020 年 12 月期间，包含多样的地貌和季节。多类别云分割任务（如 CloudSEN12 High 和 L8 Biome）要求模型将每个像素标记为晴空 (Clear Sky)、薄云 (Thin Cloud)、厚云 (Thick Cloud) 或云影 (Cloud Shadow)。\n\n### 指标\n\n该论文使用以下指标来评估云和云影分割：\n\n*   **总体准确度 (Overall Accuracy, aAcc)**：反映整体正确性。\n*   **平均交并比 (Mean Intersection over Union, mIoU)**：衡量区域重叠质量。\n*   **平均准确度 (Mean Accuracy, mAcc)**：计算每个类别的平均准确度，有助于缓解类别不平衡问题。其计算公式为：mAcc = (1/C) * Σ(TPi / (TPi + FNi))，其中 C 是类别数量，TPi 是真阳性，FNi 是假阴性。\n*   **平均 Dice 系数 (Mean Dice Coefficient, mDice)**：提供精确度和召回率的调和度量，对边界和小型目标分割特别敏感。其计算公式为：mDice = (1/C) * Σ((2 * TPi) / (2 * TPi + FPi + FNi))，其中 FPi 是假阳性。\n\n所有指标均以百分比形式报告。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        },
+        {
+          "id": "paper_method",
+          "collection": "paper_test",
+          "question": "这篇论文的方法创新具体体现在哪些模块上？",
+          "latency_ms": 16459.15,
+          "answer_length": 633,
+          "keyword_coverage": 0.6,
+          "hit_keywords": [
+            "ECA-SPM",
+            "MGFF",
+            "DINOv3"
+          ],
+          "expected_keywords": [
+            "ECA-SPM",
+            "MGFF",
+            "DINOv3",
+            "backbone",
+            "Adapter"
+          ],
+          "active_skill": "paper_qa_zh",
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "research_worker"
+          ],
+          "worker_count": 1,
+          "tool_call_count": 2,
+          "reflection_count": 0,
+          "reflection_search_count": 0,
+          "error": "",
+          "answer": "这篇论文中提出的 DinoCloudNet 方法，其创新性主要体现在以下两个协同模块上：\n\n1.  **高效通道注意力空间感知模块 (Efficient Channel Attention Spatial Perception Module, ECA-SPM)**\n    *   这个模块是一个轻量级且可训练的组件，它与冻结的 DINOv3 主干网络并行工作。\n    *   它的主要功能是通过多尺度卷积和通道注意力机制，捕获多尺度精细空间特征，例如云的边界和纹理等局部空间细节。\n\n2.  **多尺度全局特征融合 (Multi-scale Global Feature Fusion, MGFF) 适配器**\n    *   该适配器负责自适应地对齐和融合 ECA-SPM 模块提取的多尺度局部特征，以及冻结的 DINOv3 主干网络提取的强大全局特征。\n    *   通过这种融合，它确保了局部细节与全局表示的有效结合，从而在保持强大泛化能力的同时，提供精确的分割细节。\n\nDinoCloudNet 的整体设计基于冻结的 DINOv3 主干网络，以保留其强大的通用特征提取和跨域泛化能力。通过上述模块的协同作用，该方法实现了参数高效的适应性，能够有效处理自然图像与遥感图像之间的领域差距，并在多个云分割基准测试中取得了有竞争力的性能。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        },
+        {
+          "id": "simple_definition",
+          "collection": "paper_test",
+          "question": "DinoCloudNet 是什么？",
+          "latency_ms": 36049.33,
+          "answer_length": 1254,
+          "keyword_coverage": 0.6667,
+          "hit_keywords": [
+            "DinoCloudNet",
+            "DINOv3"
+          ],
+          "expected_keywords": [
+            "DinoCloudNet",
+            "cloud segmentation",
+            "DINOv3"
+          ],
+          "active_skill": null,
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "research_worker"
+          ],
+          "worker_count": 1,
+          "tool_call_count": 3,
+          "reflection_count": 0,
+          "reflection_search_count": 0,
+          "error": "",
+          "answer": "DinoCloudNet 是一种双分支网络，专门设计用于遥感图像中的云分割。它基于一个冻结的 DINOv3 主干网络构建，并包含两个关键组件：ECA-SPM（用于提取多尺度局部空间细节）和 MGFF Adapter（用于自适应地对齐和融合 DINOv3 的全局特征与 ECA-SPM 的多尺度局部特征）。\n\nDinoCloudNet 的主要特点和能力包括：\n*   **泛化能力和精度：** 它具有强大的泛化能力，并提供精确的分割细节。\n*   **效率：** 它只需要微调少量参数。\n*   **性能：** DinoCloudNet 在各种云分割数据集上都取得了极具竞争力的性能，这些数据集涵盖了不同的卫星来源、传感器系列、数据处理级别、土地覆盖场景和标注粒度。\n*   **可扩展性：** 它展现出卓越的可扩展性，并在效率和准确性之间取得了最佳平衡，能够有效利用更强大的主干网络，适应不同的计算预算。\n*   **主干网络选择：** DINOv3 是默认的主干网络，因为它在准确性-参数权衡方面表现良好，其密集的自监督表示非常适合云和云影分割中的语义一致性。\n*   **模块必要性：** 消融研究证实，ECA-SPM 和 MGFF Adapter 模块对于其性能都是必不可少且相互增强的。\n\n在性能方面，DinoCloudNet 在 HRC WHU (92.18% mIoU) 和 GF2MS WHU (87.13% mIoU) 等数据集上取得了最先进 (SOTA) 的结果，并在 GF1MS WHU (93.15% mIoU) 上取得了极具竞争力的结果。它擅长生成可靠的云预测，精确地遵循薄云边界，并生成更清晰的阴影掩模。\n\n对于 CloudSEN12 High L1C 数据集（输入尺寸为 512 × 512），不同版本的 DinoCloudNet 提供了不同的权衡：\n*   **DinoCloudNet-S：** (50.02 GFLOPs, 22.09M 参数, 73.96% mIoU) 非常适合资源有限的边缘应用。\n*   **DinoCloudNet-B：** (125.57 GFLOPs, 23.55M 参数, 74.14% mIoU)。\n*   **DinoCloudNet-L：** (380.71 GFLOPs, 24.50M 参数, 74.95% mIoU) 实现了最先进的准确性，适用于服务器端部署。\n\n与基于 SAM 的主干网络相比，DINOv3-Small (21M 参数, 73.96% mIoU) 优于 SAM-Base (91M 参数, 73.23% mIoU)，并且与 SAM-Huge (636M 参数) 表现相当。DINOv3-Large 以显著少于 SAM-Huge 的主干网络参数实现了最佳的整体性能 (74.95% mIoU)。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        }
+      ]
+    },
+    {
+      "config": "plus_reflection",
+      "cases": [
+        {
+          "id": "paper_multi_aspect",
+          "collection": "paper_test",
+          "question": "这篇论文的背景、主要内容、创新点、数据集和指标是什么？",
+          "latency_ms": 69479.01,
+          "answer_length": 3503,
+          "keyword_coverage": 1.0,
+          "hit_keywords": [
+            "DinoCloudNet",
+            "DINOv3",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "expected_keywords": [
+            "DinoCloudNet",
+            "DINOv3",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "active_skill": "paper_qa_zh",
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "research_worker",
+            "research_worker",
+            "research_worker",
+            "research_worker",
+            "research_worker"
+          ],
+          "worker_count": 5,
+          "tool_call_count": 17,
+          "reflection_count": 5,
+          "reflection_search_count": 0,
+          "error": "",
+          "answer": "这篇论文《DinoCloudNet: 一种基于视觉基础模型的遥感云语义分割方法》的背景、主要内容、创新点、数据集和指标如下：\n\n### 背景\n\n遥感图像中的云分割是一个基础且关键的步骤，其准确性直接影响到大气校正、土地覆盖测绘和灾害监测等众多下游应用的精度。然而，遥感图像中的云体（特别是薄云）及其阴影对多尺度局部细节和边界高度敏感，这使得高精度云分割成为一个紧迫的挑战。\n\n尽管在自然图像上预训练的视觉基础模型（VFMs）展现出强大的迁移潜力，但由于自然图像与遥感图像之间存在巨大的领域差异（包括视角几何、空间分辨率和目标尺度等），直接将这些模型应用于云分割任务往往会导致次优的性能。传统方法也常面临在复杂背景下表现受限或泛化能力不足的问题。\n\n因此，该论文的动机在于利用通用视觉基础模型（VFMs）在遥感任务中表现出的有效性，并设计一种既能通过获取云形态细节的空间特征实现高精度分割，又能保留视觉基础模型强大泛化能力的有效云分割网络。论文采用了一种参数高效的微调范式，利用冻结的VFM骨干网络来捕获全局语义，并将其与一个轻量级的卷积空间感知分支相结合，旨在提供边缘感知的多尺度局部细节，以实现鲁棒的云分割。论文提出的DinoCloudNet模型能够将云与高度混淆的背景纹理（如岩石、雪或阴影）区分开来，避免将山体阴影误认为是云，并防止将云过度平滑成与标签不匹配的单一大块，同时在保持全局覆盖和精细边界方面表现出色。\n\n### 主要内容\n\n该论文提出了一种名为 DinoCloudNet 的参数高效模型，用于解决遥感图像中的云分割问题。\n\n**核心方法 (DinoCloudNet)：**\nDinoCloudNet 基于一个冻结的 DINOv3 主干网络构建，并采用参数高效的设计来弥补自然图像与遥感图像之间的领域差距，从而提高遥感图像云分割的准确性。\n\n**关键模块和设计：**\n\n*   **双分支设计：** 模型包含两个并行分支。冻结的 DINOv3 主干网络负责提取全局语义信息，而一个并行的有效通道注意力空间感知模块（ECA-SPM）分支则用于捕获边缘感知、多尺度的局部空间细节。\n*   **多尺度全局-局部特征融合适配器 (MGFF Adapter)：** 该模块自适应地对齐并融合来自两个分支的多尺度信息，并将融合后的特征注入到主干网络的选定层中。\n\n**优势与性能：**\n这种方法能够有效地适应云分割任务，同时保留了冻结主干网络强大的泛化能力，从而提高了分割精度。DinoCloudNet（包括 DinoCloudNet-S、DinoCloudNet-B 和 DinoCloudNet-L 等不同规模）在多个云分割基准测试中表现出高度竞争力，优于大多数现有方法。其有效性和泛化能力在不同的卫星平台、传感器系列和地物覆盖条件下得到了验证。\n\n**对比模型：**\n论文将 DinoCloudNet 的性能与 MCDNet、SCNN、Rein、SegMAN、CDNetv2、KappaMask、DBNet、UNetMobv2、SAM-Adapter 和 HRCloudNet 等现有方法进行了比较，DinoCloudNet 在各项指标上均表现出具有竞争力的性能。\n\n### 创新点\n\n该论文的创新点主要体现在其提出的DinoCloudNet模型及其两个新颖模块：\n\n1.  **DinoCloudNet模型**：该模型旨在有效解决云分割中的三个常见挑战：\n    *   区分高反照率地表（如雪、裸土）与厚云。\n    *   保留薄云和附近阴影等细微特征，这些特征通常缺乏清晰边界。\n    *   处理复杂的云边界，避免碎片化、过度平滑、虚假孔洞或随机斑点。\n    DinoCloudNet通过结合一个用于获取全局语义线索的冻结视觉基础骨干网络，以及以下两个创新模块来实现这些目标。\n\n2.  **ECA-SPM（Enhanced Channel Attention and Spatial Pyramid Module）模块**：\n    *   该分支专注于局部边缘细节，例如薄云的卷须和狭窄的阴影痕迹。\n    *   它在多个尺度上生成互补的空间响应，其中高分辨率特征强调精细的边界细节和薄云结构，而低分辨率特征编码更粗糙的区域模式和更广泛的空间上下文。\n    *   消融研究表明，单独引入ECA-SPM可以增强多尺度空间细节建模，使mIoU提高0.80个百分点（达到74.43%），mAcc提高1.70个百分点（从84.20%到85.90%）。\n\n3.  **MGFF（Multi-scale Gated Feature Fusion）Adapter模块**：\n    *   该适配器协同融合来自骨干网络的全局语义信息与来自ECA-SPM的局部细节。\n    *   它负责将多尺度空间上下文精确对齐并注入到骨干特征中，共同优化全局一致性和局部精度。\n    *   消融研究显示，单独引入MGFF可以激活模型的特征融合和调制能力，使mIoU提高0.82个百分点（从73.63%到74.45%），mDice提高0.60个百分点（从84.05%到84.65%）。\n\n当ECA-SPM和MGFF两个模块结合使用时，它们表现出强大的互补关系，并取得了最佳的整体评估指标：mIoU达到74.95%，mDice达到85.02%，aAcc达到90.41%，mAcc达到85.75%。\n\n### 数据集\n\n该论文使用了以下数据集：\n\n*   **HRC WHU**: 来源于 Google Earth，地面分辨率为 0.5 m - 15 m，包含 120 个训练集和 30 个测试集，图像块大小为 256×256，分为 2 类。\n*   **GF1MS WHU**: 来源于 GF-1 卫星，地面分辨率为 8 m，包含 6,344 个训练集和 4,086 个测试集，图像块大小为 256×256，分为 2 类。\n*   **GF2MS WHU**: 来源于 GF-2 卫星，地面分辨率为 4 m，包含 14,357 个训练集和 7,560 个测试集，图像块大小为 256×256，分为 2 类。\n*   **CloudSEN12 High**: 来源于 Sentinel-2 卫星，地面分辨率为 10 m，包含 8,490 个训练集和 975 个测试集，图像块大小为 512×512，分为 4 类。\n*   **L8 Biome**: 来源于 Landsat 8 卫星，地面分辨率为 30 m，包含 7,931 个训练集和 2,643 个测试集，图像块大小为 512×512，分为 4 类。\n\n其中，HRC WHU、GF1MS WHU 和 GF2MS WHU 主要用于二元云分割任务，图像主要来自中国不同地区，涵盖 2014 年 6 月至 2020 年 12 月期间，包含多样的地貌和季节。CloudSEN12 High 和 L8 Biome 用于多类别云分割任务，需要将每个像素标记为晴空 (Clear Sky)、薄云 (Thin Cloud)、厚云 (Thick Cloud) 或云影 (Cloud Shadow)。\n\n### 指标\n\n该论文使用以下指标来评估云和云影分割：\n\n*   **总体准确度 (Overall Accuracy, aAcc)**：反映整体正确性。\n*   **平均交并比 (Mean Intersection over Union, mIoU)**：衡量区域重叠质量。\n*   **平均准确度 (Mean Accuracy, mAcc)**：计算每个类别的平均准确度，有助于缓解类别不平衡问题。其计算公式为：`mAcc = (1/C) * Σ(TPi / (TPi + FNi))`，其中 C 是类别数量，TPi 是真阳性，FNi 是假阴性。\n*   **平均Dice系数 (Mean Dice Coefficient, mDice)**：提供精确度和召回率的调和度量，对边界和小型目标分割特别敏感。其计算公式为：`mDice = (1/C) * Σ((2 * TPi) / (2 * TPi + FPi + FNi))`，其中 FPi 是假阳性。\n\n这些指标是互补的：aAcc反映整体正确性，mIoU和mDice衡量区域重叠质量。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        },
+        {
+          "id": "paper_method",
+          "collection": "paper_test",
+          "question": "这篇论文的方法创新具体体现在哪些模块上？",
+          "latency_ms": 25469.9,
+          "answer_length": 796,
+          "keyword_coverage": 0.6,
+          "hit_keywords": [
+            "ECA-SPM",
+            "MGFF",
+            "Adapter"
+          ],
+          "expected_keywords": [
+            "ECA-SPM",
+            "MGFF",
+            "DINOv3",
+            "backbone",
+            "Adapter"
+          ],
+          "active_skill": "paper_qa_zh",
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "research_worker"
+          ],
+          "worker_count": 1,
+          "tool_call_count": 3,
+          "reflection_count": 1,
+          "reflection_search_count": 0,
+          "error": "",
+          "answer": "这篇论文提出的 DinoCloudNet 方法主要包含两个创新模块：\n\n1.  **ECA-SPM（Enhanced Channel Attention-Spatial Pyramid Module，增强通道注意力空间金字塔模块）**\n    *   这个模块旨在高效地捕捉多尺度局部空间细节，特别是边缘感知信息。\n    *   它通过多尺度卷积和通道注意力机制，从遥感图像输入中提取多尺度特征。\n    *   ECA-SPM 生成的特征在不同尺度上具有互补的空间响应：高分辨率特征侧重于精细的边界细节和薄云结构，而低分辨率特征则编码更粗糙的区域模式和更广阔的空间上下文。\n    *   它为 DinoCloudNet 提供了强大的多尺度空间上下文。\n\n2.  **MGFF Adapter（Multi-scale Global Feature Fusion Adapter，多尺度全局特征融合适配器）**\n    *   MGFF Adapter 作为连接 DinoCloudNet 双分支（冻结骨干网络和 ECA-SPM 分支）的桥梁。\n    *   它自适应地对齐并融合来自视觉基础模型（VFM）的全局特征与 ECA-SPM 提取的多尺度局部特征。\n    *   该模块通过可变形门控机制融合和调制全局特征，并将融合后的特征注入到骨干网络的选定层（例如索引为 {4, 11, 17, 23} 的层）。\n    *   MGFF Adapter 负责将 ECA-SPM 提供的空间上下文精确地对齐并注入到骨干网络特征中，从而持续稳定地提升最终分割质量。\n\n这两个模块协同工作，使得 DinoCloudNet 能够在保持参数效率的同时，实现高效准确的云分割。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        },
+        {
+          "id": "simple_definition",
+          "collection": "paper_test",
+          "question": "DinoCloudNet 是什么？",
+          "latency_ms": 33013.84,
+          "answer_length": 904,
+          "keyword_coverage": 0.6667,
+          "hit_keywords": [
+            "DinoCloudNet",
+            "DINOv3"
+          ],
+          "expected_keywords": [
+            "DinoCloudNet",
+            "cloud segmentation",
+            "DINOv3"
+          ],
+          "active_skill": null,
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "research_worker"
+          ],
+          "worker_count": 1,
+          "tool_call_count": 4,
+          "reflection_count": 1,
+          "reflection_search_count": 0,
+          "error": "",
+          "answer": "DinoCloudNet是一个双分支网络，专门为遥感图像中的云分割任务而设计。它的架构基于一个冻结的DINOv3骨干网络，并整合了两个关键组件：\n\n*   **ECA-SPM：** 负责提取多尺度局部空间细节。\n*   **MGFF Adapter：** 负责自适应地对齐和融合来自DINOv3的全局特征与来自ECA-SPM的多尺度局部特征。\n\n这种设计使得DinoCloudNet能够实现强大的泛化能力和精确的分割细节，适用于云和云影的分割。\n\nDinoCloudNet能够处理二元（云/无云）和多类别分割任务。在多类别任务中，它可以区分晴空（CRS）、薄云（TNC）、厚云（TKC）和云影（CDS）。\n\n在性能方面，DinoCloudNet在各种云分割数据集上表现出高度竞争力：\n\n*   **二元云分割：** 在HRC WHU数据集上达到了92.18%的mIoU，在GF2MS WHU数据集上达到了87.13%的mIoU，并在GF1MS WHU数据集上取得了93.15%的mIoU，展现了最先进的成果。\n*   **多类别云分割：** 在CloudSEN12 High L1C数据集上取得了74.95%的最佳平均交并比（mIoU），在CloudSEN12 High L2A数据集上为74.53%，在L8 Biome数据集上为75.78%。\n\n此外，DinoCloudNet还具有高效性和可扩展性，提供了DinoCloudNet-S、-B和-L等变体。这些变体在可训练参数仅适度增加的情况下，mIoU有所提高。例如，使用DINOv3-Small的DinoCloudNet以22.09M的可训练参数实现了73.96%的mIoU，优于拥有91M参数的SAM-Base（其mIoU为73.23%）。这表明DinoCloudNet在计算工作量、参数数量和准确性之间取得了有利的帕累托权衡，使得DINOv3 S版本非常适合边缘应用，而DINOv3 L版本则适用于需要最高准确性的服务器端部署。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        }
+      ]
+    },
+    {
+      "config": "plus_roles",
+      "cases": [
+        {
+          "id": "paper_multi_aspect",
+          "collection": "paper_test",
+          "question": "这篇论文的背景、主要内容、创新点、数据集和指标是什么？",
+          "latency_ms": 84588.34,
+          "answer_length": 3689,
+          "keyword_coverage": 1.0,
+          "hit_keywords": [
+            "DinoCloudNet",
+            "DINOv3",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "expected_keywords": [
+            "DinoCloudNet",
+            "DINOv3",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "active_skill": "paper_qa_zh",
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "paper_overview_worker",
+            "research_worker",
+            "method_worker",
+            "data_eval_worker",
+            "data_eval_worker"
+          ],
+          "worker_count": 5,
+          "tool_call_count": 13,
+          "reflection_count": 5,
+          "reflection_search_count": 0,
+          "error": "",
+          "answer": "这篇论文（JSTARS-2025-04970_Tracked_Manuscript.pdf）主要围绕遥感图像中的云分割任务展开，并提出了 DinoCloudNet 模型。\n\n### 背景\n\n遥感图像中的云分割是遥感图像分析和处理中的一个基础且关键的步骤，它直接影响着大气校正、土地覆盖和土地利用等众多下游应用的准确性。尽管基于卷积神经网络（CNNs）的语义分割方法在自然图像和遥感云分割方面取得了显著进展，但现有方法仍面临以下挑战：\n\n1.  **泛化能力不足**：这些方法对训练标签分布和训练域敏感，在跨传感器或数据集应用时，准确性会显著下降。\n2.  **全局特征建模困难**：卷积的局部性使得建模全局特征变得困难。\n3.  **领域差异**：大型基于提示的分割模型（如 SAM）在开放域分割中表现出强大的泛化能力，但在自然图像预训练和遥感云分割场景之间存在显著差异，包括传感器类型、成像尺度和目标形态。\n4.  **细节敏感性**：云体（特别是薄云）及其阴影对多尺度局部细节和边界高度敏感。\n\n为了解决这些问题，该论文提出了 DinoCloudNet 方法。\n\n### 主要内容\n\n论文提出了 DinoCloudNet 模型，旨在系统地评估其在多个公共遥感数据集上的性能，包括二元和多类别语义分割任务，以展示其竞争性的准确性和鲁棒性。\n\nDinoCloudNet 包含两个主要组件：\n\n*   **ECA-SPM（Efficient Channel Attention Spatial Perception Module）**：用于提取多尺度局部空间细节。\n*   **MGFF Adapter（Multi-Scale Global-Local Feature Fusion Adapter）**：自适应地对齐和融合来自 DINOv3 的全局特征与 ECA-SPM 的多尺度局部特征。\n\n通过这些组件，DinoCloudNet 旨在提供强大的泛化能力和精确的分割细节，同时仅需少量参数进行微调。\n\n该模型能够有效处理复杂地形和不规则云边缘、中等大小亮云的准确分割、大面积均匀云层无人工孔洞、大气校正后的细微边界以及包含亮地面混淆的各种地表背景等多样化挑战。\n\n### 创新点\n\nDinoCloudNet 的创新点主要体现在以下几个方面：\n\n1.  **提出 DinoCloudNet 架构**：这是一种新颖的遥感云语义分割方法，基于冻结的 DINOv3 骨干网络构建，旨在解决自然图像与遥感图像之间显著的领域差距。\n2.  **双分支设计**：DinoCloudNet 采用双分支设计，其中冻结的 DINOv3 骨干网络负责提取全局语义信息，而并行的 ECA-SPM 分支则负责捕获边缘感知、多尺度的局部空间细节。\n3.  **高效通道注意力空间感知模块（ECA-SPM）**：\n    *   增强局部空间和通道的判别能力，并为融合适配器提供多尺度上下文信息。\n    *   其架构通过一个 stem 模块馈送三个深度可分离卷积阶段（步长为2），以构建 1/4、1/8 和 1/16 分辨率的特征。每个尺度都应用残差 ECA 重校准和一个 1x1 通道投影，最粗糙的特征图平均池化到 1/32 分辨率。\n    *   消融研究表明，仅 ECA-SPM 就能在 CloudSEN12 High L1C 数据集上将 mIoU 提高 0.80 个百分点（达到 74.43%），将 mAcc 提高 1.70 个百分点（从 84.20%到 85.90%）。\n    *   可视化结果证实，它能产生互补的空间响应，其中高分辨率特征强调精细的边界细节和薄云结构，而低分辨率特征编码更粗糙的区域模式。\n4.  **多尺度全局-局部特征融合适配器（MGFF Adapter）**：\n    *   自适应地对齐并融合来自骨干网络和 ECA-SPM 分支的多尺度信息，并将融合后的特征注入到冻结骨干网络的选定层中，实现参数高效的适应。\n    *   消融研究表明，仅 MGFF Adapter 就能将 mIoU 提高 0.82 个百分点（从 73.63%到 74.45%），将 mDice 提高 0.60 个百分点（从 84.05%到 84.65%）。\n    *   包含三个关键步骤：查询增强（使用轻量级的 Mona 算子从骨干网络的 patch tokens 生成几何敏感的查询特征 Ql）、多尺度可变形注意力（Multi-Scale Deformable Attention, MSDA，将全局查询 Ql 与来自 ECA-SPM 的多尺度局部特征 C 对齐，使模型能够以 O(BNSK) 的复杂度关注相关的局部区域）、FiLM 门控和残差注入（采用 FiLM 风格的自适应门控来预测通道级的尺度 γ 和偏移 β 参数，在以残差形式注入交互特征之前对其进行调制，并带有一个可学习的尺度 α）。\n5.  **协同效应和性能**：ECA-SPM 和 MGFF Adapter 的结合实现了最佳的整体性能，mIoU 达到 74.95%，mDice 达到 85.02%，这表明它们之间存在强大的互补关系。这种设计共同优化了全局一致性（来自 DINOv3 骨干网络）和局部精度（来自 ECA-SPM 和 MGFF）。\n6.  **泛化能力**：DinoCloudNet 在多个云分割基准测试中取得了极具竞争力的性能，并展示了在不同卫星平台、传感器系列和地物覆盖条件下的有效性和泛化能力。\n\n### 数据集\n\n该论文使用了以下数据集：\n\n*   **HRC WHU**：来源于 Google Earth，地面分辨率为 0.5 m - 15 m。训练集包含 120 张图像，测试集包含 30 张图像，图像块大小为 256×256，分为 2 个类别。\n*   **GF1MS WHU**：来源于 GF-1 卫星，地面分辨率为 8 m。训练集包含 6,344 张图像，测试集包含 4,086 张图像，图像块大小为 256×256，分为 2 个类别。主要用于二分类任务，图像主要来自中国不同地区，涵盖 2014 年 6 月至 2020 年 12 月期间，包含多样的地貌和季节。\n*   **GF2MS WHU**：来源于 GF-2 卫星，地面分辨率为 4 m。训练集包含 14,357 张图像，测试集包含 7,560 张图像，图像块大小为 256×256，分为 2 个类别。主要用于二分类任务，图像主要来自中国不同地区，涵盖 2014 年 6 月至 2020 年 12 月期间，包含多样的地貌和季节。\n*   **CloudSEN12 High**：来源于 Sentinel-2 卫星，地面分辨率为 10 m。训练集包含 8,490 张图像，测试集包含 975 张图像，图像块大小为 512×512，分为 4 个类别。\n*   **L8 Biome**：来源于 Landsat 8 卫星，地面分辨率为 30 m。训练集包含 7,931 张图像，测试集包含 2,643 张图像，图像块大小为 512×512，分为 4 个类别。\n\n多类别云分割任务要求模型将每个像素标记为晴空（Clear Sky, CRS）、薄云（Thin Cloud, TNC）、厚云（Thick Cloud, TKC）或云影（Cloud Shadow, CDS）。用于多类别任务的所有图像都被裁剪成 512 × 512 大小的切片。\n\n### 指标\n\n该论文使用了以下评估指标：\n\n*   **总体准确度 (Overall Accuracy, aAcc)**：反映了整体的正确性。\n*   **平均交并比 (Mean Intersection over Union, mIoU)**：衡量区域重叠质量。\n*   **平均准确度 (Mean Accuracy, mAcc)**：计算每个类别的平均准确度，有助于缓解类别不平衡问题。其计算公式为：mAcc = (1/C) * Σ(TPi / (TPi + FNi))，其中 C 是类别数量，TPi 是真阳性，FNi 是假阴性。\n*   **平均 Dice 系数 (Mean Dice Coefficient, mDice)**：提供了精确度和召回率的调和度量，对边界和小目标分割特别敏感。其计算公式为：mDice = (1/C) * Σ(2 * TPi / (2 * TPi + FPi + FNi))，其中 C 是类别数量，TPi 是真阳性，FPi 是假阳性，FNi 是假阴性。\n\n这些指标是互补的：aAcc 反映了整体正确性，而 mIoU 和 mDice 衡量了区域重叠质量。对于多类别任务，还报告了 CRS、TNC、TKC、CDS 的特定指标及其平均值。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        },
+        {
+          "id": "paper_method",
+          "collection": "paper_test",
+          "question": "这篇论文的方法创新具体体现在哪些模块上？",
+          "latency_ms": 29061.79,
+          "answer_length": 619,
+          "keyword_coverage": 1.0,
+          "hit_keywords": [
+            "ECA-SPM",
+            "MGFF",
+            "DINOv3",
+            "backbone",
+            "Adapter"
+          ],
+          "expected_keywords": [
+            "ECA-SPM",
+            "MGFF",
+            "DINOv3",
+            "backbone",
+            "Adapter"
+          ],
+          "active_skill": "paper_qa_zh",
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "method_worker"
+          ],
+          "worker_count": 1,
+          "tool_call_count": 3,
+          "reflection_count": 1,
+          "reflection_search_count": 0,
+          "error": "",
+          "answer": "该论文提出的 DinoCloudNet 方法主要在以下模块体现了创新：\n\n1.  **冻结的 DINOv3 主干网络（Frozen DINOv3 Backbone）**：这个主干网络被冻结，目的是为了保留模型强大的通用特征提取能力和跨领域泛化能力。\n2.  **高效通道注意力空间感知模块（Efficient Channel Attention Spatial Perception Module, ECA-SPM）**：这是一个轻量级且可训练的模块。它通过多尺度卷积和通道注意力机制，专注于捕获多尺度精细空间特征，例如云的边界和纹理，从而高效地获取多尺度局部空间细节。\n3.  **多尺度全局-局部特征融合适配器（Multi-Scale Global-Local Feature Fusion Adapter, MGFF Adapter）**：该适配器负责自适应地对齐并融合来自 DINOv3 主干网络的全局特征与来自 ECA-SPM 的多尺度局部特征，并将融合后的特征注入到主干网络的选定层中。\n\nDinoCloudNet 采用了双分支设计：一个分支是冻结的 DINOv3 主干网络，另一个并行分支是轻量级的 ECA-SPM。MGFF 适配器则协同工作，将这些局部特征与全局特征进行融合，以实现高效准确的云分割。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        },
+        {
+          "id": "simple_definition",
+          "collection": "paper_test",
+          "question": "DinoCloudNet 是什么？",
+          "latency_ms": 50854.72,
+          "answer_length": 1066,
+          "keyword_coverage": 0.6667,
+          "hit_keywords": [
+            "DinoCloudNet",
+            "DINOv3"
+          ],
+          "expected_keywords": [
+            "DinoCloudNet",
+            "cloud segmentation",
+            "DINOv3"
+          ],
+          "active_skill": null,
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "research_worker"
+          ],
+          "worker_count": 1,
+          "tool_call_count": 3,
+          "reflection_count": 1,
+          "reflection_search_count": 0,
+          "error": "",
+          "answer": "DinoCloudNet 是一种专门为遥感图像中的云分割设计的双分支网络。它的架构基于一个冻结的 DINOv3 主干网络，并包含两个主要组件：\n\n*   **ECA-SPM**：负责提取多尺度的局部空间细节。\n*   **MGFF Adapter**：自适应地对齐并融合来自 DINOv3 主干网络的全局特征与 ECA-SPM 提取的多尺度局部特征。\n\n这种设计只需要对少量参数进行微调。\n\nDinoCloudNet 的目的是实现具有强大泛化能力和精确分割细节的云分割。它能够准确地追踪真实的薄云边界，生成更清晰、孔洞更少的阴影掩膜，即使对于小的半透明云也能做到。它在复杂场景中展现出精细的识别能力，能够准确区分具有挑战性的薄云 (TNC) 和云阴影 (CDS) 与晴空 (CRS)，并且在各种卫星传感器和地理区域中都表现出稳定性。\n\nDinoCloudNet 在各种云分割数据集上始终保持高度竞争性的性能，这些数据集涵盖了多种卫星来源、传感器系列、数据处理级别、土地覆盖场景和标注粒度，在效率和准确性之间取得了出色的平衡。\n\n其性能亮点包括：\n\n*   **DinoCloudNet-S**：实现了 73.96% 的 mIoU，具有 50.02 GFLOPs 和 22.09M 参数，非常适合边缘应用。\n*   **DinoCloudNet-L**：实现了最先进 (SOTA) 的 74.95% mIoU，具有 380.71 GFLOPs 和 24.50M 参数，最适合服务器端部署。\n*   **主干网络比较**：DINOv3 是默认的主干网络，因为它在准确性和参数之间取得了有利的平衡。DINOv3-Small（21M 主干网络参数）实现了 73.96% 的 mIoU，优于 SAM-Base（91M）的 73.23%。\n*   **特定数据集性能**：在 HRC WHU 数据集上实现了 92.18% 的 SOTA mIoU，在 GF2MS WHU 数据集上实现了 87.13% 的 mIoU。它还在 GF1MS WHU 数据集上实现了高度竞争性的 93.15% mIoU。\n*   **解决的数据集挑战**：在 GF1MS WHU 数据集上有效分割中等大小的亮云，在 GF2MS WHU 数据集上防止云预测中出现人为的“孔洞”，并在 HRC WHU 数据集上管理具有复杂地形和薄云边缘的高分辨率场景。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        }
+      ]
+    },
+    {
+      "config": "router_simple_cost",
+      "cases": [
+        {
+          "id": "paper_multi_aspect",
+          "collection": "paper_test",
+          "question": "这篇论文的背景、主要内容、创新点、数据集和指标是什么？",
+          "latency_ms": 71484.03,
+          "answer_length": 4574,
+          "keyword_coverage": 1.0,
+          "hit_keywords": [
+            "DinoCloudNet",
+            "DINOv3",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "expected_keywords": [
+            "DinoCloudNet",
+            "DINOv3",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "active_skill": "paper_qa_zh",
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "skill:paper_qa_zh",
+            "multi_aspect_or_research_query"
+          ],
+          "worker_roles": [
+            "paper_overview_worker",
+            "research_worker",
+            "method_worker",
+            "data_eval_worker",
+            "data_eval_worker"
+          ],
+          "worker_count": 5,
+          "tool_call_count": 14,
+          "reflection_count": 0,
+          "reflection_search_count": 0,
+          "error": "",
+          "answer": "该论文（JSTARS-2025-04970_Tracked_Manuscript.pdf）的背景、主要内容、创新点、数据集和指标如下：\n\n### 研究背景与动机\n该论文的研究背景主要围绕遥感图像处理中的云语义分割展开，这是一个关键且基础的步骤。云分割的准确性直接影响着众多下游应用，包括大气校正、土地覆盖和土地利用测绘、变化检测以及灾害监测。准确且鲁棒的云检测能够提高后续分析的可靠性，并减少云污染的影响。\n\n**现有方法的局限性：**\n*   **传统方法（基于阈值/规则）**：这些方法依赖于光谱先验和经验规则，在复杂背景下常导致误报或漏报。\n*   **传统机器学习**：使用人工特征和浅层分类器，在特定场景下表现良好，但在跨平台和跨时间段的泛化能力有限。\n*   **深度学习（基于CNN的语义分割）**：尽管取得了显著进展，但这些方法对训练标签分布和领域敏感，导致在不同传感器或数据集之间应用时精度显著下降。卷积固有的局部性也使得难以建模长距离依赖和大规模变化，而这对于识别云及其相应阴影至关重要。\n\n**视觉基础模型（VFMs）的潜力和挑战：**\n*   像DINOv2/DINOv3等自监督预训练模型以及SAM等基于提示的分割模型等视觉基础模型，在开放域分割中展现出卓越的特征质量和强大的泛化能力。\n*   **领域鸿沟**：主要挑战在于自然图像（用于VFM预训练）与遥感云分割场景之间存在显著的领域鸿沟。这种鸿沟包括视角几何、空间分辨率、目标尺度、传感器类型、成像尺度和目标形态等方面的差异。\n*   **次优的直接迁移**：云体（尤其是薄云）及其阴影对多尺度局部细节和边界高度敏感，使得VFM直接迁移到此任务通常效果不佳。\n\n该论文旨在解决设计一种有效的云分割网络这一紧迫挑战，该网络能够通过获取云形态细节的空间特征实现高精度分割，同时保留视觉基础模型的强大泛化能力。\n\n### 主要内容\n该论文的主要内容聚焦于遥感图像分析与处理中的**云分割**（Cloud segmentation）。论文提出了一种名为 **DinoCloudNet** 的方法，该方法利用**视觉基础模型**（Vision foundation models）和**深度学习**（Deep learning）技术。其主要目标是证明DinoCloudNet在不同卫星平台、传感器系列和地物覆盖条件下的有效性和泛化能力。\n\nDinoCloudNet是一个基于冻结DINOv3骨干的双分支网络。它引入了高效通道注意力空间感知模块（ECA-SPM）来提取多尺度局部空间细节，以及多尺度全局-局部特征融合适配器（MGFF Adapter）来自适应地对齐和融合DINOv3的全局特征与ECA-SPM的局部特征。这种设计旨在以少量微调参数实现强大的泛化能力和精确的分割细节。\n\n在评估方面，DinoCloudNet（及其变体DinoCloudNet-S、DinoCloudNet-B、DinoCloudNet-L）与MCDNet、SCNN、Rein、SegMAN、CDNetv2、KappaMask、DBNet、UNetMobv2、SAM-Adapter和HRCloudNet等多个分割模型进行了比较。结果显示，DinoCloudNet在各项性能指标上均取得了高分，例如在某些指标上达到96.10、92.18、95.86和95.92，优于SegMAN和Rein等竞争对手。其他指标也显示出DinoCloudNet的卓越性能，如92.30、91.40、67.42、90.49、53.81、75.78、84.66和85.26。\n\n该论文的索引词包括：遥感（Remote sensing）、云分割（Cloud segmentation）、视觉基础模型（Vision foundation models）和深度学习（Deep learning）。\n\n### 创新点\n该论文的创新点主要体现在其提出的 **DinoCloudNet** 方法，旨在解决自然图像与遥感图像之间显著的领域鸿沟，以实现遥感云语义分割。\n\n1.  **DinoCloudNet 方法**：\n    *   **核心思想**：基于冻结的 DINOv3 主干网络构建，通过引入专门设计的模块来弥补自然图像与遥感图像在视角几何、空间分辨率和目标尺度上的差异，从而有效适应云分割任务。\n    *   **领域鸿沟解决**：专门针对将视觉基础模型（VFMs）直接应用于云分割时性能不佳的问题，通过自适应地融合全局语义和局部空间细节来解决这一挑战。\n\n2.  **高效通道注意力空间感知模块 (ECA-SPM)**：\n    *   **目的**：作为一个并行分支，ECA-SPM 旨在捕获边缘感知、多尺度的局部空间细节。它增强了局部空间和通道的判别能力，并为适配器提供多尺度上下文。\n    *   **架构**：通过三个步长为二的深度可分离卷积阶段构建特征，分辨率分别为 1/4、1/8 和 1/16。每个尺度都应用残差 ECA (Efficient Channel Attention) 重校准和一个 1x1 通道投影，最粗糙的特征图进一步平均到 1/32。\n    *   **贡献**：能够产生互补的空间响应，其中高分辨率特征强调精细的边界细节和薄云结构，而低分辨率特征编码更粗糙的区域模式。单独引入时，在 CloudSEN12 High L1C 数据集上，mIoU 提高了 0.80 个百分点（达到 74.43%），mAcc 提高了 1.70 个百分点（从 84.20% 提高到 85.90%）。\n\n3.  **多尺度全局-局部特征融合适配器 (MGFF Adapter)**：\n    *   **目的**：自适应地对齐和融合来自冻结主干网络（全局语义）和 ECA-SPM 分支（局部空间细节）的多尺度信息，并将融合后的特征注入到主干网络的选定层中。\n    *   **机制**：\n        *   **查询增强 (Mona)**：对主干网络的补丁 token 应用轻量级的 Mona 算子，生成几何敏感的查询特征。\n        *   **多尺度可变形注意力 (MSDA)**：使用 MSDA 将全局查询与来自 ECA-SPM 的多尺度局部特征对齐，实现稀疏且几何感知的采样，并可控制计算预算。\n        *   **FiLM 门控和残差注入**：采用 FiLM 风格的自适应门控来预测通道级的尺度和偏移参数，调制交互特征并以带有可学习尺度 α 的残差形式注入。\n    *   **贡献**：单独引入时，在 CloudSEN12 High L1C 数据集上，mIoU 提高了 0.82 个百分点（达到 74.45%），mDice 提高了 0.60 个百分点（达到 84.65%）。\n\n4.  **双分支设计与协同融合**：\n    *   DinoCloudNet 采用双分支设计，其中冻结的主干网络提取全局语义，并行的 ECA-SPM 分支捕获局部空间细节。MGFF 适配器随后协同融合这两种类型的信息。\n    *   **综合性能**：当两个模块结合使用时，在 CloudSEN12 High L1C 数据集上，mIoU 达到 74.95%，mDice 达到 85.02%，表现出强大的互补关系。\n\n5.  **参数效率和泛化能力**：\n    *   该方法具有参数效率高，能够有效适应云分割任务，同时保留了冻结 VFM 主干网络的强大泛化能力。\n\n6.  **卓越性能**：\n    *   实验表明，DinoCloudNet 在多个云分割基准测试中取得了极具竞争力的性能，优于大多数现有方法，并展示了在不同卫星平台、传感器系列和地物覆盖条件下的有效性和泛化能力。\n\n### 数据集\n该论文使用了以下数据集：\n\n*   **HRC WHU**: 来源于 Google Earth，地面分辨率为 0.5 m - 15 m。训练集包含 120 张图像，测试集包含 30 张图像，图像块大小为 256×256，分为 2 个类别。\n*   **GF1MS WHU**: 来源于 GF-1 卫星，地面分辨率为 8 m。训练集包含 6,344 张图像，测试集包含 4,086 张图像，图像块大小为 256×256，分为 2 个类别。主要用于二分类任务，图像主要来自中国不同地区，涵盖 2014 年 6 月至 2020 年 12 月期间，包含多样的地貌和季节。\n*   **GF2MS WHU**: 来源于 GF-2 卫星，地面分辨率为 4 m。训练集包含 14,357 张图像，测试集包含 7,560 张图像，图像块大小为 256×256，分为 2 个类别。主要用于二分类任务，图像主要来自中国不同地区，涵盖 2014 年 6 月至 2020 年 12 月期间，包含多样的地貌和季节。\n*   **CloudSEN12 High**: 来源于 Sentinel-2 卫星，地面分辨率为 10 m。训练集包含 8,490 张图像，测试集包含 975 张图像，图像块大小为 512×512，分为 4 个类别。\n*   **L8 Biome**: 来源于 Landsat 8 卫星，地面分辨率为 30 m。训练集包含 7,931 张图像，测试集包含 2,643 张图像，图像块大小为 512×512，分为 4 个类别。\n\n多类别云分割任务要求模型将每个像素标记为晴空 (Clear Sky)、薄云 (Thin Cloud)、厚云 (Thick Cloud) 或云影 (Cloud Shadow)。用于多类别任务的所有图像都被裁剪成 512 × 512 大小的切片。\n\n### 评估指标\n该论文使用了以下评估指标：\n\n*   **总体准确度 (Overall Accuracy, aAcc)**：反映了整体的正确性。\n*   **平均交并比 (Mean Intersection over Union, mIoU)**：衡量区域重叠质量。\n*   **平均准确度 (Mean Accuracy, mAcc)**：计算每个类别的平均准确度，有助于缓解类别不平衡问题。其计算公式为：\n    mAcc = (1/C) * Σ(TPi / (TPi + FNi))，其中 C 是类别数量，TPi 是真阳性，FNi 是假阴性。\n*   **平均Dice系数 (Mean Dice Coefficient, mDice)**：提供了精确度和召回率的调和度量，对边界和小目标分割特别敏感。其计算公式为：\n    mDice = (1/C) * Σ(2 * TPi / (2 * TPi + FPi + FNi))，其中 C 是类别数量，TPi 是真阳性，FPi 是假阳性，FNi 是假阴性。\n\n这些指标是互补的：aAcc反映了整体正确性，而mIoU和mDice衡量了区域重叠质量。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        },
+        {
+          "id": "paper_method",
+          "collection": "paper_test",
+          "question": "这篇论文的方法创新具体体现在哪些模块上？",
+          "latency_ms": 18804.99,
+          "answer_length": 548,
+          "keyword_coverage": 1.0,
+          "hit_keywords": [
+            "ECA-SPM",
+            "MGFF",
+            "DINOv3",
+            "backbone",
+            "Adapter"
+          ],
+          "expected_keywords": [
+            "ECA-SPM",
+            "MGFF",
+            "DINOv3",
+            "backbone",
+            "Adapter"
+          ],
+          "active_skill": "paper_qa_zh",
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "skill:paper_qa_zh",
+            "multi_aspect_or_research_query"
+          ],
+          "worker_roles": [
+            "method_worker"
+          ],
+          "worker_count": 1,
+          "tool_call_count": 2,
+          "reflection_count": 0,
+          "reflection_search_count": 0,
+          "error": "",
+          "answer": "这篇论文提出的 DinoCloudNet 方法在遥感图像云分割方面的创新主要体现在以下几个模块：\n\n*   **双分支设计 (Dual-branch design)**：整个框架采用了双分支设计，旨在实现精确的云分割。\n*   **冻结的视觉基础模型骨干 (Frozen VFM backbone)**：其中一个分支是一个冻结的 DINOv3 骨干网络。这个设计保留了模型强大的通用特征提取能力和跨领域泛化能力。\n*   **轻量级高效通道注意力空间感知模块 (ECA-SPM)**：另一个并行分支是一个轻量级且可训练的空间感知模块。ECA-SPM 通过多尺度卷积和通道注意力机制，专注于捕获多尺度局部空间特征，例如云的边界和纹理。\n*   **特征融合模块 (MGFF Adapter)**：这个模块（在论文图2中被称为 MGFF Adapter）负责将 ECA-SPM 提取的局部空间特征与冻结基础模型提取的强大全局表示相结合，从而实现了参数高效性。\n\n消融研究表明，上述的 ECA-SPM 和 MGFF Adapter 这两个模块都是必要的，并且它们之间能够相互增强。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        },
+        {
+          "id": "simple_definition",
+          "collection": "paper_test",
+          "question": "DinoCloudNet 是什么？",
+          "latency_ms": 36893.26,
+          "answer_length": 1871,
+          "keyword_coverage": 0.6667,
+          "hit_keywords": [
+            "DinoCloudNet",
+            "DINOv3"
+          ],
+          "expected_keywords": [
+            "DinoCloudNet",
+            "cloud segmentation",
+            "DINOv3"
+          ],
+          "active_skill": null,
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "simple_query"
+          ],
+          "worker_roles": [
+            "research_worker"
+          ],
+          "worker_count": 1,
+          "tool_call_count": 6,
+          "reflection_count": 0,
+          "reflection_search_count": 0,
+          "error": "",
+          "answer": "DinoCloudNet 是一种双分支网络，专门为遥感图像中的云分割而设计。它基于冻结的 DINOv3 主干网络构建，提供了一种有效、可扩展且可重用的云分割方法。\n\n**架构**\nDinoCloudNet 的架构包含两个主要组件：\n1.  **ECA-SPM (Efficient Context-Aware Spatial Pyramid Module)**：该模块负责从输入中提取多尺度局部空间细节。\n2.  **MGFF Adapter (Multi-Granularity Feature Fusion Adapter)**：该适配器自适应地对齐并融合来自 DINOv3 主干网络的全局特征与 ECA-SPM 提取的多尺度局部特征。\n\n其设计强调强大的泛化能力和精确的分割细节，同时只需要少量参数进行微调。消融研究证实，ECA-SPM 和 MGFF Adapter 对其性能至关重要。选择 DINOv3 作为默认主干网络是因为它在遥感云分割中，与基于 SAM 的主干网络相比，具有更优的精度-参数权衡，提供了与云和云影分割所需的语义一致性良好对齐的密集自监督表示。\n\n**性能与能力**\nDinoCloudNet 在各种云分割数据集上始终表现出极具竞争力的性能，这些数据集涵盖了不同的卫星来源、传感器系列、数据处理级别、土地覆盖场景和标注粒度。\n\n*   **二元云分割**：它在 HRC WHU (92.18% mIoU) 和 GF2MS WHU (87.13% mIoU) 上达到了最先进 (SOTA) 的性能。在 GF1MS WHU 上，它也取得了具有竞争力的 93.15% mIoU (第二名)。\n    *   在 GF1MS WHU 上，它能精确描绘云边缘，减少过分割，并为较暗背景上的中等大小亮云保持平滑、完整的边界，避免侵蚀和噪声。\n    *   对于 GF2MS WHU，它通过为大型均匀云层生成几乎完全实心的云预测来展示稳定性，防止出现人工“孔洞”。\n    *   在 HRC WHU 上，它能精确地追踪复杂山地地形上的精细云结构，保留细小的分支和不规则的轮廓，并有效区分云与岩石、雪和阴影等易混淆的背景纹理。\n\n*   **多类别云分割**：DinoCloudNet 将像素分类为晴空 (CRS)、薄云 (TNC)、厚云 (TKC) 或云影 (CDS)。它在 CloudSEN12 High L1C (74.95%)、CloudSEN12 High L2A (74.53%) 和 L8 Biome (75.78%) 上均取得了最佳的平均交并比 (mIoU)。\n    *   在 CloudSEN12 High L1C 上，即使在光照和传感器视角效应下，它也能精确追踪薄云边界，并生成更清晰、孔洞更少的阴影掩膜，即使对于小型半透明云也是如此。\n    *   对于 CloudSEN12 High L2A，它保持了薄云和云影的高 IoU，生成连续的预测，并避免了薄云的碎片化，即使它们在大气校正后类似于雾霾，而云影类似于自然地形阴影。\n    *   在 L8 Biome 上，它在多样环境中表现出强大的泛化能力，成功识别了难以处理的薄云和云影区域，并区分了厚云与明亮的地面。\n\n**模型效率与可扩展性**\nDinoCloudNet 在效率和准确性之间提供了出色的平衡，在 CloudSEN12 High L1C 数据集上以 512 × 512 的输入图像尺寸进行了评估。\n\n*   **DinoCloudNet-S (小型)**：50.02 GFLOPs，22.09M 参数，73.96% mIoU。\n*   **DinoCloudNet-B (基础型)**：125.57 GFLOPs，23.55M 参数，74.14% mIoU。\n*   **DinoCloudNet-L (大型)**：380.71 GFLOPs，24.50M 参数，74.95% mIoU。\n\n该模型展示了可扩展性，mIoU 从 73.96% (小型) 稳步提高到 74.95% (大型)，而可训练参数仅适度增加 (从 22.09M 到 24.50M)。这种有利的帕累托权衡使得 DinoCloudNet-S 适用于计算资源有限的边缘应用，而 DinoCloudNet-L 则非常适合需要最高精度的服务器端部署。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        }
+      ]
+    }
+  ]
+}

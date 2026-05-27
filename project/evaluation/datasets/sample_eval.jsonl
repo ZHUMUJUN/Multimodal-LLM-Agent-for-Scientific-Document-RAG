@@ -1,0 +1,2 @@
+{"id":"case-001","collection":"default","question":"上传文档的主题是什么？","ground_truth":"","notes":"将 ground_truth 补成你的标准答案后，可启用 Ragas 评分。"}
+{"id":"case-002","collection":"default","question":"请总结上传文档的核心内容。","ground_truth":"","notes":"建议覆盖摘要类问题、细节类问题和多跳问题。"}

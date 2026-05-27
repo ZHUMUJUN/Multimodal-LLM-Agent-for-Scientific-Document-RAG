@@ -1,0 +1,1234 @@
+{
+  "generated_at": "2026-03-18T18:57:39",
+  "benchmark_type": "retrieval",
+  "retrieval_mode": "baseline_hybrid",
+  "reranker_enabled": true,
+  "reranker_model": "BAAI/bge-reranker-base",
+  "top_k": 5,
+  "summary": {
+    "dataset_path": "/home/suity/worksapce/PycharmProjects/FindJob/agentic-rag-for-dummies-main/project/evaluation/datasets/public_light_pollution_retrieval_eval.jsonl",
+    "mode": "baseline_hybrid",
+    "case_count": 16,
+    "avg_latency_ms": 80.23,
+    "p95_latency_ms": 98.03,
+    "source_hit_rate": 1.0,
+    "mrr": 0.825,
+    "avg_top1_keyword_ratio": 0.4427
+  },
+  "cases": [
+    {
+      "id": "public-001",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档把 artificial light at night 描述为 global disruptor of the nighttime environment？",
+      "ground_truth": "应命中将人工夜间照明描述为全球性夜间环境干扰因素的综述文档。",
+      "expected_sources": [
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "global disruptor",
+        "nighttime environment",
+        "artificial light at night"
+      ],
+      "latency_ms": 77.55,
+      "source_hit": true,
+      "first_hit_rank": 1,
+      "top1_keyword_ratio": 1.0,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+          "parent_id": "08_artificial_light_at_night_global_disruptor_arxiv_parent_0",
+          "preview": "# 08_artificial_light_at_night_global_disruptor_arxiv   ## Page 1   This is the Accepted Author Manuscript of an article whose version of record has been published as Bará S, Falchi F. 2023 Artificial light at night: a g",
+          "matched_keywords": [
+            "global disruptor",
+            "nighttime environment",
+            "artificial light at night"
+          ],
+          "match_count": 3,
+          "match_ratio": 1.0
+        },
+        {
+          "rank": 2,
+          "source": "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+          "parent_id": "08_artificial_light_at_night_global_disruptor_arxiv_parent_0",
+          "preview": "Keywords: Light pollution, artificial light at night, environmental pollutants   Summary   Light pollution is the alteration of the natural levels of darkness by an increased concentration of light particles in the night",
+          "matched_keywords": [
+            "nighttime environment",
+            "artificial light at night"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 3,
+          "source": "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+          "parent_id": "11_anthropogenic_photons_light_pollution_arxiv_parent_0",
+          "preview": "## Page 2   2   1. Introduction Artificial light at night is a key factor for the improvement of the living conditions of humankind. Its production and control have provided us an essential level of freedom, enabling man",
+          "matched_keywords": [
+            "artificial light at night"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 4,
+          "source": "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+          "parent_id": "08_artificial_light_at_night_global_disruptor_arxiv_parent_0",
+          "preview": "restricted to local disturbances, but give rise to a global, multiscale disruption of the nighttime environment.   1. Introduction   Artificial light is a key resource for humankind. It provides our societies with an unp",
+          "matched_keywords": [
+            "nighttime environment"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 5,
+          "source": "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+          "parent_id": "08_artificial_light_at_night_global_disruptor_arxiv_parent_3",
+          "preview": "light, among others, are pollutants that affect the quality of the atmospheric and underwater environments. Within this framework, artificial light at night should legitimately be considered an air and water pollutant.",
+          "matched_keywords": [
+            "artificial light at night"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        }
+      ]
+    },
+    {
+      "id": "public-002",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档提出了 The new world atlas of artificial night sky brightness？",
+      "ground_truth": "应命中关于人工夜空亮度世界地图的文档。",
+      "expected_sources": [
+        "09_world_atlas_artificial_night_sky_brightness_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "world atlas",
+        "artificial night sky brightness",
+        "skyglow"
+      ],
+      "latency_ms": 84.68,
+      "source_hit": true,
+      "first_hit_rank": 2,
+      "top1_keyword_ratio": 0.0,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "10_natural_night_sky_brightness_gaia_arxiv.pdf",
+          "parent_id": "10_natural_night_sky_brightness_gaia_arxiv_parent_18",
+          "preview": "## Page 15   Map of the natural sky brightness 15 Kocifaj M., Kránicz B., 2011, Lighting Research & Technology, 43, 497 Kolláth Z., Cool A., Jechow A., Kolláth K., Száz D., Tong K. P., 2020, J. Quant. Spectrosc. Radiativ",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 2,
+          "source": "09_world_atlas_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "09_world_atlas_artificial_night_sky_brightness_arxiv_parent_0",
+          "preview": "# 09_world_atlas_artificial_night_sky_brightness_arxiv   ## Page 1   E N V I R O N M E N T AL P R O T E C T I O N 2016 © The Authors, some rights reserved; exclusive licensee American Association for the Advancement of S",
+          "matched_keywords": [
+            "world atlas"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 3,
+          "source": "09_world_atlas_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "09_world_atlas_artificial_night_sky_brightness_arxiv_parent_21",
+          "preview": "R. Furgoni, Supplement to the New World Atlas of Artificial Night Sky Brightness, GFZ Data Services (2016); http://doi.org/10.5880/GFZ.1.4.2016.001. 36. P. Cinzano, F. Falchi, C. D. Elvidge, Naked-eye star visibility and",
+          "matched_keywords": [
+            "world atlas",
+            "artificial night sky brightness"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 4,
+          "source": "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+          "parent_id": "08_artificial_light_at_night_global_disruptor_arxiv_parent_0",
+          "preview": "significant fraction of them travel long distances [8-11] before interacting with atmospheric constituents, inert surfaces, or living matter. As a result, many areas surrounding cities do not experience the true darkness",
+          "matched_keywords": [
+            "world atlas",
+            "artificial night sky brightness"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 5,
+          "source": "09_world_atlas_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "09_world_atlas_artificial_night_sky_brightness_arxiv_parent_22",
+          "preview": "## Page 26   doi: 10.1126/sciadv.1600377 2016, 2:. Sci Adv 2016) Portnov, Nataliya A. Rybnikova and Riccardo Furgoni (June 10, M. Kyba, Christopher D. Elvidge, Kimberly Baugh, Boris A. Fabio Falchi, Pierantonio Cinzano,",
+          "matched_keywords": [
+            "world atlas",
+            "artificial night sky brightness"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        }
+      ]
+    },
+    {
+      "id": "public-003",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档研究 natural night sky brightness，并结合 Gaia 和 Hipparcos integrated starlight？",
+      "ground_truth": "应命中讨论自然夜空亮度并使用 Gaia/Hipparcos 恒星光数据的文档。",
+      "expected_sources": [
+        "10_natural_night_sky_brightness_gaia_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "natural night sky brightness",
+        "Gaia",
+        "Hipparcos",
+        "integrated starlight"
+      ],
+      "latency_ms": 91.2,
+      "source_hit": true,
+      "first_hit_rank": 1,
+      "top1_keyword_ratio": 1.0,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "10_natural_night_sky_brightness_gaia_arxiv.pdf",
+          "parent_id": "10_natural_night_sky_brightness_gaia_arxiv_parent_0",
+          "preview": "# 10_natural_night_sky_brightness_gaia_arxiv   ## Page 1   MNRAS 000, 1–15 (2020) Preprint 6 January 2021 Compiled using MNRAS LATEX style ﬁle v3.0 A multi-band map of the natural night sky brightness including Gaia and",
+          "matched_keywords": [
+            "natural night sky brightness",
+            "gaia",
+            "hipparcos",
+            "integrated starlight"
+          ],
+          "match_count": 4,
+          "match_ratio": 1.0
+        },
+        {
+          "rank": 2,
+          "source": "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+          "parent_id": "11_anthropogenic_photons_light_pollution_arxiv_parent_10",
+          "preview": "Marín, C., Jafari, J., 2008. StarLight: A Common Heritage; StarLight Initiative La Palma Biosphere Reserve. Instituto De Astrofísica De Canarias, Government of The Canary Islands, Spanish Ministry of The Environment, UNE",
+          "matched_keywords": [
+            "gaia",
+            "hipparcos",
+            "integrated starlight"
+          ],
+          "match_count": 3,
+          "match_ratio": 0.75
+        },
+        {
+          "rank": 3,
+          "source": "10_natural_night_sky_brightness_gaia_arxiv.pdf",
+          "parent_id": "10_natural_night_sky_brightness_gaia_arxiv_parent_1",
+          "preview": "determined the sky brightness for the Johnson 𝑉and human-vision photopic and scotopic passbands. All together constitutes the ﬁrst version of GAMBONS model of the natural night sky brightness. The novelty of this work is",
+          "matched_keywords": [
+            "natural night sky brightness",
+            "gaia",
+            "hipparcos"
+          ],
+          "match_count": 3,
+          "match_ratio": 0.75
+        },
+        {
+          "rank": 4,
+          "source": "10_natural_night_sky_brightness_gaia_arxiv.pdf",
+          "parent_id": "10_natural_night_sky_brightness_gaia_arxiv_parent_18",
+          "preview": "## Page 15   Map of the natural sky brightness 15 Kocifaj M., Kránicz B., 2011, Lighting Research & Technology, 43, 497 Kolláth Z., Cool A., Jechow A., Kolláth K., Száz D., Tong K. P., 2020, J. Quant. Spectrosc. Radiativ",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 5,
+          "source": "10_natural_night_sky_brightness_gaia_arxiv.pdf",
+          "parent_id": "10_natural_night_sky_brightness_gaia_arxiv_parent_12",
+          "preview": "regarding the aerosol optical depth, these particular values are used to provide the examples shown in Section 8. Better estimations of the natural night sky brightness for a given place and time could be obtained by usi",
+          "matched_keywords": [
+            "natural night sky brightness",
+            "gaia",
+            "hipparcos"
+          ],
+          "match_count": 3,
+          "match_ratio": 0.75
+        }
+      ]
+    },
+    {
+      "id": "public-004",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档讨论 terrestrial atmosphere 中 anthropogenic photons 的浓度？",
+      "ground_truth": "应命中研究陆地大气中人为光子浓度的文档。",
+      "expected_sources": [
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "anthropogenic photons",
+        "terrestrial atmosphere",
+        "light pollution"
+      ],
+      "latency_ms": 84.05,
+      "source_hit": true,
+      "first_hit_rank": 2,
+      "top1_keyword_ratio": 0.6667,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+          "parent_id": "08_artificial_light_at_night_global_disruptor_arxiv_parent_6",
+          "preview": "Transkript. 6. Bará S, Bao-Varela C, Falchi F. 2022 Light pollution and the concentration of anthropogenic photons in the terrestrial atmosphere. Atmos. Pollut. Res. 13(9), 101541. (doi: 10.1016/j.apr.2022.101541) 7. Bar",
+          "matched_keywords": [
+            "anthropogenic photons",
+            "light pollution"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 2,
+          "source": "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+          "parent_id": "11_anthropogenic_photons_light_pollution_arxiv_parent_0",
+          "preview": "# 11_anthropogenic_photons_light_pollution_arxiv   ## Page 1   1   Light pollution and the concentration of anthropogenic photons in the terrestrial atmosphere   Salvador Bará1,*, Carmen Bao-Varela2, and Fabio Falchi2,3",
+          "matched_keywords": [
+            "terrestrial atmosphere",
+            "light pollution"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 3,
+          "source": "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+          "parent_id": "11_anthropogenic_photons_light_pollution_arxiv_parent_0",
+          "preview": "Abstract Light pollution can be rigorously described in terms of the volume concentration of anthropogenic photons (light quanta) in the terrestrial atmosphere. This formulation, consistent with the basic physics of the",
+          "matched_keywords": [
+            "anthropogenic photons",
+            "terrestrial atmosphere",
+            "light pollution"
+          ],
+          "match_count": 3,
+          "match_ratio": 1.0
+        },
+        {
+          "rank": 4,
+          "source": "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+          "parent_id": "08_artificial_light_at_night_global_disruptor_arxiv_parent_2",
+          "preview": "c=299 792 458 m·s-1 in vacuum. The average time spent by a photon in the terrestrial atmosphere is short, typically ranging from microseconds to milliseconds before they interact with atmospheric constituents, terrain, b",
+          "matched_keywords": [
+            "terrestrial atmosphere"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 5,
+          "source": "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+          "parent_id": "11_anthropogenic_photons_light_pollution_arxiv_parent_1",
+          "preview": "the volume concentration of anthropogenic photons (in 𝑝ℎ𝑜𝑡𝑜𝑛𝑠· 𝑚−3). This formulation gives the same quantitative results as the traditional radiometric/photometric descriptions in terms of surface flux densities and hel",
+          "matched_keywords": [
+            "anthropogenic photons",
+            "light pollution"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        }
+      ]
+    },
+    {
+      "id": "public-005",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档认为 space objects 的扩张会增加 artificial night sky brightness？",
+      "ground_truth": "应命中把空间目标扩散视为夜空亮度来源的文档。",
+      "expected_sources": [
+        "12_space_objects_artificial_night_sky_brightness_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "space objects",
+        "increasing source",
+        "artificial night sky brightness"
+      ],
+      "latency_ms": 89.24,
+      "source_hit": true,
+      "first_hit_rank": 1,
+      "top1_keyword_ratio": 0.6667,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "12_space_objects_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "12_space_objects_artificial_night_sky_brightness_arxiv_parent_0",
+          "preview": "# 12_space_objects_artificial_night_sky_brightness_arxiv   ## Page 1   arXiv:2103.17125v2  [astro-ph.IM]  1 Apr 2021 MNRAS 000, 1–6 (2015) Preprint 2 April 2021 Compiled using MNRAS LATEX style ﬁle v3.0 The proliferation",
+          "matched_keywords": [
+            "space objects",
+            "increasing source"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 2,
+          "source": "12_space_objects_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "12_space_objects_artificial_night_sky_brightness_arxiv_parent_4",
+          "preview": "tial number of reﬂecting objects in large-inclination orbits at altitudes above ∼500 km. The eﬀect of these space objects on the diﬀuse brightness of the night sky is to be considered in addition to the streaks of indivi",
+          "matched_keywords": [
+            "space objects"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 3,
+          "source": "12_space_objects_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "12_space_objects_artificial_night_sky_brightness_arxiv_parent_2",
+          "preview": "of the Earth’s surface. 2.2 Zenith sky luminance: An estimate It follows from Eq. (5) that the number distribution of space objects is the only otherwise unknown quantity required to calculate these objects’ contribution",
+          "matched_keywords": [
+            "space objects"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 4,
+          "source": "12_space_objects_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "12_space_objects_artificial_night_sky_brightness_arxiv_parent_3",
+          "preview": "diﬀuse night sky brightness, similar to the one that would be produced by light pollution from atmospheric scattering of the radiance emitted by anthropogenic light sources on the ground. The estimated strength of this e",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 5,
+          "source": "12_space_objects_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "12_space_objects_artificial_night_sky_brightness_arxiv_parent_1",
+          "preview": "expected to be small, it is otherwise unknown how its con- tribution to diﬀuse night sky brightness (NSB) compares to natural sources of light in the night sky that ultimately de- termine the sky luminance over ‘pristine",
+          "matched_keywords": [
+            "space objects"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        }
+      ]
+    },
+    {
+      "id": "public-006",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档总结了 6 years of night sky observations at Cerro Paranal？",
+      "ground_truth": "应命中关于 Paranal 六年夜空观测的文档。",
+      "expected_sources": [
+        "13_dancing_sky_paranal_observations_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "6 years",
+        "night sky observations",
+        "Cerro Paranal",
+        "VLT-FORS1"
+      ],
+      "latency_ms": 80.73,
+      "source_hit": true,
+      "first_hit_rank": 1,
+      "top1_keyword_ratio": 0.75,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "13_dancing_sky_paranal_observations_arxiv.pdf",
+          "parent_id": "13_dancing_sky_paranal_observations_arxiv_parent_4",
+          "preview": "## Page 5   F. Patat: The Dancing Sky: 6 years of night sky observations at Cerro Paranal 5 Fig. 5. Penticton-Ottawa Solar ﬂux at 2800 MHz (monthly aver- age). The time range covered by the data presented in this paper i",
+          "matched_keywords": [
+            "6 years",
+            "night sky observations",
+            "cerro paranal"
+          ],
+          "match_count": 3,
+          "match_ratio": 0.75
+        },
+        {
+          "rank": 2,
+          "source": "13_dancing_sky_paranal_observations_arxiv.pdf",
+          "parent_id": "13_dancing_sky_paranal_observations_arxiv_parent_0",
+          "preview": "# 13_dancing_sky_paranal_observations_arxiv   ## Page 1   Astronomy & Astrophysics manuscript no. ms c⃝ESO 2021 July 13, 2021 The Dancing Sky: 6 years of night sky observations at Cerro Paranal ⋆ F. Patat1 European South",
+          "matched_keywords": [
+            "6 years",
+            "night sky observations"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.5
+        },
+        {
+          "rank": 3,
+          "source": "13_dancing_sky_paranal_observations_arxiv.pdf",
+          "parent_id": "13_dancing_sky_paranal_observations_arxiv_parent_3",
+          "preview": "## Page 4   4 F. Patat: The Dancing Sky: 6 years of night sky observations at Cerro Paranal Table 3. Zenith corrected average sky brightness during dark time at Paranal. Values are expressed in mag arcsec−2. Columns 3 to",
+          "matched_keywords": [
+            "6 years",
+            "night sky observations",
+            "cerro paranal"
+          ],
+          "match_count": 3,
+          "match_ratio": 0.75
+        },
+        {
+          "rank": 4,
+          "source": "13_dancing_sky_paranal_observations_arxiv.pdf",
+          "parent_id": "13_dancing_sky_paranal_observations_arxiv_parent_7",
+          "preview": "## Page 7   F. Patat: The Dancing Sky: 6 years of night sky observations at Cerro Paranal 7 Fig. 8. Seasonal variation of dark time sky brightness with re- spect to the average value. Small symbols are the single mea- su",
+          "matched_keywords": [
+            "6 years",
+            "night sky observations",
+            "cerro paranal"
+          ],
+          "match_count": 3,
+          "match_ratio": 0.75
+        },
+        {
+          "rank": 5,
+          "source": "13_dancing_sky_paranal_observations_arxiv.pdf",
+          "parent_id": "13_dancing_sky_paranal_observations_arxiv_parent_16",
+          "preview": "## Page 16   16 F. Patat: The Dancing Sky: 6 years of night sky observations at Cerro Paranal Fig. 25. Upper panel: CELIAS/MTOF proton number ﬂux. Central panel: solar radio ﬂux. Lower panel: CELIAS/MTOF proton events (P",
+          "matched_keywords": [
+            "6 years",
+            "night sky observations",
+            "cerro paranal"
+          ],
+          "match_count": 3,
+          "match_ratio": 0.75
+        }
+      ]
+    },
+    {
+      "id": "public-007",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档是关于 post-2020 global biodiversity framework，并强调 biodiversity loss drivers 和 artificial light at night 的？",
+      "ground_truth": "应命中与全球生物多样性框架和人工光驱动生物多样性损失相关的文档。",
+      "expected_sources": [
+        "05_cbd_artificial_light_at_night_biodiversity.pdf"
+      ],
+      "expected_keywords": [
+        "biodiversity framework",
+        "biodiversity loss",
+        "artificial light at night"
+      ],
+      "latency_ms": 98.03,
+      "source_hit": true,
+      "first_hit_rank": 2,
+      "top1_keyword_ratio": 0.0,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+          "parent_id": "08_artificial_light_at_night_global_disruptor_arxiv_parent_8",
+          "preview": "20140133. (doi: 10.1098/rstb.2014.0133) 32. Hölker F, Wolter C, Perkin EK, Tockner K. 2010  Light pollution as a biodiversity threat. Trends Ecol. Evol. 25(12), 681-682. (doi: 10.1016/j.tree.2010.09.007) 33. Gaston KJ, B",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 2,
+          "source": "05_cbd_artificial_light_at_night_biodiversity.pdf",
+          "parent_id": "05_cbd_artificial_light_at_night_biodiversity_parent_10",
+          "preview": "alien species  is crucial to a eving the post - 2020 global biodiversity framework (GBF) 1  goals.   To achieve a transformative change we must also adres the indirect social and economic drivers of biodiversity loss. Hi",
+          "matched_keywords": [
+            "biodiversity framework",
+            "biodiversity loss"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 3,
+          "source": "05_cbd_artificial_light_at_night_biodiversity.pdf",
+          "parent_id": "05_cbd_artificial_light_at_night_biodiversity_parent_0",
+          "preview": "# 05_cbd_artificial_light_at_night_biodiversity   ## Page 1   CBD   Distr.   GENERAL   CBD/WG2020/3/   CBD/SBSTTA/24 31   14 January 202   ENGLISH ONLY   OPEN - ENDED WORKING GROUP ON THE POST - 2020 GLOBAL BIODIVERSITY",
+          "matched_keywords": [
+            "biodiversity framework"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 4,
+          "source": "05_cbd_artificial_light_at_night_biodiversity.pdf",
+          "parent_id": "05_cbd_artificial_light_at_night_biodiversity_parent_0",
+          "preview": "13 - 29 March 202   EXPERT INPUT TO THE POST - 2020 GLOBAL BIODIVER SITY FRAMEWORK: TRANSFORMATIVE ACTIO NS ON AL DRIVERS OF BIODIVERSITY LOS AR E URGENTLY REQUIRED TO ACHIEVE THE GLOBAL G OALS BY 2050   Note by the Exec",
+          "matched_keywords": [
+            "biodiversity framework"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 5,
+          "source": "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+          "parent_id": "08_artificial_light_at_night_global_disruptor_arxiv_parent_9",
+          "preview": "Int. 32(8), 1029-1048. (doi: 10.3109/07420528.2015.1072002) 57. Rich C, Longcore T. editors. 2006 Ecological consequences of artificial night lighting. (Washington, D.C.: Island Press). 58. Svechkina A, Portnov BA, Trop",
+          "matched_keywords": [
+            "artificial light at night"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        }
+      ]
+    },
+    {
+      "id": "public-008",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档聚焦 turtle conservation，并讨论 coastal community engagement with light glow reduction？",
+      "ground_truth": "应命中关于海龟保护和海岸社区减光参与的案例研究。",
+      "expected_sources": [
+        "06_cambridge_turtle_conservation_light_glow.pdf"
+      ],
+      "expected_keywords": [
+        "turtle conservation",
+        "coastal community engagement",
+        "light glow reduction"
+      ],
+      "latency_ms": 84.45,
+      "source_hit": true,
+      "first_hit_rank": 1,
+      "top1_keyword_ratio": 0.3333,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "06_cambridge_turtle_conservation_light_glow.pdf",
+          "parent_id": "06_cambridge_turtle_conservation_light_glow_parent_4",
+          "preview": "## Page 15   •  Français [image] Environmental Conservation Article contents •  Summary •  References Balancing artificial light at night with turtle conservation? Coastal community engagement with light-glow reduction P",
+          "matched_keywords": [
+            "turtle conservation"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 2,
+          "source": "06_cambridge_turtle_conservation_light_glow.pdf",
+          "parent_id": "06_cambridge_turtle_conservation_light_glow_parent_13",
+          "preview": "connected to wi-fi, but note that service fees apply. Find out more about the Kindle Personal Document Service. Balancing artificial light at night with turtle conservation? Coastal community engagement with light-glow r",
+          "matched_keywords": [
+            "turtle conservation"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 3,
+          "source": "06_cambridge_turtle_conservation_light_glow.pdf",
+          "parent_id": "06_cambridge_turtle_conservation_light_glow_parent_14",
+          "preview": "## Page 32   To save this article to your Google Drive account, please select one or more formats and confirm that you agree to abide by our usage policies. If this is the first time you used this feature, you will be as",
+          "matched_keywords": [
+            "turtle conservation"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 4,
+          "source": "06_cambridge_turtle_conservation_light_glow.pdf",
+          "parent_id": "06_cambridge_turtle_conservation_light_glow_parent_5",
+          "preview": "## Page 17   initiated in 2008 to protect marine turtles at a globally significant nesting beach. Semi-structured questionnaires assessed community engagement with light-glow reduction, using an existing theoretical cons",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 5,
+          "source": "06_cambridge_turtle_conservation_light_glow.pdf",
+          "parent_id": "06_cambridge_turtle_conservation_light_glow_parent_14",
+          "preview": "more formats and confirm that you agree to abide by our usage policies. If this is the first time you used this feature, you will be asked to authorise Cambridge Core to connect with your Dropbox account. Find out more a",
+          "matched_keywords": [
+            "turtle conservation"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        }
+      ]
+    },
+    {
+      "id": "public-009",
+      "collection": "public_light_pollution_corpus",
+      "question": "如果问题涉及 skyglow 和世界范围夜空亮度分布，最相关的文档是哪一篇？",
+      "ground_truth": "应优先命中世界夜空亮度地图文档。",
+      "expected_sources": [
+        "09_world_atlas_artificial_night_sky_brightness_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "skyglow",
+        "world atlas",
+        "night sky brightness"
+      ],
+      "latency_ms": 86.14,
+      "source_hit": true,
+      "first_hit_rank": 2,
+      "top1_keyword_ratio": 0.0,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "10_natural_night_sky_brightness_gaia_arxiv.pdf",
+          "parent_id": "10_natural_night_sky_brightness_gaia_arxiv_parent_5",
+          "preview": "sky as seen by the observer as follows: • it produces a direct (attenuated) radiance 𝐿d(𝜆, 𝜶, ℎ) = 𝐿0(𝜆, 𝜶) 𝑇(𝜆, 𝑧, ℎ) in the direction of observation 𝜶. • it introduces a scattered radiance 𝐿s(𝜆, 𝜶s, 𝜶, ℎ) in the remain",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 2,
+          "source": "09_world_atlas_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "09_world_atlas_artificial_night_sky_brightness_arxiv_parent_9",
+          "preview": "data taken under different atmospheric conditions, days of the week, times, and seasons. These data provide a better description of the typical skyglow at the location than does a single observation, but still not as muc",
+          "matched_keywords": [
+            "skyglow"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 3,
+          "source": "10_natural_night_sky_brightness_gaia_arxiv.pdf",
+          "parent_id": "10_natural_night_sky_brightness_gaia_arxiv_parent_9",
+          "preview": "𝐿zl(Λ, 𝛽) = 𝑓R 𝑓S(𝛽) 𝐿zl0 (Λ, 𝛽) (18) 6 AIRGLOW Aiglow is a faint light emission originated in the upper atmosphere. It is caused by chemiluminescence, i.e. the emission of light (lu- minescence) from the decay of excite",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 4,
+          "source": "12_space_objects_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "12_space_objects_artificial_night_sky_brightness_arxiv_parent_3",
+          "preview": "ally detected and tracked individually, since their individual irradiances fall below the visual detection threshold. How- ever, if several such objects are present within the receptive ﬁeld of a retinal ganglion cell, t",
+          "matched_keywords": [
+            "skyglow",
+            "night sky brightness"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 5,
+          "source": "10_natural_night_sky_brightness_gaia_arxiv.pdf",
+          "parent_id": "10_natural_night_sky_brightness_gaia_arxiv_parent_5",
+          "preview": "(𝑙, 𝑏) coordinates for the astrophysical component; ecliptic (Λ, 𝛽) for the zodiacal light; and horizontal (𝑎, ˆℎ) coordinates for the air- glow and atmospheric attenuation, being ˆℎthe angular height above the horizon.",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        }
+      ]
+    },
+    {
+      "id": "public-010",
+      "collection": "public_light_pollution_corpus",
+      "question": "如果我想找依赖 Gaia 星表和 Hipparcos 的夜空亮度模型，应该检索哪篇？",
+      "ground_truth": "应命中自然夜空亮度多波段地图文档。",
+      "expected_sources": [
+        "10_natural_night_sky_brightness_gaia_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "Gaia",
+        "Hipparcos",
+        "multi-band map"
+      ],
+      "latency_ms": 81.0,
+      "source_hit": true,
+      "first_hit_rank": 1,
+      "top1_keyword_ratio": 0.6667,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "10_natural_night_sky_brightness_gaia_arxiv.pdf",
+          "parent_id": "10_natural_night_sky_brightness_gaia_arxiv_parent_2",
+          "preview": "the Gaia-DR2 - Hipparcos cross match are given in Marrese et al. (2019). For the 35,000 remaining stars not having Gaia information we have used photometry from the Hipparcos catalogue. In terms of ﬂux, the Hipparcos sta",
+          "matched_keywords": [
+            "gaia",
+            "hipparcos"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 2,
+          "source": "10_natural_night_sky_brightness_gaia_arxiv.pdf",
+          "parent_id": "10_natural_night_sky_brightness_gaia_arxiv_parent_2",
+          "preview": "precise than Hipparcos catalogue, Gaia cannot observe very bright objects (with 𝐺< 5 mag). For those stars, the Hipparcos catalogue addresses the lack of Gaia data. In particular, of the 118,218 stars in the Hipparcos ca",
+          "matched_keywords": [
+            "gaia",
+            "hipparcos"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 3,
+          "source": "10_natural_night_sky_brightness_gaia_arxiv.pdf",
+          "parent_id": "10_natural_night_sky_brightness_gaia_arxiv_parent_2",
+          "preview": "𝐺≈20 mag, with a limiting magnitude slightly fainter than 𝐺= 21 mag in some areas of the sky. Gaia extends to the faint the catalogue obtained by the Hipparcos ESA mission, launched in 1989. Hipparcos catalogue includes",
+          "matched_keywords": [
+            "gaia",
+            "hipparcos"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 4,
+          "source": "10_natural_night_sky_brightness_gaia_arxiv.pdf",
+          "parent_id": "10_natural_night_sky_brightness_gaia_arxiv_parent_0",
+          "preview": "cloudless and moonless nights. Unlike previous maps, GAMBONS is based on the extra- atmospheric star radiance obtained from the Gaia catalogue. The Gaia-DR2 archive compiles astrometric andphotometric information formore",
+          "matched_keywords": [
+            "gaia",
+            "hipparcos"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 5,
+          "source": "10_natural_night_sky_brightness_gaia_arxiv.pdf",
+          "parent_id": "10_natural_night_sky_brightness_gaia_arxiv_parent_1",
+          "preview": "As a ﬁrst result, we present in this work the ﬁrst maps of the extra- atmospheric brightness of the night sky in the 𝑉(Johnson) and the human vision photopic and scotopic bands, directly obtained from the Gaia and Hippar",
+          "matched_keywords": [
+            "gaia",
+            "hipparcos"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        }
+      ]
+    },
+    {
+      "id": "public-011",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档从物理角度建模 light pollution 与 atmosphere 中 photon concentration 的关系？",
+      "ground_truth": "应命中研究人为光子浓度的文档。",
+      "expected_sources": [
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "photon concentration",
+        "atmosphere",
+        "light pollution"
+      ],
+      "latency_ms": 78.19,
+      "source_hit": true,
+      "first_hit_rank": 1,
+      "top1_keyword_ratio": 0.3333,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+          "parent_id": "11_anthropogenic_photons_light_pollution_arxiv_parent_6",
+          "preview": "concentrations of photons is a complement, rather than a substitute for the traditional specification of lighting levels in terms of radiometric and photometric surface fluxes. However, future light pollution regulations",
+          "matched_keywords": [
+            "light pollution"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 2,
+          "source": "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+          "parent_id": "11_anthropogenic_photons_light_pollution_arxiv_parent_0",
+          "preview": "Abstract Light pollution can be rigorously described in terms of the volume concentration of anthropogenic photons (light quanta) in the terrestrial atmosphere. This formulation, consistent with the basic physics of the",
+          "matched_keywords": [
+            "atmosphere",
+            "light pollution"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 3,
+          "source": "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+          "parent_id": "11_anthropogenic_photons_light_pollution_arxiv_parent_1",
+          "preview": "the volume concentration of anthropogenic photons (in 𝑝ℎ𝑜𝑡𝑜𝑛𝑠· 𝑚−3). This formulation gives the same quantitative results as the traditional radiometric/photometric descriptions in terms of surface flux densities and hel",
+          "matched_keywords": [
+            "light pollution"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 4,
+          "source": "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+          "parent_id": "08_artificial_light_at_night_global_disruptor_arxiv_parent_6",
+          "preview": "Transkript. 6. Bará S, Bao-Varela C, Falchi F. 2022 Light pollution and the concentration of anthropogenic photons in the terrestrial atmosphere. Atmos. Pollut. Res. 13(9), 101541. (doi: 10.1016/j.apr.2022.101541) 7. Bar",
+          "matched_keywords": [
+            "atmosphere",
+            "light pollution"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 5,
+          "source": "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+          "parent_id": "11_anthropogenic_photons_light_pollution_arxiv_parent_0",
+          "preview": "# 11_anthropogenic_photons_light_pollution_arxiv   ## Page 1   1   Light pollution and the concentration of anthropogenic photons in the terrestrial atmosphere   Salvador Bará1,*, Carmen Bao-Varela2, and Fabio Falchi2,3",
+          "matched_keywords": [
+            "atmosphere",
+            "light pollution"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        }
+      ]
+    },
+    {
+      "id": "public-012",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档关注 satellites 或其他 orbital objects 对夜空变亮的影响？",
+      "ground_truth": "应命中研究空间目标增加夜空亮度的文档。",
+      "expected_sources": [
+        "12_space_objects_artificial_night_sky_brightness_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "satellites",
+        "space objects",
+        "night sky brightness"
+      ],
+      "latency_ms": 66.83,
+      "source_hit": true,
+      "first_hit_rank": 1,
+      "top1_keyword_ratio": 0.6667,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "12_space_objects_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "12_space_objects_artificial_night_sky_brightness_arxiv_parent_0",
+          "preview": "1 INTRODUCTION Artiﬁcial satellites orbiting the Earth have been a concern of astronomers since the launch of the ﬁrst such object, Sputnik 1, in 1957. As of 1 January 2021, some 3,372 satellites are in orbit (UCS 2021)",
+          "matched_keywords": [
+            "satellites",
+            "space objects"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 2,
+          "source": "12_space_objects_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "12_space_objects_artificial_night_sky_brightness_arxiv_parent_1",
+          "preview": "1969). Satellites illuminated by such low rays are normally dark or even invisible because of exceptional atmospheric extinction of sunlight. Since the deﬂection of the light beam is extremely low, most space objects orb",
+          "matched_keywords": [
+            "satellites",
+            "space objects"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 3,
+          "source": "12_space_objects_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "12_space_objects_artificial_night_sky_brightness_arxiv_parent_2",
+          "preview": "## Page 3   Space objects are a new skyglow threat 3 100 1000 10000 10 -8 10 -7 10 -6 10 -5 10 -4 Spatial Density (1/km 3 ) Altitude (km) Figure 2. Spatial density of space objects larger than 1 mm as a function of altit",
+          "matched_keywords": [
+            "satellites",
+            "space objects"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 4,
+          "source": "12_space_objects_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "12_space_objects_artificial_night_sky_brightness_arxiv_parent_0",
+          "preview": "ters of the objects. Because the streaks are often comparable to or brighter than objects of astrophysical interest, their presence tends to compromise astronomical data and poses the threat of irretrievable loss of info",
+          "matched_keywords": [
+            "satellites",
+            "space objects"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 5,
+          "source": "12_space_objects_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "12_space_objects_artificial_night_sky_brightness_arxiv_parent_4",
+          "preview": "ground based astronomical observatory sites. Note that the data used in Figs. (3-4) are for detected objects only. This means the real number of objects should be even higher because, in principle, not all objects have b",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        }
+      ]
+    },
+    {
+      "id": "public-013",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档使用 ESO-Paranal 与 VLT-FORS1 archival images 进行夜空监测？",
+      "ground_truth": "应命中 Paranal 夜空观测文档。",
+      "expected_sources": [
+        "13_dancing_sky_paranal_observations_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "ESO-Paranal",
+        "VLT-FORS1",
+        "archival images"
+      ],
+      "latency_ms": 72.88,
+      "source_hit": true,
+      "first_hit_rank": 1,
+      "top1_keyword_ratio": 0.0,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "13_dancing_sky_paranal_observations_arxiv.pdf",
+          "parent_id": "13_dancing_sky_paranal_observations_arxiv_parent_17",
+          "preview": "for the support received during this work. Finally, I am grateful to N. Castro and M. Garcia for reporting the weird case of November 8, 2004. This paper is based on archival data obtained with ESO Telescopes at Paranal",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 2,
+          "source": "13_dancing_sky_paranal_observations_arxiv.pdf",
+          "parent_id": "13_dancing_sky_paranal_observations_arxiv_parent_0",
+          "preview": "20 Jan. 2007. Additionally, I present and discuss here a set of more than 1000 low-resolution long-slit night sky spectra taken Send oﬀprint requests to: F. Patat ⋆Based on observations made with ESO Telescopes at Parana",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 3,
+          "source": "13_dancing_sky_paranal_observations_arxiv.pdf",
+          "parent_id": "13_dancing_sky_paranal_observations_arxiv_parent_1",
+          "preview": "science data present in the ESO archive whose proprietary pe- riod had expired by the time this paper has been written. For the sake of simplicity, I have selected only the data obtained with the standard resolution coll",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 4,
+          "source": "13_dancing_sky_paranal_observations_arxiv.pdf",
+          "parent_id": "13_dancing_sky_paranal_observations_arxiv_parent_0",
+          "preview": "timescales with solar activity and the possible connection with the ﬂux of charged particles emitted by the Sun. Key words. atmospheric eﬀects – site testing – techniques: photometric – techniques: spectroscopic 1. Intro",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 5,
+          "source": "13_dancing_sky_paranal_observations_arxiv.pdf",
+          "parent_id": "13_dancing_sky_paranal_observations_arxiv_parent_0",
+          "preview": "(Chile). Methods. The UBVRI night-sky brightness was estimated on about 10,000 VLT-FORS1 archival images, obtained on more than 650 separate nights, distributed over 6 years and covering the descent from maximum to minim",
+          "matched_keywords": [
+            "vlt-fors1",
+            "archival images"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        }
+      ]
+    },
+    {
+      "id": "public-014",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档最适合作为 biodiversity policy 语料，而不是天文观测或天空亮度模型？",
+      "ground_truth": "应命中 CBD 的生物多样性政策文档。",
+      "expected_sources": [
+        "05_cbd_artificial_light_at_night_biodiversity.pdf"
+      ],
+      "expected_keywords": [
+        "biodiversity",
+        "framework",
+        "drivers of biodiversity loss"
+      ],
+      "latency_ms": 66.01,
+      "source_hit": true,
+      "first_hit_rank": 1,
+      "top1_keyword_ratio": 0.3333,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "05_cbd_artificial_light_at_night_biodiversity.pdf",
+          "parent_id": "05_cbd_artificial_light_at_night_biodiversity_parent_14",
+          "preview": "- based conservati on, restoration and species management (Targets 1 - 4). It also asumes that implementation of these conservation and restoration actions is greatly improved compared to curent trends through enhanced r",
+          "matched_keywords": [
+            "biodiversity"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 2,
+          "source": "06_cambridge_turtle_conservation_light_glow.pdf",
+          "parent_id": "06_cambridge_turtle_conservation_light_glow_parent_7",
+          "preview": "a) The dark side of light: a transdisciplinary research agenda for light pollution policy. Ecology and Society 15: 13.Google Scholar Hölker, F., Wolter, C., Perkin, E.K. & Tockner, K. (2010 b) Light pollution as a biodiv",
+          "matched_keywords": [
+            "biodiversity"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 3,
+          "source": "05_cbd_artificial_light_at_night_biodiversity.pdf",
+          "parent_id": "05_cbd_artificial_light_at_night_biodiversity_parent_5",
+          "preview": "- wide reorganization acros technological, economic and social factors, including paradigms, goals and values, neded for the conservation and sustainable use of biodiversity, long - term human wel - being and sustainabl",
+          "matched_keywords": [
+            "biodiversity"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 4,
+          "source": "05_cbd_artificial_light_at_night_biodiversity.pdf",
+          "parent_id": "05_cbd_artificial_light_at_night_biodiversity_parent_17",
+          "preview": "and achievement of al the actions to reduce threats to biodiversity {S1}.   Figure 2 builds on evidence from IPBES asesments and shows that each of the dimensio ns of biodiversity in Goal A depends on al of the action ta",
+          "matched_keywords": [
+            "biodiversity"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 5,
+          "source": "05_cbd_artificial_light_at_night_biodiversity.pdf",
+          "parent_id": "05_cbd_artificial_light_at_night_biodiversity_parent_16",
+          "preview": "16; IPBES 2019, GBO 5 2020).   Ɣ Increasing, but insuficient resources for ambitious implementation (T19).   pla ns (T1 and T19, but only focused on conservation and restoration measures).   Ɣ Modest progres on mainstrea",
+          "matched_keywords": [
+            "biodiversity"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        }
+      ]
+    },
+    {
+      "id": "public-015",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档更像 coastal conservation case study，而不是 atlas、map 或 atmosphere model？",
+      "ground_truth": "应命中海龟保护与海岸社区案例研究文档。",
+      "expected_sources": [
+        "06_cambridge_turtle_conservation_light_glow.pdf"
+      ],
+      "expected_keywords": [
+        "coastal",
+        "case study",
+        "turtle conservation"
+      ],
+      "latency_ms": 73.03,
+      "source_hit": true,
+      "first_hit_rank": 5,
+      "top1_keyword_ratio": 0.0,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "05_cbd_artificial_light_at_night_biodiversity.pdf",
+          "parent_id": "05_cbd_artificial_light_at_night_biodiversity_parent_19",
+          "preview": "seascape initiatives (e.g., Satoyama Initiative) designed around living in harmony with nature. Such managed ecosystems may have high habitat and species conservation priorities in their",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 2,
+          "source": "09_world_atlas_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "09_world_atlas_artificial_night_sky_brightness_arxiv_parent_17",
+          "preview": "was the map corresponding to Lambertian emission. In most individ- ual cases, the map with peak emission at intermediate angles fit to a negative value. The difference could be related to local orthography (shadowing), w",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 3,
+          "source": "09_world_atlas_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "09_world_atlas_artificial_night_sky_brightness_arxiv_parent_7",
+          "preview": "emissions. To generate the atlas, a complete view of Earth at night is required. Because nighttime lights are dynamic in nature, can be obscured by clouds, and contain types of lighting not desired for use in the atlas (",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 4,
+          "source": "09_world_atlas_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "09_world_atlas_artificial_night_sky_brightness_arxiv_parent_4",
+          "preview": "even worse. Figure 11 shows the population statistics for the G20 countries. Figure 12 shows the area statistics for the G20 countries. Figures 13 and 14 show the population statistics for the 20 least polluted countries",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 5,
+          "source": "06_cambridge_turtle_conservation_light_glow.pdf",
+          "parent_id": "06_cambridge_turtle_conservation_light_glow_parent_11",
+          "preview": "Pressey, Robert L. and Radeloff, Volker C. 2016. Conservation hotspots for marine turtle nesting in the United States based on coastal development. Ecological Applications, Vol. 26, Issue. 8, p. 2708. •  CrossRef •  Goog",
+          "matched_keywords": [
+            "coastal",
+            "case study"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        }
+      ]
+    },
+    {
+      "id": "public-016",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档更偏向对 artificial light at night 的高层综述，而不是具体 atlas 或观测站数据？",
+      "ground_truth": "应命中关于 artificial light at night 全球性影响的综述文档。",
+      "expected_sources": [
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "artificial light at night",
+        "global disruptor",
+        "review"
+      ],
+      "latency_ms": 69.61,
+      "source_hit": true,
+      "first_hit_rank": 1,
+      "top1_keyword_ratio": 0.6667,
+      "retrieved": [
+        {
+          "rank": 1,
+          "source": "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+          "parent_id": "08_artificial_light_at_night_global_disruptor_arxiv_parent_1",
+          "preview": "add to a growing body of knowledge on the disruptive effects of artificial light at night in ground-based astronomy [49, 50], cultural heritage [51, 52], and public health [53-56]. A comprehensive review of the environme",
+          "matched_keywords": [
+            "artificial light at night",
+            "review"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        },
+        {
+          "rank": 2,
+          "source": "09_world_atlas_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "09_world_atlas_artificial_night_sky_brightness_arxiv_parent_19",
+          "preview": "318, 641–657 (2000). 2. R. H. Garstang, Night-sky brightness at observatories and sites. Publ. Astron. Soc. Pac. 101, 306–329 (1989). 3. M. Smith, Time to turn off the lights. Nature 457, 27 (2009). 4. K. J. Gaston, M. E",
+          "matched_keywords": [
+            "artificial light at night"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 3,
+          "source": "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+          "parent_id": "11_anthropogenic_photons_light_pollution_arxiv_parent_0",
+          "preview": "## Page 2   2   1. Introduction Artificial light at night is a key factor for the improvement of the living conditions of humankind. Its production and control have provided us an essential level of freedom, enabling man",
+          "matched_keywords": [
+            "artificial light at night"
+          ],
+          "match_count": 1,
+          "match_ratio": 0.3333
+        },
+        {
+          "rank": 4,
+          "source": "09_world_atlas_artificial_night_sky_brightness_arxiv.pdf",
+          "parent_id": "09_world_atlas_artificial_night_sky_brightness_arxiv_parent_4",
+          "preview": "ing the transparency of the atmosphere, the upward emission function of cities, the spectrum of artificial lights, and the hour of the night of the observation. The more the actual conditions differ from these assump- ti",
+          "matched_keywords": [],
+          "match_count": 0,
+          "match_ratio": 0.0
+        },
+        {
+          "rank": 5,
+          "source": "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+          "parent_id": "08_artificial_light_at_night_global_disruptor_arxiv_parent_0",
+          "preview": "# 08_artificial_light_at_night_global_disruptor_arxiv   ## Page 1   This is the Accepted Author Manuscript of an article whose version of record has been published as Bará S, Falchi F. 2023 Artificial light at night: a g",
+          "matched_keywords": [
+            "artificial light at night",
+            "global disruptor"
+          ],
+          "match_count": 2,
+          "match_ratio": 0.6667
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,802 @@
+{
+  "generated_at": "2026-05-07T15:13:03",
+  "dataset_path": "/home/suity/worksapce/PycharmProjects/FindJob/agentic-rag-for-dummies-main/project/evaluation/datasets/agentic_feature_eval.jsonl",
+  "qdrant_db_path": "/tmp/agentic_feature_qdrant_20260507_145532",
+  "summary": [
+    {
+      "config": "skills_only",
+      "case_count": 3,
+      "avg_latency_ms": 34933.07,
+      "max_latency_ms": 65730.02,
+      "avg_keyword_coverage": 0.9333,
+      "avg_worker_count": 2.33,
+      "avg_tool_call_count": 5,
+      "reflection_count": 0,
+      "reflection_search_count": 0,
+      "selected_models": {
+        "gemini-2.5-flash": 3
+      },
+      "worker_roles": {
+        "research_worker": 7
+      },
+      "ragas": {
+        "enabled": true,
+        "available": true,
+        "evaluated_cases": 3,
+        "scores": {
+          "answer_relevancy": 0.2864890949482999,
+          "faithfulness": 0.1111111111111111
+        }
+      }
+    },
+    {
+      "config": "plus_reflection",
+      "case_count": 3,
+      "avg_latency_ms": 44278.48,
+      "max_latency_ms": 55436.24,
+      "avg_keyword_coverage": 0.8857,
+      "avg_worker_count": 2.33,
+      "avg_tool_call_count": 9,
+      "reflection_count": 6,
+      "reflection_search_count": 0,
+      "selected_models": {
+        "gemini-2.5-flash": 3
+      },
+      "worker_roles": {
+        "research_worker": 7
+      },
+      "ragas": {
+        "enabled": true,
+        "available": true,
+        "evaluated_cases": 3,
+        "scores": {
+          "answer_relevancy": 0.4838469510518432,
+          "faithfulness": 0.24528301886792453
+        }
+      }
+    },
+    {
+      "config": "plus_roles",
+      "case_count": 3,
+      "avg_latency_ms": 41942.86,
+      "max_latency_ms": 51551.21,
+      "avg_keyword_coverage": 1.0,
+      "avg_worker_count": 2.33,
+      "avg_tool_call_count": 7,
+      "reflection_count": 7,
+      "reflection_search_count": 0,
+      "selected_models": {
+        "gemini-2.5-flash": 3
+      },
+      "worker_roles": {
+        "paper_overview_worker": 1,
+        "research_worker": 2,
+        "method_worker": 2,
+        "data_eval_worker": 2
+      },
+      "ragas": {
+        "enabled": true,
+        "available": true,
+        "evaluated_cases": 3,
+        "scores": {
+          "answer_relevancy": 0.3078938394890404,
+          "faithfulness": 0.20652173913043478
+        }
+      }
+    },
+    {
+      "config": "router_simple_cost",
+      "case_count": 3,
+      "avg_latency_ms": 27113.62,
+      "max_latency_ms": 41272.91,
+      "avg_keyword_coverage": 1.0,
+      "avg_worker_count": 2.33,
+      "avg_tool_call_count": 5.33,
+      "reflection_count": 0,
+      "reflection_search_count": 0,
+      "selected_models": {
+        "gemini-2.5-flash": 3
+      },
+      "worker_roles": {
+        "paper_overview_worker": 1,
+        "research_worker": 2,
+        "method_worker": 2,
+        "data_eval_worker": 2
+      },
+      "ragas": {
+        "enabled": true,
+        "available": true,
+        "evaluated_cases": 3,
+        "scores": {
+          "answer_relevancy": 0.24660433609866517,
+          "faithfulness": 0.4383838383838384
+        }
+      }
+    }
+  ],
+  "runs": [
+    {
+      "config": "skills_only",
+      "cases": [
+        {
+          "id": "paper_multi_aspect",
+          "collection": "paper_test",
+          "question": "这篇论文的背景、主要内容、创新点、数据集和指标是什么？",
+          "ground_truth": "【背景】云分割是遥感图像分析的基础任务，但云的空间分布复杂、光谱特征因传感器不同而差异显著，且现有视觉基础模型（VFM）在自然图像上预训练，存在明显的领域迁移鸿沟，导致其直接应用于遥感云分割效果有限。【主要内容】论文提出 DinoCloudNet，一种基于双分支参数高效微调（PEFT）的云分割网络。模型以冻结的 DINOv3 ViT 为语义主干，配合专用卷积分支提取局部纹理特征，二者通过适配器模块融合，实现高效微调。【创新点】①ECA-SPM（Efficient Channel Attention Spatial Perception Module，高效通道注意力空间感知模块）：多尺度卷积结合通道注意力，专门捕捉云边界与局部纹理；②MGFF Adapter（Multi-Scale Global-Local Feature Fusion Adapter，多尺度全局-局部特征融合适配器）：采用可变形门控机制，将卷积分支特征注入冻结主干的选定层，是连接双分支的核心桥梁；③整体采用 PEFT 策略，重点训练 ECA-SPM 和 MGFF 等适配组件，保留 DINOv3 的泛化能力。【数据集】在 5 个遥感云分割基准上验证：HRC_WHU、GF1MS_WHU、GF2MS_WHU、L8 Biome、CloudSEN12 High（L1C 和 L2A）。【指标与结果】评估指标为 mIoU、mDice、mAcc、aAcc。在 5 个数据集中达到 4 个 SOTA：HRC_WHU mIoU 92.18%、GF2MS_WHU mIoU 87.13%、GF1MS_WHU mIoU 93.15%（第 2）；CloudSEN12 High L1C mIoU 74.95%、mDice 85.02%，L2A mIoU 74.53%，L8 Biome mIoU 75.78%，均达到最优。",
+          "latency_ms": 65730.02,
+          "answer_length": 2728,
+          "keyword_coverage": 1.0,
+          "hit_keywords": [
+            "DinoCloudNet",
+            "DINOv3",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "expected_keywords": [
+            "DinoCloudNet",
+            "DINOv3",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "active_skill": "paper_qa_zh",
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "research_worker",
+            "research_worker",
+            "research_worker",
+            "research_worker",
+            "research_worker"
+          ],
+          "worker_count": 5,
+          "tool_call_count": 10,
+          "reflection_count": 0,
+          "reflection_search_count": 0,
+          "retrieved_contexts": [
+            "He\n:is::::::\ncurrently::::\nwith ::\nthe::::\nHefei::::::\nInstitutes::\nof::::::\nPhysical ::::::\nScience, :::::\nChinese:::::::\nAcademy :of\n::::::\nSciences,:::\nand ::\nthe:::\nKey::::::::\nLaboratory ::\nof :::::\nOptical :::::::\nCalibration:::\nand::::::::::::\nCharacterization,\n:::::\nChinese:::::::\nAcademy::\nof:::::::\nSciences, ::::\nHefei,:::::\nChina.:::\nHis::::::\nresearch::::::\ninterests:::::\ninclude\n::::\nimage::::::::\nprocessing, :::\ndeep::::::\nlearning,:::::\nobject:::::::\ndetection, :::\nand ::::",
+            "Hefei:::::::\nUniversity::of:::::::::\nTechnology,\n::::\nHefei,:::::\nChina,::in:::::\n2024.:::\nHe ::\nis ::::::\ncurrently:::::::\npursuing\n::\nthe::::\nM.S.:::::\ndegree::in::::::::\nelectronic ::::::::\ninformation::at:::\nthe\n:::::::\nUniversity ::\nof::::::\nScience:::\nand:::::::::\nTechnology ::\nof:::::\nChina,\n::::\nHefei,:::::\nChina. :::\nHis ::::::\nresearch ::::::\ninterests :::::\ninclude:::::\nremote\n:::::\nsensing :::::\nimage ::::::::\nprocessing,:::::::\ncomputer::::::\nvision, :::\nand\n::::::",
+            "He:::\nhas:::::::\npublished :::\nmore::::\nthan ::\n12\n::::\nSCI/EI::::::\narticles ::\nand::::\nholds:::\nfive::::::::\nauthorized :::::\npatents.:::\nDr. ::\nQiu::is:a::::::\nmember::\nof::\nthe\n::::\nYouth:::::::\nInnovation::::::::\nPromotion ::::::::\nAssociation,::::::\nChinese ::::::\nAcademy::of:::::::\nSciences.:\nJin Hong :::::\nreceived::\nthe:::\nB.S.:::::\ndegree::\nin ::::::::::\ncommunication\n::::::::\nengineering ::::\nfrom ::::::\nZhejiang::::::::\nUniversity,::::::::\nHangzhou,\n::::\nChina,::\nin::::\n1987.::::",
+            "Academy::of:::::::\nSciences,:::::\nHefei, :::::\nChina, :::\nand\n::\nthe::::\nKey ::::::::\nLaboratory::of::::::\nOptical::::::::\nCalibration::::\nand\n:::::::::::\nCharacterization,::::::\nChinese::::::::\nAcademy ::\nof:::::::\nSciences,\n::::\nHefei,:::::\nChina.:::\nHis ::::::\nresearch::::::\ninterests:::::\ninclude:::::\nimage\n:::::::\nprocessing,::::\ndeep:::::::\nlearning,:::::\nobject::::::::\ndetection, :::\nand\n::::\nimage:::::::::\nsegmentation.:\nHaoran Liu :::::\nreceived:::\nthe :::\nM.S.:::::\ndegree::in:::::::",
+            "China.::::\nHis::::::\nresearch:::::::\ninterests\n:::::\ninclude :::::::::\natmospheric::::::::\ncorrection,::::::\nremote ::::::\nsensing\n::::\nimage:::::::\nprocessing:::\nand:::::\nquality::::::::\nassessment,:::\nand::::\ndeep\n:::::\nlearning:::\nfor :::::\nremote :::::\nsensing:::::::::\napplications.\nShuming Shi ::::::\ngraduated::::\nfrom::::\nAnhui:::::::::\nAgricultural :::::::\nUniversity,::::\nHefei,:::::\nChina.::\nHe\n:is::::::\ncurrently::::\nwith ::\nthe::::\nHefei::::::\nInstitutes::\nof::::::\nPhysical ::::::"
+          ],
+          "retrieved_sources": [
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf"
+          ],
+          "error": "",
+          "answer": "这篇论文（JSTARS-2025-04970_Tracked_Manuscript.pdf）的背景、主要内容、创新点、数据集和指标如下：\n\n### 背景\n遥感图像中的云分割是遥感分析中的一个基础且关键的步骤，其准确性直接影响后续处理的性能。尽管在大型自然图像数据集上预训练的视觉基础模型（VFM）展现出强大的迁移潜力，但由于自然图像和遥感图像之间存在巨大的领域差异，包括视角几何、空间分辨率和目标尺度的不同，直接将这些模型应用于云分割任务往往会导致次优性能。\n\n### 主要内容\n为了解决上述问题，该论文提出了DinoCloudNet方法。DinoCloudNet是一个两分支网络，基于冻结的DINOv3骨干网络构建，专门用于遥感图像的云分割。该模型引入了两个协同模块：\n*   **高效通道注意力空间感知模块（ECA-SPM）**：用于高效捕获多尺度局部空间细节。\n*   **多粒度特征融合（MGFF）适配器**：用于自适应地对齐并将这些局部特征融合到冻结的骨干网络中。\n\n这种参数高效的方法使得模型能够有效适应云分割任务，同时保留了冻结骨干网络的强大泛化能力，从而提高了准确性。DinoCloudNet主要用于云分割任务，包括二分类和多分类语义分割。在多分类任务中，它将像素分为晴空（clear sky, CRS）、薄云（thin cloud, TNC）、厚云（thick cloud, TKC）或云影（cloud shadow, CDS）。\n\n该模型在多个公共遥感数据集上表现出高度竞争的准确性和鲁棒性，优于大多数现有方法，并在5个基准测试中4个达到了SOTA（State-of-the-Art）性能。DinoCloudNet能够区分云与高度混淆的背景纹理（如岩石、雪或阴影），避免错误的云区域，不会将山体阴影误识别为云，并避免将云过度平滑成与标签不匹配的单一大块。它还能保持全局覆盖和精细边界，防止大型云区域出现人工孔洞。\n\n### 创新点\n该论文的创新点主要体现在以下几个方面：\n1.  **提出DinoCloudNet网络**：提出了一种参数高效的双分支适配器网络DinoCloudNet，用于实现高效准确的云分割。\n2.  **结合VFM与CNN特征**：DinoCloudNet有效地结合了视觉基础模型（VFM）的全局特征和强大泛化能力，以及基于CNN的多尺度空间细节特征。\n3.  **引入ECA-SPM模块**：该网络包含增强上下文感知空间金字塔模块（ECA-SPM），旨在增强多尺度空间细节建模。单独引入此模块可使平均交并比（mIoU）提高0.80个百分点（达到74.43%），平均准确度（mAcc）提高1.70个百分点（从84.20%提高到85.90%）。\n4.  **引入MGFF模块**：网络还包含多粒度特征融合（MGFF）模块，用于激活模型的特征融合和调制能力。单独引入此模块可使mIoU提高0.82个百分点（从73.63%提高到74.45%），平均Dice系数（mDice）提高0.60个百分点（从84.05%提高到84.65%）。\n5.  **模块协同效应**：当ECA-SPM和MGFF模块结合使用时，能够实现最佳的整体评估指标，mIoU达到74.95%，mDice达到85.02%，这表明两个模块之间存在强大的互补关系。\n\n### 数据集\n该论文使用了以下数据集进行评估：\n*   **HRC WHU**: 来源于 Google Earth，地面分辨率为 0.5 m - 15 m，包含 120 个训练集和 30 个测试集，图像块大小为 256×256，分为 2 类。\n*   **GF1MS WHU**: 来源于 GF-1 卫星，地面分辨率为 8 m，包含 6,344 个训练集和 4,086 个测试集，图像块大小为 256×256，分为 2 类。\n*   **GF2MS WHU**: 来源于 GF-2 卫星，地面分辨率为 4 m，包含 14,357 个训练集和 7,560 个测试集，图像块大小为 256×256，分为 2 类。\n*   **CloudSEN12 High**: 来源于 Sentinel-2 卫星，地面分辨率为 10 m，包含 8,490 个训练集和 975 个测试集，图像块大小为 512×512，分为 4 类。\n*   **L8 Biome**: 来源于 Landsat 8 卫星，地面分辨率为 30 m，包含 7,931 个训练集和 2,643 个测试集，图像块大小为 512×512，分为 4 类。\n\n其中，HRC WHU、GF1MS WHU 和 GF2MS WHU 主要用于二元云分割任务，图像主要来自中国不同地区，涵盖 2014 年 6 月至 2020 年 12 月期间，包含多样的地貌和季节。CloudSEN12 High 和 L8 Biome 用于多类别云分割任务，需要将每个像素标记为晴空 (Clear Sky)、薄云 (Thin Cloud)、厚云 (Thick Cloud) 或云影 (Cloud Shadow)。\n\n### 指标\n该论文使用以下指标来评估云和云影分割的性能：\n*   **总体准确度 (Overall Accuracy, aAcc)**：反映整体正确性。\n*   **平均交并比 (Mean Intersection over Union, mIoU)**：衡量区域重叠质量。DinoCloudNet在CloudSEN12 High L1C上达到了74.95%的mIoU，在CloudSEN12 High L2A上达到74.53%，在L8 Biome上达到75.78%。\n*   **平均准确度 (Mean Accuracy, mAcc)**：计算每个类别的平均准确度，有助于缓解类别不平衡问题。其计算公式为：mAcc = (1/C) * Σ(TPi / (TPi + FNi))，其中 C 是类别数量，TPi 是真阳性，FNi 是假阴性。\n*   **平均Dice系数 (Mean Dice Coefficient, mDice)**：提供精确度和召回率的调和度量，对边界和小型目标分割特别敏感。其计算公式为：mDice = (1/C) * Σ((2 * TPi) / (2 * TPi + FPi + FNi))，其中 FPi 是假阳性。\n\n这些指标是互补的：aAcc反映整体正确性，而mIoU和mDice则衡量区域重叠质量。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        },
+        {
+          "id": "paper_method",
+          "collection": "paper_test",
+          "question": "这篇论文的方法创新具体体现在哪些模块上？",
+          "ground_truth": "DinoCloudNet 的方法创新集中在三个核心模块：①冻结的 DINOv3 主干（backbone）：直接复用大规模预训练的视觉基础模型作为全局语义特征提取器，参数全程冻结，保留其跨域泛化能力，避免灾难性遗忘；②ECA-SPM（Efficient Channel Attention Spatial Perception Module）：独立卷积分支，采用多尺度卷积叠加高效通道注意力（ECA），专门提取云边界和局部纹理等细粒度特征，弥补 ViT 对局部结构感知不足的缺陷；③MGFF Adapter（Multi-Scale Global-Local Feature Fusion Adapter）：双分支融合的关键组件，内置可变形门控机制，将 ECA-SPM 的局部特征注入 DINOv3 选定层，实现跨分支多尺度全局-局部特征对齐与融合。整个框架重点训练 ECA-SPM 和 MGFF Adapter 等适配组件，属于参数高效微调（PEFT）范式，大幅降低训练成本同时保持强大性能。",
+          "latency_ms": 17588.25,
+          "answer_length": 698,
+          "keyword_coverage": 0.8,
+          "hit_keywords": [
+            "ECA-SPM",
+            "MGFF",
+            "DINOv3",
+            "Adapter"
+          ],
+          "expected_keywords": [
+            "ECA-SPM",
+            "MGFF",
+            "DINOv3",
+            "backbone",
+            "Adapter"
+          ],
+          "active_skill": "paper_qa_zh",
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "research_worker"
+          ],
+          "worker_count": 1,
+          "tool_call_count": 2,
+          "reflection_count": 0,
+          "reflection_search_count": 0,
+          "retrieved_contexts": [
+            "He\n:is::::::\ncurrently::::\nwith ::\nthe::::\nHefei::::::\nInstitutes::\nof::::::\nPhysical ::::::\nScience, :::::\nChinese:::::::\nAcademy :of\n::::::\nSciences,:::\nand ::\nthe:::\nKey::::::::\nLaboratory ::\nof :::::\nOptical :::::::\nCalibration:::\nand::::::::::::\nCharacterization,\n:::::\nChinese:::::::\nAcademy::\nof:::::::\nSciences, ::::\nHefei,:::::\nChina.:::\nHis::::::\nresearch::::::\ninterests:::::\ninclude\n::::\nimage::::::::\nprocessing, :::\ndeep::::::\nlearning,:::::\nobject:::::::\ndetection, :::\nand ::::",
+            "He:::\nhas:::::::\npublished :::\nmore::::\nthan ::\n12\n::::\nSCI/EI::::::\narticles ::\nand::::\nholds:::\nfive::::::::\nauthorized :::::\npatents.:::\nDr. ::\nQiu::is:a::::::\nmember::\nof::\nthe\n::::\nYouth:::::::\nInnovation::::::::\nPromotion ::::::::\nAssociation,::::::\nChinese ::::::\nAcademy::of:::::::\nSciences.:\nJin Hong :::::\nreceived::\nthe:::\nB.S.:::::\ndegree::\nin ::::::::::\ncommunication\n::::::::\nengineering ::::\nfrom ::::::\nZhejiang::::::::\nUniversity,::::::::\nHangzhou,\n::::\nChina,::\nin::::\n1987.::::",
+            "Academy::of:::::::\nSciences,:::::\nHefei, :::::\nChina, :::\nand\n::\nthe::::\nKey ::::::::\nLaboratory::of::::::\nOptical::::::::\nCalibration::::\nand\n:::::::::::\nCharacterization,::::::\nChinese::::::::\nAcademy ::\nof:::::::\nSciences,\n::::\nHefei,:::::\nChina.:::\nHis ::::::\nresearch::::::\ninterests:::::\ninclude:::::\nimage\n:::::::\nprocessing,::::\ndeep:::::::\nlearning,:::::\nobject::::::::\ndetection, :::\nand\n::::\nimage:::::::::\nsegmentation.:\nHaoran Liu :::::\nreceived:::\nthe :::\nM.S.:::::\ndegree::in:::::::",
+            "Hefei:::::::\nUniversity::of:::::::::\nTechnology,\n::::\nHefei,:::::\nChina,::in:::::\n2024.:::\nHe ::\nis ::::::\ncurrently:::::::\npursuing\n::\nthe::::\nM.S.:::::\ndegree::in::::::::\nelectronic ::::::::\ninformation::at:::\nthe\n:::::::\nUniversity ::\nof::::::\nScience:::\nand:::::::::\nTechnology ::\nof:::::\nChina,\n::::\nHefei,:::::\nChina. :::\nHis ::::::\nresearch ::::::\ninterests :::::\ninclude:::::\nremote\n:::::\nsensing :::::\nimage ::::::::\nprocessing,:::::::\ncomputer::::::\nvision, :::\nand\n::::::",
+            "interests::::::\ninclude ::::::::\nmechanical\n:::::\ndesign, :::\nfinite::::::\nelement::::::\nanalysis,:::\nand:::::\ndiscrete::::::\nelement\n:::::::\nsimulation.:\nYinan Xu\n:::::\nreceived:::\nthe :::\nB.E.:::::\ndegree::in::::::::\nmechanical\n:::::\ndesign, ::::::::::\nmanufacturing :::\nand :::::::\nautomation::::\nfrom:::::\nAnhui\n::::::::\nAgricultural::::::::\nUniversity, ::::\nHefei,:::::\nChina,::in::::\n2023.:::\nHe\n:is:::::::\ncurrently::::::\npursuing:::\nthe:::::\nM.S. :::::\ndegree::in:::::\noptics\n:at:::"
+          ],
+          "retrieved_sources": [
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf"
+          ],
+          "error": "",
+          "answer": "这篇论文提出的 DinoCloudNet 方法主要在以下两个关键模块上体现了创新：\n\n1.  **高效通道注意力空间感知模块 (Efficient Channel Attention Spatial Perception Module, ECA-SPM)**：\n    *   这是一个轻量级且可训练的模块，其主要目标是高效地捕获多尺度的局部空间细节，例如云的边界和纹理信息。\n    *   它通过结合多尺度卷积和通道注意力机制来实现这一功能。\n\n2.  **多尺度全局-局部特征融合适配器 (Multi-Scale Global-Local Feature Fusion Adapter, MGFF Adapter)**：\n    *   该适配器负责自适应地对齐并融合来自 ECA-SPM 的多尺度局部特征，以及从冻结的骨干网络（DINOv3）中提取的强大全局表示。\n    *   融合后的特征会被注入到骨干网络的特定层中。\n\nDinoCloudNet 整体采用双分支设计：一个分支是冻结的视觉基础模型 (Vision Foundation Model, VFM) 骨干网络（具体为 DINOv3），它保留了模型强大的通用特征提取和跨领域泛化能力；另一个并行分支是轻量级的 ECA-SPM，专门用于捕获多尺度精细空间特征。MGFF Adapter 随后自适应地对齐并融合来自这两个分支的多尺度信息，从而实现了参数高效的设计，同时提供了强大的泛化能力和精确的分割细节。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        },
+        {
+          "id": "simple_definition",
+          "collection": "paper_test",
+          "question": "DinoCloudNet 是什么？",
+          "ground_truth": "DinoCloudNet 是一种面向遥感图像的双分支云分割网络，基于参数高效微调（PEFT）范式设计。它以冻结的 DINOv3 视觉 Transformer 为全局语义主干，同时引入卷积分支（ECA-SPM）捕捉局部云纹理特征，并通过 MGFF Adapter 将两个分支的特征进行多粒度融合。该模型仅训练适配器和卷积分支，在 HRC_WHU 等多个遥感云分割基准上达到 SOTA 水平。",
+          "latency_ms": 21480.94,
+          "answer_length": 1063,
+          "keyword_coverage": 1.0,
+          "hit_keywords": [
+            "DinoCloudNet",
+            "云分割",
+            "DINOv3"
+          ],
+          "expected_keywords": [
+            "DinoCloudNet",
+            "云分割",
+            "DINOv3"
+          ],
+          "active_skill": null,
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "research_worker"
+          ],
+          "worker_count": 1,
+          "tool_call_count": 3,
+          "reflection_count": 0,
+          "reflection_search_count": 0,
+          "retrieved_contexts": [
+            "tuned. DinoCloudNet consistently achieves highly competitive\nperformance across various cloud segmentation datasets from\nmultiple satellite sources, sensor series, data processing levels,\nland cover scenarios, and annotation granularities. Ablation\nstudies demonstrate that both modules are necessary and\nreinforce each other. In summary, DinoCloudNet is effective  \n---",
+            "DinoCloudNet\nOurs\n96.10\n92.18\n95.86\n95.92\nsensors, so the spatial resolution, viewing geometry, and\nradiometric properties are not the same. GF1MS WHU often\ncontains medium-sized bright clouds over darker backgrounds\nsuch as vegetation or bare soil. In this case accurate cloud\nboundaries are important. GF2MS WHU includes scenes with\nlarge uniform cloud decks, where almost the entire tile is\ncloud. Models that are not stable tend to cut artificial “holes”",
+            "40\n45\n50\n55\n60\n65\n70\n75\nmIoU (%)\nCDNetv1\nCDNetv2\nMCDNet\nKappaMask\nDBNet\nUNetMobv2\nHRCloudNet\nSegman\nSAM-Adapter\nRein\nDinoCloudNet-B\nDinoCloudNet-L\nDinoCloudNet-S\n21\n22\n23\n24\n73.00\n73.25\n73.50\n73.75\n74.00\n74.25\n74.50\n74.75\n75.00\nDinoCloudNet-S\nDinoCloudNet-B\nDinoCloudNet-L\nSAM-Adapter\nRein\nFig. 11.\nScatter plot of the relationship between the number of trainable\nparameters and mIoU. Comparison of parameter efficiency and segmentation\naccuracy of different methods on CloudSEN12 High L1C.",
+            "affect appearance, making thin clouds and shadows appear\nweak and difficult to detect. As seen in Table V and Figure 6,\nDinoCloudNet demonstrates strong performance, accurately\nfollowing the true thin cloud boundary and producing cleaner\nshadow masks with fewer holes, even for small semi-transparent  \n---",
+            "# Page 13  \n13\n0\n100\n200\n300\n400\n500\nGFLOPs\n40\n45\n50\n55\n60\n65\n70\n75\nmIoU (%)\nCDNetv1\nCDNetv2\nMCDNet\nKappaMask\nDBNet\nUNetMobv2\nHRCloudNet\nSegman\nRein\nSAM-Adapter\nDinoCloudNet-B\nDinoCloudNet-L\nDinoCloudNet-S\nFig. 10.\nScatter plot of GFLOPs vs. mIoU. Comparison of computa-\ntional overhead and segmentation accuracy of different methods on Cloud-\nSEN12 High L1C.\n0\n20\n40\n60\n80\n100\nParameters (M)\n40\n45\n50\n55\n60\n65\n70\n75\nmIoU (%)\nCDNetv1\nCDNetv2\nMCDNet\nKappaMask\nDBNet\nUNetMobv2\nHRCloudNet\nSegman"
+          ],
+          "retrieved_sources": [
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf"
+          ],
+          "error": "",
+          "answer": "DinoCloudNet是一个专门为遥感图像中的云分割设计的双分支网络。它建立在一个冻结的DINOv3骨干网络之上，并包含两个关键组件：\n\n*   **ECA-SPM (Efficient Channel Attention - Spatial Pyramid Module)**：这个模块负责从输入图像中提取多尺度的局部空间细节。\n*   **MGFF Adapter (Multi-Granularity Feature Fusion Adapter)**：这个适配器自适应地对齐并融合从DINOv3骨干网络获得的全局特征与由ECA-SPM生成的、多尺度的局部特征。\n\n这种架构使得DinoCloudNet能够实现强大的泛化能力和精确的分割细节，同时只需要少量参数进行微调。选择DINOv3骨干网络是因为它在准确性与参数量之间具有良好的权衡，并且能够提供密集的自监督表示，非常适合云和云影分割任务。\n\nDinoCloudNet在各种云分割数据集上始终表现出极具竞争力的性能，这些数据集涵盖了不同的卫星来源、传感器系列、数据处理级别、地物覆盖场景和标注粒度。消融研究也证实了ECA-SPM和MGFF Adapter模块的必要性和协同效应。\n\n该框架还展现出卓越的可扩展性，其不同变体在计算量、参数数量和mIoU之间提供了帕累托权衡：\n\n*   **DinoCloudNet-S (Small)**：实现了73.96%的mIoU，拥有22.09M可训练参数和50.02 GFLOPs，非常适合边缘应用。\n*   **DinoCloudNet-B (Base)**：实现了74.14%的mIoU，拥有23.55M可训练参数和125.57 GFLOPs。\n*   **DinoCloudNet-L (Large)**：实现了74.95%的最新（SOTA）mIoU，拥有24.50M可训练参数和380.71 GFLOPs，最适合需要最大准确性的服务器端部署。\n\nDinoCloudNet在特定的二元云分割数据集上取得了最先进（SOTA）的性能，例如HRC WHU（92.18% mIoU）和GF2MS WHU（87.13% mIoU）。它还在GF1MS WHU上取得了93.15%的极具竞争力的mIoU。该模型能够有效地区分复杂场景中具有挑战性的薄云和云影与晴空，生成更清晰的阴影掩膜并准确地遵循薄云边界。\n\n---\n**Sources:**\n*   JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        }
+      ],
+      "ragas": {
+        "enabled": true,
+        "available": true,
+        "evaluated_cases": 3,
+        "scores": {
+          "answer_relevancy": 0.2864890949482999,
+          "faithfulness": 0.1111111111111111
+        }
+      }
+    },
+    {
+      "config": "plus_reflection",
+      "cases": [
+        {
+          "id": "paper_multi_aspect",
+          "collection": "paper_test",
+          "question": "这篇论文的背景、主要内容、创新点、数据集和指标是什么？",
+          "ground_truth": "【背景】云分割是遥感图像分析的基础任务，但云的空间分布复杂、光谱特征因传感器不同而差异显著，且现有视觉基础模型（VFM）在自然图像上预训练，存在明显的领域迁移鸿沟，导致其直接应用于遥感云分割效果有限。【主要内容】论文提出 DinoCloudNet，一种基于双分支参数高效微调（PEFT）的云分割网络。模型以冻结的 DINOv3 ViT 为语义主干，配合专用卷积分支提取局部纹理特征，二者通过适配器模块融合，实现高效微调。【创新点】①ECA-SPM（Efficient Channel Attention Spatial Perception Module，高效通道注意力空间感知模块）：多尺度卷积结合通道注意力，专门捕捉云边界与局部纹理；②MGFF Adapter（Multi-Scale Global-Local Feature Fusion Adapter，多尺度全局-局部特征融合适配器）：采用可变形门控机制，将卷积分支特征注入冻结主干的选定层，是连接双分支的核心桥梁；③整体采用 PEFT 策略，重点训练 ECA-SPM 和 MGFF 等适配组件，保留 DINOv3 的泛化能力。【数据集】在 5 个遥感云分割基准上验证：HRC_WHU、GF1MS_WHU、GF2MS_WHU、L8 Biome、CloudSEN12 High（L1C 和 L2A）。【指标与结果】评估指标为 mIoU、mDice、mAcc、aAcc。在 5 个数据集中达到 4 个 SOTA：HRC_WHU mIoU 92.18%、GF2MS_WHU mIoU 87.13%、GF1MS_WHU mIoU 93.15%（第 2）；CloudSEN12 High L1C mIoU 74.95%、mDice 85.02%，L2A mIoU 74.53%，L8 Biome mIoU 75.78%，均达到最优。",
+          "latency_ms": 55436.24,
+          "answer_length": 3990,
+          "keyword_coverage": 0.8571,
+          "hit_keywords": [
+            "DinoCloudNet",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "expected_keywords": [
+            "DinoCloudNet",
+            "DINOv3",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "active_skill": "paper_qa_zh",
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "research_worker",
+            "research_worker",
+            "research_worker",
+            "research_worker",
+            "research_worker"
+          ],
+          "worker_count": 5,
+          "tool_call_count": 14,
+          "reflection_count": 5,
+          "reflection_search_count": 0,
+          "retrieved_contexts": [
+            "He\n:is::::::\ncurrently::::\nwith ::\nthe::::\nHefei::::::\nInstitutes::\nof::::::\nPhysical ::::::\nScience, :::::\nChinese:::::::\nAcademy :of\n::::::\nSciences,:::\nand ::\nthe:::\nKey::::::::\nLaboratory ::\nof :::::\nOptical :::::::\nCalibration:::\nand::::::::::::\nCharacterization,\n:::::\nChinese:::::::\nAcademy::\nof:::::::\nSciences, ::::\nHefei,:::::\nChina.:::\nHis::::::\nresearch::::::\ninterests:::::\ninclude\n::::\nimage::::::::\nprocessing, :::\ndeep::::::\nlearning,:::::\nobject:::::::\ndetection, :::\nand ::::",
+            "Hefei:::::::\nUniversity::of:::::::::\nTechnology,\n::::\nHefei,:::::\nChina,::in:::::\n2024.:::\nHe ::\nis ::::::\ncurrently:::::::\npursuing\n::\nthe::::\nM.S.:::::\ndegree::in::::::::\nelectronic ::::::::\ninformation::at:::\nthe\n:::::::\nUniversity ::\nof::::::\nScience:::\nand:::::::::\nTechnology ::\nof:::::\nChina,\n::::\nHefei,:::::\nChina. :::\nHis ::::::\nresearch ::::::\ninterests :::::\ninclude:::::\nremote\n:::::\nsensing :::::\nimage ::::::::\nprocessing,:::::::\ncomputer::::::\nvision, :::\nand\n::::::",
+            "He:::\nhas:::::::\npublished :::\nmore::::\nthan ::\n12\n::::\nSCI/EI::::::\narticles ::\nand::::\nholds:::\nfive::::::::\nauthorized :::::\npatents.:::\nDr. ::\nQiu::is:a::::::\nmember::\nof::\nthe\n::::\nYouth:::::::\nInnovation::::::::\nPromotion ::::::::\nAssociation,::::::\nChinese ::::::\nAcademy::of:::::::\nSciences.:\nJin Hong :::::\nreceived::\nthe:::\nB.S.:::::\ndegree::\nin ::::::::::\ncommunication\n::::::::\nengineering ::::\nfrom ::::::\nZhejiang::::::::\nUniversity,::::::::\nHangzhou,\n::::\nChina,::\nin::::\n1987.::::",
+            "Academy::of:::::::\nSciences,:::::\nHefei, :::::\nChina, :::\nand\n::\nthe::::\nKey ::::::::\nLaboratory::of::::::\nOptical::::::::\nCalibration::::\nand\n:::::::::::\nCharacterization,::::::\nChinese::::::::\nAcademy ::\nof:::::::\nSciences,\n::::\nHefei,:::::\nChina.:::\nHis ::::::\nresearch::::::\ninterests:::::\ninclude:::::\nimage\n:::::::\nprocessing,::::\ndeep:::::::\nlearning,:::::\nobject::::::::\ndetection, :::\nand\n::::\nimage:::::::::\nsegmentation.:\nHaoran Liu :::::\nreceived:::\nthe :::\nM.S.:::::\ndegree::in:::::::",
+            "China.::::\nHis::::::\nresearch:::::::\ninterests\n:::::\ninclude :::::::::\natmospheric::::::::\ncorrection,::::::\nremote ::::::\nsensing\n::::\nimage:::::::\nprocessing:::\nand:::::\nquality::::::::\nassessment,:::\nand::::\ndeep\n:::::\nlearning:::\nfor :::::\nremote :::::\nsensing:::::::::\napplications.\nShuming Shi ::::::\ngraduated::::\nfrom::::\nAnhui:::::::::\nAgricultural :::::::\nUniversity,::::\nHefei,:::::\nChina.::\nHe\n:is::::::\ncurrently::::\nwith ::\nthe::::\nHefei::::::\nInstitutes::\nof::::::\nPhysical ::::::"
+          ],
+          "retrieved_sources": [
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf"
+          ],
+          "error": "",
+          "answer": "这篇论文的背景主要围绕遥感图像分析和处理中云分割的关键性和挑战性展开。\n\n### 背景\n云分割是遥感图像分析和处理中的一个基础且关键的步骤，其准确性直接影响着大气校正、土地覆盖和土地利用测绘、变化检测以及灾害监测等众多下游应用的可靠性和产品质量。因此，准确且鲁棒的云检测和分割对于减少云污染的影响至关重要。\n\n**现有方法的局限性包括：**\n*   **传统阈值和基于规则的方法**：这些方法依赖于光谱先验知识和经验规则，在复杂背景下常常导致误报或漏报。\n*   **传统机器学习方法**：尽管在特定场景下使用人工特征和浅层分类器表现良好，但它们在不同卫星平台和时间段之间的泛化能力有限。\n*   **视觉基础模型（VFMs）的挑战**：VFMs 在大规模自然图像数据集上预训练，展现出强大的迁移潜力。然而，自然图像和遥感图像之间存在显著的领域差异，包括视角几何、空间分辨率和目标尺度的不同，导致 VFMs 直接应用于云分割任务时性能不佳。\n\n为了解决这些挑战，该论文提出了 DinoCloudNet 方法。\n\n### 主要内容\n该论文主要介绍了 DinoCloudNet 模型，该模型专为遥感图像中的云分割任务设计，旨在实现高竞争力的准确性和鲁棒性能，超越现有的大多数方法。\n\n**研究目标和任务类型：**\n*   **研究目标**：在二元和多类别语义分割任务中，实现高度竞争的准确性和鲁棒性能。\n*   **任务类型**：\n    *   **二元云分割**：将每个像素标记为云或非云。\n    *   **多类别云分割**：将每个像素标记为晴空 (Clear Sky, CRS)、薄云 (Thin Cloud, TNC)、厚云 (Thick Cloud, TKC) 或云影 (Cloud Shadow, CDS)。\n\n**方法论和训练设置：**\n*   **训练设置**：在 NVIDIA GeForce RTX 4090 GPU 上进行，采用随机裁剪、调整大小、水平翻转、颜色抖动等数据增强技术。输入图像转换为 RGB 并进行归一化。使用线性热身和余弦退火学习率调度，AdamW 优化器，初始学习率为 1e-4，批处理大小为 4。掩码预测采用 Mask2Former 头。\n\n**性能表现：**\n*   DinoCloudNet 在 HRC WHU (mIoU 92.18%) 和 GF2MS WHU (mIoU 87.13%) 数据集上取得了最先进 (SOTA) 的性能。\n*   在 GF1MS WHU 数据集上，DinoCloudNet (mIoU 93.15%) 表现出高度竞争力，仅次于 Rein (93.40%)。\n*   在 CloudSEN12 High L2A 和 L8 Biome 数据集上，DinoCloudNet 在 aAcc、mIoU、mAcc 和 mDice 等指标上均优于 SegMAN 和 Rein 等方法，尤其在薄云和云影类别上表现出显著提升。\n*   定性比较表明，该模型在复杂场景中识别更精细，能准确区分具有挑战性的薄云和云影，预测边界更平滑，并减少了误报。模型在经过大气校正的数据 (L2A) 上保持了高性能，并能泛化到多样化的真实世界环境。\n\n### 创新点\n该论文的创新点主要体现在以下几个方面：\n\n1.  **提出 DinoCloudNet**：论文提出了一种参数高效的双分支适配器网络 DinoCloudNet，用于高效准确的云分割。该网络将视觉基础模型（VFM）的全局特征和强泛化能力与基于 CNN 的多尺度空间细节特征相结合。DinoCloudNet 采用双分支设计：冻结的主干网络提取全局语义，而并行的 ECA-SPM 分支捕获边缘感知、多尺度局部空间细节。MGFF 适配器随后自适应地对齐并融合来自两个分支的多尺度信息，并将融合后的特征注入到主干网络的选定层中。\n2.  **引入 ECA-SPM 模块**：论文引入了增强通道注意力与空间金字塔模块（ECA-SPM），旨在增强多尺度空间细节建模。ECA-SPM 旨在高效捕获多尺度局部空间细节，特别是边缘感知、多尺度局部空间细节。它作为冻结主干网络的一个并行分支，提供鲁棒的多尺度空间上下文，并专注于薄边缘和小碎片等局部空间细节。单独引入时，在 CloudSen12 High L1C 数据集上，mIoU 提升 0.80 个百分点（达到 74.43%），mAcc 提升 1.70 个百分点（从 84.20% 到 85.90%）。\n3.  **提出 MGFF 模块**：论文提出了一种多尺度门控特征融合（MGFF）模块，用于激活模型的特征融合和调制能力。MGFF 适配器旨在自适应地对齐并将 ECA-SPM 的局部特征融合到冻结的主干网络中。它在选定的主干网络层（索引为 {4, 11, 17, 23}）执行可变形多尺度对齐和门控融合，并将调制后的特征反馈给主干网络。MGFF 负责精细对齐并将空间上下文注入到主干特征中。单独引入时，在 CloudSen12 High L1C 数据集上，mIoU 提升 0.82 个百分点（从 73.63% 到 74.45%），mDice 提升 0.60 个百分点（从 84.05% 到 84.65%）。\n4.  **模块协同作用**：ECA-SPM 和 MGFF 模块的结合在 CloudSen12 High L1C 数据集上取得了最佳的整体评估指标，mIoU 达到 74.95%，mDice 达到 85.02%，这表明它们之间存在强大的互补关系。ECA-SPM 提供鲁棒的多尺度空间上下文，而 MGFF 负责精细对齐并将此上下文注入到主干特征中，共同推动最终分割质量的持续稳定改进。\n\n### 数据集\n该论文在云分割任务中使用了多个公开的遥感数据集，包括二元和多类别语义分割任务。\n\n**二元云分割数据集**（图像裁剪为 256×256 切片）：\n*   **HRC WHU**：\n    *   卫星来源：Google Earth\n    *   地面分辨率：0.5 m - 15 m\n    *   训练集：120 张图像，测试集：30 张图像\n    *   类别：2（云或非云）\n    *   描述：高分辨率云检测基准，包含 150 张 RGB 三通道图像，图像来源、场景和地表类型多样，用于测试泛化能力。\n*   **GF1MS WHU**：\n    *   卫星来源：GF-1\n    *   地面分辨率：8 m\n    *   训练集：6,344 张图像，测试集：4,086 张图像\n    *   类别：2（云或非云）\n    *   描述：GF12MS WHU 的子集，提供中国高分系列卫星的多光谱图像。主要来自中国不同地区，涵盖 2014 年 6 月至 2020 年 12 月，地貌和季节多样。\n*   **GF2MS WHU**：\n    *   卫星来源：GF-2\n    *   地面分辨率：4 m\n    *   训练集：14,357 张图像，测试集：7,560 张图像\n    *   类别：2（云或非云）\n    *   描述：GF12MS WHU 的子集，提供中国高分系列卫星的多光谱图像。主要来自中国不同地区，涵盖 2014 年 6 月至 2020 年 12 月，地貌和季节多样。\n\n**多类别云分割数据集**（图像裁剪为 512×512 切片）：\n*   **CloudSEN12 High**：\n    *   卫星来源：Sentinel-2\n    *   地面分辨率：10 m\n    *   训练集：8,490 张图像，测试集：975 张图像\n    *   类别：4（晴空、薄云、厚云、云影）\n    *   描述：大型全球云和云影语义数据集。使用了其高质量标签的两个子集：Level 1C (L1C) 和 Level 2A (L2A)。\n*   **L8 Biome**：\n    *   卫星来源：Landsat 8\n    *   地面分辨率：30 m\n    *   训练集：7,931 张图像，测试集：2,643 张图像\n    *   类别：4（晴空、薄云、厚云、云影）\n    *   描述：用于测试 Landsat 数据云检测的标准数据集，涵盖八种典型生物群落（城市、裸地、森林、灌木丛、草地或农田、冰雪、湿地和水域），以处理复杂的地面背景。\n\n### 指标\n该论文使用以下指标来评估云和云影分割，所有指标均以百分比形式报告：\n\n*   **总体准确度 (Overall Accuracy, aAcc)**：反映整体正确性。\n*   **平均交并比 (Mean Intersection over Union, mIoU)**：衡量区域重叠质量。\n*   **平均准确度 (Mean Accuracy, mAcc)**：计算每个类别的平均准确度，有助于缓解类别不平衡问题。其计算公式为：\n    mAcc = (1/C) * Σ(TPi / (TPi + FNi))，其中 C 是类别数量，TPi 是真阳性，FNi 是假阴性。\n*   **平均 Dice 系数 (Mean Dice Coefficient, mDice)**：提供精确度和召回率的调和度量，对边界和小型目标分割特别敏感。其计算公式为：\n    mDice = (1/C) * Σ((2 * TPi) / (2 * TPi + FPi + FNi))，其中 FPi 是假阳性。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        },
+        {
+          "id": "paper_method",
+          "collection": "paper_test",
+          "question": "这篇论文的方法创新具体体现在哪些模块上？",
+          "ground_truth": "DinoCloudNet 的方法创新集中在三个核心模块：①冻结的 DINOv3 主干（backbone）：直接复用大规模预训练的视觉基础模型作为全局语义特征提取器，参数全程冻结，保留其跨域泛化能力，避免灾难性遗忘；②ECA-SPM（Efficient Channel Attention Spatial Perception Module）：独立卷积分支，采用多尺度卷积叠加高效通道注意力（ECA），专门提取云边界和局部纹理等细粒度特征，弥补 ViT 对局部结构感知不足的缺陷；③MGFF Adapter（Multi-Scale Global-Local Feature Fusion Adapter）：双分支融合的关键组件，内置可变形门控机制，将 ECA-SPM 的局部特征注入 DINOv3 选定层，实现跨分支多尺度全局-局部特征对齐与融合。整个框架重点训练 ECA-SPM 和 MGFF Adapter 等适配组件，属于参数高效微调（PEFT）范式，大幅降低训练成本同时保持强大性能。",
+          "latency_ms": 37740.32,
+          "answer_length": 1059,
+          "keyword_coverage": 0.8,
+          "hit_keywords": [
+            "ECA-SPM",
+            "MGFF",
+            "DINOv3",
+            "Adapter"
+          ],
+          "expected_keywords": [
+            "ECA-SPM",
+            "MGFF",
+            "DINOv3",
+            "backbone",
+            "Adapter"
+          ],
+          "active_skill": "paper_qa_zh",
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "research_worker"
+          ],
+          "worker_count": 1,
+          "tool_call_count": 10,
+          "reflection_count": 0,
+          "reflection_search_count": 0,
+          "retrieved_contexts": [
+            "He\n:is::::::\ncurrently::::\nwith ::\nthe::::\nHefei::::::\nInstitutes::\nof::::::\nPhysical ::::::\nScience, :::::\nChinese:::::::\nAcademy :of\n::::::\nSciences,:::\nand ::\nthe:::\nKey::::::::\nLaboratory ::\nof :::::\nOptical :::::::\nCalibration:::\nand::::::::::::\nCharacterization,\n:::::\nChinese:::::::\nAcademy::\nof:::::::\nSciences, ::::\nHefei,:::::\nChina.:::\nHis::::::\nresearch::::::\ninterests:::::\ninclude\n::::\nimage::::::::\nprocessing, :::\ndeep::::::\nlearning,:::::\nobject:::::::\ndetection, :::\nand ::::",
+            "He:::\nhas:::::::\npublished :::\nmore::::\nthan ::\n12\n::::\nSCI/EI::::::\narticles ::\nand::::\nholds:::\nfive::::::::\nauthorized :::::\npatents.:::\nDr. ::\nQiu::is:a::::::\nmember::\nof::\nthe\n::::\nYouth:::::::\nInnovation::::::::\nPromotion ::::::::\nAssociation,::::::\nChinese ::::::\nAcademy::of:::::::\nSciences.:\nJin Hong :::::\nreceived::\nthe:::\nB.S.:::::\ndegree::\nin ::::::::::\ncommunication\n::::::::\nengineering ::::\nfrom ::::::\nZhejiang::::::::\nUniversity,::::::::\nHangzhou,\n::::\nChina,::\nin::::\n1987.::::",
+            "Academy::of:::::::\nSciences,:::::\nHefei, :::::\nChina, :::\nand\n::\nthe::::\nKey ::::::::\nLaboratory::of::::::\nOptical::::::::\nCalibration::::\nand\n:::::::::::\nCharacterization,::::::\nChinese::::::::\nAcademy ::\nof:::::::\nSciences,\n::::\nHefei,:::::\nChina.:::\nHis ::::::\nresearch::::::\ninterests:::::\ninclude:::::\nimage\n:::::::\nprocessing,::::\ndeep:::::::\nlearning,:::::\nobject::::::::\ndetection, :::\nand\n::::\nimage:::::::::\nsegmentation.:\nHaoran Liu :::::\nreceived:::\nthe :::\nM.S.:::::\ndegree::in:::::::",
+            "Hefei:::::::\nUniversity::of:::::::::\nTechnology,\n::::\nHefei,:::::\nChina,::in:::::\n2024.:::\nHe ::\nis ::::::\ncurrently:::::::\npursuing\n::\nthe::::\nM.S.:::::\ndegree::in::::::::\nelectronic ::::::::\ninformation::at:::\nthe\n:::::::\nUniversity ::\nof::::::\nScience:::\nand:::::::::\nTechnology ::\nof:::::\nChina,\n::::\nHefei,:::::\nChina. :::\nHis ::::::\nresearch ::::::\ninterests :::::\ninclude:::::\nremote\n:::::\nsensing :::::\nimage ::::::::\nprocessing,:::::::\ncomputer::::::\nvision, :::\nand\n::::::",
+            "interests::::::\ninclude ::::::::\nmechanical\n:::::\ndesign, :::\nfinite::::::\nelement::::::\nanalysis,:::\nand:::::\ndiscrete::::::\nelement\n:::::::\nsimulation.:\nYinan Xu\n:::::\nreceived:::\nthe :::\nB.E.:::::\ndegree::in::::::::\nmechanical\n:::::\ndesign, ::::::::::\nmanufacturing :::\nand :::::::\nautomation::::\nfrom:::::\nAnhui\n::::::::\nAgricultural::::::::\nUniversity, ::::\nHefei,:::::\nChina,::in::::\n2023.:::\nHe\n:is:::::::\ncurrently::::::\npursuing:::\nthe:::::\nM.S. :::::\ndegree::in:::::\noptics\n:at:::"
+          ],
+          "retrieved_sources": [
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf"
+          ],
+          "error": "",
+          "answer": "这篇论文中提出的 DinoCloudNet 方法，是一种参数高效的双分支适配器网络，旨在实现高效准确的云分割。它的创新主要体现在以下两个模块：\n\n### 1. ECA-SPM (Efficient Channel Attention Spatial Perception Module)\n\nECA-SPM 模块负责从输入的遥感图像中提取多尺度特征。它在每个尺度上应用高效通道注意力 (Efficient Channel Attention, ECA) 进行残差通道重新校准，并使用轻量级的每尺度通道投影残差来提高通道辨别能力。作为 DinoCloudNet 中的一个并行分支，ECA-SPM 专注于通过多尺度卷积和通道注意力机制捕获多尺度精细空间特征，例如云边界和纹理，以及边缘感知的多尺度局部空间细节，从而提供强大的多尺度空间上下文信息。\n\n### 2. MGFF Adapter (Multi-Scale Global-Local Feature Fusion Adapter)\n\nMGFF Adapter 的作用是自适应地对齐并融合 ECA-SPM 捕获的局部特征到冻结的骨干网络中。它作为连接冻结的 VFM 骨干网络和 ECA-SPM 分支的桥梁，通过可变形门控机制融合和调制提取的全局特征。该模块自适应地对齐并融合来自两个分支的多尺度信息，并将融合后的特征注入到骨干网络的选定层中。\n\nMGFF Adapter 在冻结的 DINOv3 骨干网络上执行高效的特征对齐和注入，通过一个三步过程将 ECA-SPM 的局部细节与骨干网络的全局特征高效融合：\n\n1.  **查询增强 (query enhancement)**：使用轻量级 Mona 算子使骨干网络令牌对局部几何更敏感。\n2.  **跨源特征融合 (cross-source feature fusion)**：通过多尺度可变形注意力 (multi-scale deformable attention, MSDA) 有效匹配增强的查询与多尺度局部特征。\n\n具体来说，MGFF Adapter 负责将 ECA-SPM 提供的空间上下文精细对齐并注入到骨干网络特征中。它被插入到骨干网络的选定层（例如，索引为 {4, 11, 17, 23} 的层）中，执行可变形的多尺度对齐和门控融合，并将调制后的特征反馈给骨干网络以继续前向传播。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        },
+        {
+          "id": "simple_definition",
+          "collection": "paper_test",
+          "question": "DinoCloudNet 是什么？",
+          "ground_truth": "DinoCloudNet 是一种面向遥感图像的双分支云分割网络，基于参数高效微调（PEFT）范式设计。它以冻结的 DINOv3 视觉 Transformer 为全局语义主干，同时引入卷积分支（ECA-SPM）捕捉局部云纹理特征，并通过 MGFF Adapter 将两个分支的特征进行多粒度融合。该模型仅训练适配器和卷积分支，在 HRC_WHU 等多个遥感云分割基准上达到 SOTA 水平。",
+          "latency_ms": 39658.88,
+          "answer_length": 1181,
+          "keyword_coverage": 1.0,
+          "hit_keywords": [
+            "DinoCloudNet",
+            "云分割",
+            "DINOv3"
+          ],
+          "expected_keywords": [
+            "DinoCloudNet",
+            "云分割",
+            "DINOv3"
+          ],
+          "active_skill": null,
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "research_worker"
+          ],
+          "worker_count": 1,
+          "tool_call_count": 3,
+          "reflection_count": 1,
+          "reflection_search_count": 0,
+          "retrieved_contexts": [
+            "tuned. DinoCloudNet consistently achieves highly competitive\nperformance across various cloud segmentation datasets from\nmultiple satellite sources, sensor series, data processing levels,\nland cover scenarios, and annotation granularities. Ablation\nstudies demonstrate that both modules are necessary and\nreinforce each other. In summary, DinoCloudNet is effective  \n---",
+            "DinoCloudNet\nOurs\n96.10\n92.18\n95.86\n95.92\nsensors, so the spatial resolution, viewing geometry, and\nradiometric properties are not the same. GF1MS WHU often\ncontains medium-sized bright clouds over darker backgrounds\nsuch as vegetation or bare soil. In this case accurate cloud\nboundaries are important. GF2MS WHU includes scenes with\nlarge uniform cloud decks, where almost the entire tile is\ncloud. Models that are not stable tend to cut artificial “holes”",
+            "40\n45\n50\n55\n60\n65\n70\n75\nmIoU (%)\nCDNetv1\nCDNetv2\nMCDNet\nKappaMask\nDBNet\nUNetMobv2\nHRCloudNet\nSegman\nSAM-Adapter\nRein\nDinoCloudNet-B\nDinoCloudNet-L\nDinoCloudNet-S\n21\n22\n23\n24\n73.00\n73.25\n73.50\n73.75\n74.00\n74.25\n74.50\n74.75\n75.00\nDinoCloudNet-S\nDinoCloudNet-B\nDinoCloudNet-L\nSAM-Adapter\nRein\nFig. 11.\nScatter plot of the relationship between the number of trainable\nparameters and mIoU. Comparison of parameter efficiency and segmentation\naccuracy of different methods on CloudSEN12 High L1C.",
+            "affect appearance, making thin clouds and shadows appear\nweak and difficult to detect. As seen in Table V and Figure 6,\nDinoCloudNet demonstrates strong performance, accurately\nfollowing the true thin cloud boundary and producing cleaner\nshadow masks with fewer holes, even for small semi-transparent  \n---",
+            "# Page 13  \n13\n0\n100\n200\n300\n400\n500\nGFLOPs\n40\n45\n50\n55\n60\n65\n70\n75\nmIoU (%)\nCDNetv1\nCDNetv2\nMCDNet\nKappaMask\nDBNet\nUNetMobv2\nHRCloudNet\nSegman\nRein\nSAM-Adapter\nDinoCloudNet-B\nDinoCloudNet-L\nDinoCloudNet-S\nFig. 10.\nScatter plot of GFLOPs vs. mIoU. Comparison of computa-\ntional overhead and segmentation accuracy of different methods on Cloud-\nSEN12 High L1C.\n0\n20\n40\n60\n80\n100\nParameters (M)\n40\n45\n50\n55\n60\n65\n70\n75\nmIoU (%)\nCDNetv1\nCDNetv2\nMCDNet\nKappaMask\nDBNet\nUNetMobv2\nHRCloudNet\nSegman"
+          ],
+          "retrieved_sources": [
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf"
+          ],
+          "error": "",
+          "answer": "DinoCloudNet 是一种专门为遥感图像中的云分割任务设计的双分支网络。它的架构基于一个冻结的 DINOv3 主干网络，并包含两个主要组件：\n\n*   **ECA-SPM (Efficient Channel Attention - Spatial Pyramid Module)**：负责提取多尺度的局部空间细节。\n*   **MGFF Adapter (Multi-scale Global Feature Fusion Adapter)**：自适应地对齐并融合来自 DINOv3 主干网络的全局特征与 ECA-SPM 提取的多尺度局部特征。\n\n这种设计只需要微调少量参数。\n\nDinoCloudNet 的主要目的是实现具有强大泛化能力和精确分割细节的云分割。它能够准确地追踪真实的薄云边界，生成更清晰、孔洞更少的阴影掩膜，即使是对于小型半透明云也能做到。该网络在复杂场景中展现出精细的识别能力，能够准确区分具有挑战性的薄云 (TNC) 和云阴影 (CDS) 与晴空 (CRS)，并且在各种卫星传感器和地理区域中都表现出稳定性。\n\nDinoCloudNet 在各种云分割数据集上持续取得极具竞争力的性能，这些数据集涵盖了多种卫星来源、传感器系列、数据处理级别、土地覆盖场景和标注粒度，在效率和准确性之间取得了出色的平衡。\n\n以下是其性能亮点：\n\n*   **DinoCloudNet-S**：实现了 73.96% 的平均交并比 (mIoU)，计算量为 50.02 GFLOPs，参数量为 22.09M，非常适合边缘应用。\n*   **DinoCloudNet-L**：实现了 74.95% 的最先进 (SOTA) mIoU，计算量为 380.71 GFLOPs，参数量为 24.50M，最适合服务器端部署。\n*   **主干网络比较**：DINOv3 是默认的主干网络，因为它在准确性和参数量之间提供了有利的权衡。DINOv3-Small（21M 主干网络参数）实现了 73.96% 的 mIoU，优于 SAM-Base（91M）的 73.23%。\n*   **特定数据集性能**：在 HRC WHU 数据集上实现了 92.18% 的 SOTA mIoU，在 GF2MS WHU 数据集上实现了 87.13% 的 mIoU，并在 GF1MS WHU 数据集上实现了 93.15% 的极具竞争力的 mIoU。\n*   **解决的数据集挑战**：它能有效分割 GF1MS WHU 数据集上的中等大小亮云，防止 GF2MS WHU 数据集上云预测中出现人工“孔洞”，并管理 HRC WHU 数据集上具有复杂地形和薄云边缘的高分辨率场景。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        }
+      ],
+      "ragas": {
+        "enabled": true,
+        "available": true,
+        "evaluated_cases": 3,
+        "scores": {
+          "answer_relevancy": 0.4838469510518432,
+          "faithfulness": 0.24528301886792453
+        }
+      }
+    },
+    {
+      "config": "plus_roles",
+      "cases": [
+        {
+          "id": "paper_multi_aspect",
+          "collection": "paper_test",
+          "question": "这篇论文的背景、主要内容、创新点、数据集和指标是什么？",
+          "ground_truth": "【背景】云分割是遥感图像分析的基础任务，但云的空间分布复杂、光谱特征因传感器不同而差异显著，且现有视觉基础模型（VFM）在自然图像上预训练，存在明显的领域迁移鸿沟，导致其直接应用于遥感云分割效果有限。【主要内容】论文提出 DinoCloudNet，一种基于双分支参数高效微调（PEFT）的云分割网络。模型以冻结的 DINOv3 ViT 为语义主干，配合专用卷积分支提取局部纹理特征，二者通过适配器模块融合，实现高效微调。【创新点】①ECA-SPM（Efficient Channel Attention Spatial Perception Module，高效通道注意力空间感知模块）：多尺度卷积结合通道注意力，专门捕捉云边界与局部纹理；②MGFF Adapter（Multi-Scale Global-Local Feature Fusion Adapter，多尺度全局-局部特征融合适配器）：采用可变形门控机制，将卷积分支特征注入冻结主干的选定层，是连接双分支的核心桥梁；③整体采用 PEFT 策略，重点训练 ECA-SPM 和 MGFF 等适配组件，保留 DINOv3 的泛化能力。【数据集】在 5 个遥感云分割基准上验证：HRC_WHU、GF1MS_WHU、GF2MS_WHU、L8 Biome、CloudSEN12 High（L1C 和 L2A）。【指标与结果】评估指标为 mIoU、mDice、mAcc、aAcc。在 5 个数据集中达到 4 个 SOTA：HRC_WHU mIoU 92.18%、GF2MS_WHU mIoU 87.13%、GF1MS_WHU mIoU 93.15%（第 2）；CloudSEN12 High L1C mIoU 74.95%、mDice 85.02%，L2A mIoU 74.53%，L8 Biome mIoU 75.78%，均达到最优。",
+          "latency_ms": 51551.21,
+          "answer_length": 3932,
+          "keyword_coverage": 1.0,
+          "hit_keywords": [
+            "DinoCloudNet",
+            "DINOv3",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "expected_keywords": [
+            "DinoCloudNet",
+            "DINOv3",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "active_skill": "paper_qa_zh",
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "paper_overview_worker",
+            "research_worker",
+            "method_worker",
+            "data_eval_worker",
+            "data_eval_worker"
+          ],
+          "worker_count": 5,
+          "tool_call_count": 14,
+          "reflection_count": 5,
+          "reflection_search_count": 0,
+          "retrieved_contexts": [
+            "He\n:is::::::\ncurrently::::\nwith ::\nthe::::\nHefei::::::\nInstitutes::\nof::::::\nPhysical ::::::\nScience, :::::\nChinese:::::::\nAcademy :of\n::::::\nSciences,:::\nand ::\nthe:::\nKey::::::::\nLaboratory ::\nof :::::\nOptical :::::::\nCalibration:::\nand::::::::::::\nCharacterization,\n:::::\nChinese:::::::\nAcademy::\nof:::::::\nSciences, ::::\nHefei,:::::\nChina.:::\nHis::::::\nresearch::::::\ninterests:::::\ninclude\n::::\nimage::::::::\nprocessing, :::\ndeep::::::\nlearning,:::::\nobject:::::::\ndetection, :::\nand ::::",
+            "Hefei:::::::\nUniversity::of:::::::::\nTechnology,\n::::\nHefei,:::::\nChina,::in:::::\n2024.:::\nHe ::\nis ::::::\ncurrently:::::::\npursuing\n::\nthe::::\nM.S.:::::\ndegree::in::::::::\nelectronic ::::::::\ninformation::at:::\nthe\n:::::::\nUniversity ::\nof::::::\nScience:::\nand:::::::::\nTechnology ::\nof:::::\nChina,\n::::\nHefei,:::::\nChina. :::\nHis ::::::\nresearch ::::::\ninterests :::::\ninclude:::::\nremote\n:::::\nsensing :::::\nimage ::::::::\nprocessing,:::::::\ncomputer::::::\nvision, :::\nand\n::::::",
+            "He:::\nhas:::::::\npublished :::\nmore::::\nthan ::\n12\n::::\nSCI/EI::::::\narticles ::\nand::::\nholds:::\nfive::::::::\nauthorized :::::\npatents.:::\nDr. ::\nQiu::is:a::::::\nmember::\nof::\nthe\n::::\nYouth:::::::\nInnovation::::::::\nPromotion ::::::::\nAssociation,::::::\nChinese ::::::\nAcademy::of:::::::\nSciences.:\nJin Hong :::::\nreceived::\nthe:::\nB.S.:::::\ndegree::\nin ::::::::::\ncommunication\n::::::::\nengineering ::::\nfrom ::::::\nZhejiang::::::::\nUniversity,::::::::\nHangzhou,\n::::\nChina,::\nin::::\n1987.::::",
+            "Academy::of:::::::\nSciences,:::::\nHefei, :::::\nChina, :::\nand\n::\nthe::::\nKey ::::::::\nLaboratory::of::::::\nOptical::::::::\nCalibration::::\nand\n:::::::::::\nCharacterization,::::::\nChinese::::::::\nAcademy ::\nof:::::::\nSciences,\n::::\nHefei,:::::\nChina.:::\nHis ::::::\nresearch::::::\ninterests:::::\ninclude:::::\nimage\n:::::::\nprocessing,::::\ndeep:::::::\nlearning,:::::\nobject::::::::\ndetection, :::\nand\n::::\nimage:::::::::\nsegmentation.:\nHaoran Liu :::::\nreceived:::\nthe :::\nM.S.:::::\ndegree::in:::::::",
+            "China.::::\nHis::::::\nresearch:::::::\ninterests\n:::::\ninclude :::::::::\natmospheric::::::::\ncorrection,::::::\nremote ::::::\nsensing\n::::\nimage:::::::\nprocessing:::\nand:::::\nquality::::::::\nassessment,:::\nand::::\ndeep\n:::::\nlearning:::\nfor :::::\nremote :::::\nsensing:::::::::\napplications.\nShuming Shi ::::::\ngraduated::::\nfrom::::\nAnhui:::::::::\nAgricultural :::::::\nUniversity,::::\nHefei,:::::\nChina.::\nHe\n:is::::::\ncurrently::::\nwith ::\nthe::::\nHefei::::::\nInstitutes::\nof::::::\nPhysical ::::::"
+          ],
+          "retrieved_sources": [
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf"
+          ],
+          "error": "",
+          "answer": "这篇论文（JSTARS-2025-04970_Tracked_Manuscript.pdf）主要围绕遥感图像中的云语义分割展开，这是一个基础且关键的步骤，直接影响大气校正、土地覆盖和土地利用测绘、变化检测以及灾害监测等下游应用的准确性。\n\n### 背景\n准确的云检测对于提高下游反演和分析的可靠性、减少云污染至关重要。然而，现有方法存在一些局限性：\n*   **传统方法（基于阈值/规则）**：在复杂背景下容易导致误报或漏报。\n*   **传统机器学习方法**：在不同平台和时间段的泛化能力有限。\n*   **深度学习（基于CNN的语义分割）**：虽然取得了显著进展，但这些方法对训练标签分布和领域敏感，在不同传感器或数据集之间应用时，精度常显著下降。此外，卷积的局部性使其难以建模长距离依赖和大规模变化，而这对于识别云及其阴影至关重要。\n*   **视觉基础模型（VFMs）**：DINOv2和DINOv3等自监督预训练的VFMs展现出卓越的特征质量和跨任务泛化能力，SAM等大型基于提示的分割模型在开放域分割中也表现出强大的泛化能力。然而，自然图像预训练与遥感云分割场景之间存在显著的领域差距，包括传感器类型、成像尺度和目标形态的差异。将VFMs直接应用于遥感云分割通常会导致次优性能，因为云体（尤其是薄云）及其阴影对多尺度局部细节和边界高度敏感。\n\n该论文旨在解决的紧迫挑战是设计一种有效的云分割网络，该网络能够通过获取云形态细节的空间特征来实现高精度分割，同时保留视觉基础模型固有的强大泛化能力。\n\n### 主要内容\n论文提出了 **DinoCloudNet**，这是一种基于视觉基础模型（VFMs）的遥感云语义分割方法。它是一种参数高效的方法，建立在冻结的 DINOv3 主干网络之上，并采用双分支设计：\n*   **冻结的 DINOv3 主干网络**：用于提取全局语义信息。\n*   **并行分支**：集成了高效通道注意力空间感知模块 (ECA-SPM)，以捕获边缘感知、多尺度的局部空间细节。\n*   **多尺度全局-局部特征融合适配器 (MGFF Adapter)**：负责自适应地对齐和融合来自两个分支的多尺度信息，并将这些融合后的特征注入到主干网络的选定层中。\n\n这种设计使得 DinoCloudNet 能够有效地适应云分割任务，同时保留了冻结主干网络的强大泛化能力，从而提高了分割精度。DinoCloudNet 在多个云分割基准测试中表现出高度竞争力，持续优于大多数现有方法，其有效性和泛化能力在不同的卫星平台、传感器系列和地物覆盖条件下得到了验证。例如，在某些比较中，DinoCloudNet 在四项指标上分别达到了 96.10、92.18、95.86 和 95.92，优于 SegMAN 和 Rein 等模型。\n\n### 创新点\nDinoCloudNet 方法在遥感云语义分割方面的创新点主要包括：\n\n1.  **DinoCloudNet 架构**：提出了一种基于冻结 DINOv3 主干网络的遥感云语义分割方法，旨在解决自然图像与遥感图像之间显著的领域差距，避免直接迁移模型时性能不佳的问题。\n2.  **双分支设计**：一个分支是冻结的 DINOv3 主干网络，用于提取全局语义信息；另一个并行分支是高效通道注意力空间感知模块（ECA-SPM），用于捕获边缘感知、多尺度的局部空间细节。\n3.  **高效通道注意力空间感知模块 (ECA-SPM)**：\n    *   **目的**：增强局部空间和通道辨别能力，并提供多尺度上下文信息，特别关注薄云丝和狭窄的阴影痕迹等局部边缘细节。\n    *   **架构**：通过三个深度可分离卷积阶段（步长 S=2）构建 1/4、1/8 和 1/16 分辨率的特征。每个尺度都应用残差 ECA 重校准和 1x1 通道投影，最粗糙的特征图平均到 1/32。\n    *   **贡献**：消融研究表明，仅 ECA-SPM 就能在 CloudSEN12 High L1C 数据集上将 mIoU 提高 0.80 个百分点（达到 74.43%），将 mAcc 提高 1.70 个百分点（从 84.20% 提高到 85.90%）。它能产生互补的空间响应，在高分辨率下强调精细的边界细节和薄云结构，在低分辨率下强调更粗糙的区域模式。\n4.  **多尺度全局-局部特征融合适配器 (MGFF Adapter)**：\n    *   **目的**：自适应地对齐和融合来自冻结主干网络和 ECA-SPM 分支的多尺度信息，并将融合后的特征注入到主干网络的选定层中，协同融合全局一致性和局部精度。\n    *   **组成**：\n        *   **查询增强 (Mona 算子)**：对主干网络的补丁令牌 (Xl) 应用轻量级的 Mona 算子，生成几何敏感的查询特征 (Ql)。\n        *   **多尺度可变形注意力 (Multi-Scale Deformable Attention, MSDA)**：使用增强的令牌 (Ql) 作为查询，ECA-SPM 提供的多尺度上下文 (C) 作为键和值。MSDA 的计算复杂度为 O(BNSK)，并允许注意力头学习稀疏采样偏移，从而关注相关的局部区域。\n        *   **FiLM 门控和残差注入**：引入 FiLM 风格的自适应门控机制，预测通道级的尺度 (γ) 和偏移 (β) 参数，调制交互特征 (A)。这些调制后的特征以残差形式 (∆) 和可学习的尺度 (α) 注入到增强的令牌 (Ql) 中。\n    *   **贡献**：消融研究表明，仅 MGFF Adapter 就能将 mIoU 提高 0.82 个百分点（从 73.63% 提高到 74.45%），将 mDice 提高 0.60 个百分点（从 84.05% 提高到 84.65%）。它激活了模型的特征融合和调制能力。\n5.  **协同效应**：当 ECA-SPM 和 MGFF Adapter 结合使用时，在 CloudSEN12 High L1C 数据集上实现了最佳的整体性能，mIoU 达到 74.95%，mDice 达到 85.02%，这表明两者之间存在强大的互补关系，并能持续稳定地提高分割质量。\n6.  **参数效率和泛化能力**：该方法具有参数效率高，能够有效适应云任务，同时保留了冻结主干网络强大的泛化能力。\n\n### 数据集\n该论文使用了以下数据集：\n\n*   **HRC WHU**: 来源于 Google Earth，地面分辨率为 0.5 m - 15 m。包含 120 个训练集和 30 个测试集，图像块大小为 256×256，分为 2 个类别。\n*   **GF1MS WHU**: 来源于 GF-1 卫星，地面分辨率为 8 m。包含 6,344 个训练集和 4,086 个测试集，图像块大小为 256×256，分为 2 个类别。该数据集用于二分类任务。\n*   **GF2MS WHU**: 来源于 GF-2 卫星，地面分辨率为 4 m。包含 14,357 个训练集和 7,560 个测试集，图像块大小为 256×256，分为 2 个类别。该数据集用于二分类任务。\n*   **CloudSEN12 High**: 来源于 Sentinel-2 卫星，地面分辨率为 10 m。包含 8,490 个训练集和 975 个测试集，图像块大小为 512×512，分为 4 个类别。\n*   **L8 Biome**: 来源于 Landsat 8 卫星，地面分辨率为 30 m。包含 7,931 个训练集和 2,643 个测试集，图像块大小为 512×512，分为 4 个类别。\n\n其中，GF1MS WHU 和 GF2MS WHU 主要用于二分类任务，图像主要来自中国不同地区，涵盖 2014 年 6 月至 2020 年 12 月期间，包含多样的地貌和季节。多类别云分割任务的数据集要求模型将每个像素标记为晴空 (Clear Sky)、薄云 (Thin Cloud)、厚云 (Thick Cloud) 或云影 (Cloud Shadow)，所有图像都被裁剪成 512 × 512 大小的切片。\n\n### 指标\n该论文使用以下指标评估云和云影分割：\n\n*   **总体准确度 (Overall Accuracy, aAcc)**：反映整体正确性。\n*   **平均交并比 (Mean Intersection over Union, mIoU)**：衡量区域重叠质量。\n*   **平均准确度 (Mean Accuracy, mAcc)**：计算每个类别的平均准确度，有助于缓解类别不平衡问题。其计算公式为：mAcc = (1/C) * Σ(TPi / (TPi + FNi))，其中 C 是类别数量，TPi 是真阳性，FNi 是假阴性。\n*   **平均 Dice 系数 (Mean Dice Coefficient, mDice)**：提供精确度和召回率的调和度量，对边界和小型目标分割特别敏感。其计算公式为：mDice = (1/C) * Σ((2 * TPi) / (2 * TPi + FPi + FNi))，其中 FPi 是假阳性。\n\n这些指标是互补的，aAcc 反映整体正确性，而 mIoU 和 mDice 衡量区域重叠质量。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        },
+        {
+          "id": "paper_method",
+          "collection": "paper_test",
+          "question": "这篇论文的方法创新具体体现在哪些模块上？",
+          "ground_truth": "DinoCloudNet 的方法创新集中在三个核心模块：①冻结的 DINOv3 主干（backbone）：直接复用大规模预训练的视觉基础模型作为全局语义特征提取器，参数全程冻结，保留其跨域泛化能力，避免灾难性遗忘；②ECA-SPM（Efficient Channel Attention Spatial Perception Module）：独立卷积分支，采用多尺度卷积叠加高效通道注意力（ECA），专门提取云边界和局部纹理等细粒度特征，弥补 ViT 对局部结构感知不足的缺陷；③MGFF Adapter（Multi-Scale Global-Local Feature Fusion Adapter）：双分支融合的关键组件，内置可变形门控机制，将 ECA-SPM 的局部特征注入 DINOv3 选定层，实现跨分支多尺度全局-局部特征对齐与融合。整个框架重点训练 ECA-SPM 和 MGFF Adapter 等适配组件，属于参数高效微调（PEFT）范式，大幅降低训练成本同时保持强大性能。",
+          "latency_ms": 45871.46,
+          "answer_length": 902,
+          "keyword_coverage": 1.0,
+          "hit_keywords": [
+            "ECA-SPM",
+            "MGFF",
+            "DINOv3",
+            "backbone",
+            "Adapter"
+          ],
+          "expected_keywords": [
+            "ECA-SPM",
+            "MGFF",
+            "DINOv3",
+            "backbone",
+            "Adapter"
+          ],
+          "active_skill": "paper_qa_zh",
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "method_worker"
+          ],
+          "worker_count": 1,
+          "tool_call_count": 4,
+          "reflection_count": 1,
+          "reflection_search_count": 0,
+          "retrieved_contexts": [
+            "He\n:is::::::\ncurrently::::\nwith ::\nthe::::\nHefei::::::\nInstitutes::\nof::::::\nPhysical ::::::\nScience, :::::\nChinese:::::::\nAcademy :of\n::::::\nSciences,:::\nand ::\nthe:::\nKey::::::::\nLaboratory ::\nof :::::\nOptical :::::::\nCalibration:::\nand::::::::::::\nCharacterization,\n:::::\nChinese:::::::\nAcademy::\nof:::::::\nSciences, ::::\nHefei,:::::\nChina.:::\nHis::::::\nresearch::::::\ninterests:::::\ninclude\n::::\nimage::::::::\nprocessing, :::\ndeep::::::\nlearning,:::::\nobject:::::::\ndetection, :::\nand ::::",
+            "He:::\nhas:::::::\npublished :::\nmore::::\nthan ::\n12\n::::\nSCI/EI::::::\narticles ::\nand::::\nholds:::\nfive::::::::\nauthorized :::::\npatents.:::\nDr. ::\nQiu::is:a::::::\nmember::\nof::\nthe\n::::\nYouth:::::::\nInnovation::::::::\nPromotion ::::::::\nAssociation,::::::\nChinese ::::::\nAcademy::of:::::::\nSciences.:\nJin Hong :::::\nreceived::\nthe:::\nB.S.:::::\ndegree::\nin ::::::::::\ncommunication\n::::::::\nengineering ::::\nfrom ::::::\nZhejiang::::::::\nUniversity,::::::::\nHangzhou,\n::::\nChina,::\nin::::\n1987.::::",
+            "Academy::of:::::::\nSciences,:::::\nHefei, :::::\nChina, :::\nand\n::\nthe::::\nKey ::::::::\nLaboratory::of::::::\nOptical::::::::\nCalibration::::\nand\n:::::::::::\nCharacterization,::::::\nChinese::::::::\nAcademy ::\nof:::::::\nSciences,\n::::\nHefei,:::::\nChina.:::\nHis ::::::\nresearch::::::\ninterests:::::\ninclude:::::\nimage\n:::::::\nprocessing,::::\ndeep:::::::\nlearning,:::::\nobject::::::::\ndetection, :::\nand\n::::\nimage:::::::::\nsegmentation.:\nHaoran Liu :::::\nreceived:::\nthe :::\nM.S.:::::\ndegree::in:::::::",
+            "Hefei:::::::\nUniversity::of:::::::::\nTechnology,\n::::\nHefei,:::::\nChina,::in:::::\n2024.:::\nHe ::\nis ::::::\ncurrently:::::::\npursuing\n::\nthe::::\nM.S.:::::\ndegree::in::::::::\nelectronic ::::::::\ninformation::at:::\nthe\n:::::::\nUniversity ::\nof::::::\nScience:::\nand:::::::::\nTechnology ::\nof:::::\nChina,\n::::\nHefei,:::::\nChina. :::\nHis ::::::\nresearch ::::::\ninterests :::::\ninclude:::::\nremote\n:::::\nsensing :::::\nimage ::::::::\nprocessing,:::::::\ncomputer::::::\nvision, :::\nand\n::::::",
+            "interests::::::\ninclude ::::::::\nmechanical\n:::::\ndesign, :::\nfinite::::::\nelement::::::\nanalysis,:::\nand:::::\ndiscrete::::::\nelement\n:::::::\nsimulation.:\nYinan Xu\n:::::\nreceived:::\nthe :::\nB.E.:::::\ndegree::in::::::::\nmechanical\n:::::\ndesign, ::::::::::\nmanufacturing :::\nand :::::::\nautomation::::\nfrom:::::\nAnhui\n::::::::\nAgricultural::::::::\nUniversity, ::::\nHefei,:::::\nChina,::in::::\n2023.:::\nHe\n:is:::::::\ncurrently::::::\npursuing:::\nthe:::::\nM.S. :::::\ndegree::in:::::\noptics\n:at:::"
+          ],
+          "retrieved_sources": [
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf"
+          ],
+          "error": "",
+          "answer": "这篇论文中提出的 DinoCloudNet 方法的创新性主要体现在以下几个模块：\n\n1.  **Dino 分支 (Frozen DINOv3 ViT-L/16 backbone)**\n    这个分支利用一个冻结的 DINOv3 ViT-L/16 backbone（一个视觉基础模型 VFM）来提取全局语义特征。其创新点在于通过冻结骨干网络，在保留其强大的通用特征提取和跨域泛化能力的同时，实现了参数高效地适应云分割任务。\n\n2.  **轻量级高效通道注意力空间感知模块 (ECA-SPM) 分支**\n    此分支旨在提取多尺度局部空间特征，例如云边界和纹理。它的架构包括一个 Stem，随后是三个步长为二的深度可分离卷积 (DWConv) 阶段，以 1/4、1/8 和 1/16 的分辨率构建特征。在每个尺度上，它应用残差高效通道注意力 (ECA) 重校准和一个 1x1 通道投影。最粗糙的特征图会进一步平均到 1/32 分辨率。通过 ECA 和每尺度通道投影残差，该模块增强了局部特征并改善了通道判别能力。\n\n3.  **多尺度全局-局部特征融合适配器 (MGFF Adapter)**\n    该模块负责自适应地对齐和融合来自 Dino 分支（全局特征）和 ECA-SPM 分支（局部细节）的多尺度信息，并将融合后的特征注入到冻结的 DINO backbone 的选定层中。融合过程包含三个步骤：\n    *   **查询增强**：使用轻量级 Mona 算子使 backbone token 对局部几何更敏感。\n    *   **跨源特征融合**：通过多尺度可变形注意力 (MSDA) 有效地将增强的查询与多尺度局部特征进行匹配。\n    *   将这些细节增强的多尺度特征注入到冻结 DINO backbone 的相应层中。\n\n4.  **解码器 (Decoder)**\n    来自 MGFF Adapter 的融合特征随后被送入解码器，以生成最终的像素级云分割掩模。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        },
+        {
+          "id": "simple_definition",
+          "collection": "paper_test",
+          "question": "DinoCloudNet 是什么？",
+          "ground_truth": "DinoCloudNet 是一种面向遥感图像的双分支云分割网络，基于参数高效微调（PEFT）范式设计。它以冻结的 DINOv3 视觉 Transformer 为全局语义主干，同时引入卷积分支（ECA-SPM）捕捉局部云纹理特征，并通过 MGFF Adapter 将两个分支的特征进行多粒度融合。该模型仅训练适配器和卷积分支，在 HRC_WHU 等多个遥感云分割基准上达到 SOTA 水平。",
+          "latency_ms": 28405.92,
+          "answer_length": 1083,
+          "keyword_coverage": 1.0,
+          "hit_keywords": [
+            "DinoCloudNet",
+            "云分割",
+            "DINOv3"
+          ],
+          "expected_keywords": [
+            "DinoCloudNet",
+            "云分割",
+            "DINOv3"
+          ],
+          "active_skill": null,
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "model_router_disabled"
+          ],
+          "worker_roles": [
+            "research_worker"
+          ],
+          "worker_count": 1,
+          "tool_call_count": 3,
+          "reflection_count": 1,
+          "reflection_search_count": 0,
+          "retrieved_contexts": [
+            "tuned. DinoCloudNet consistently achieves highly competitive\nperformance across various cloud segmentation datasets from\nmultiple satellite sources, sensor series, data processing levels,\nland cover scenarios, and annotation granularities. Ablation\nstudies demonstrate that both modules are necessary and\nreinforce each other. In summary, DinoCloudNet is effective  \n---",
+            "DinoCloudNet\nOurs\n96.10\n92.18\n95.86\n95.92\nsensors, so the spatial resolution, viewing geometry, and\nradiometric properties are not the same. GF1MS WHU often\ncontains medium-sized bright clouds over darker backgrounds\nsuch as vegetation or bare soil. In this case accurate cloud\nboundaries are important. GF2MS WHU includes scenes with\nlarge uniform cloud decks, where almost the entire tile is\ncloud. Models that are not stable tend to cut artificial “holes”",
+            "40\n45\n50\n55\n60\n65\n70\n75\nmIoU (%)\nCDNetv1\nCDNetv2\nMCDNet\nKappaMask\nDBNet\nUNetMobv2\nHRCloudNet\nSegman\nSAM-Adapter\nRein\nDinoCloudNet-B\nDinoCloudNet-L\nDinoCloudNet-S\n21\n22\n23\n24\n73.00\n73.25\n73.50\n73.75\n74.00\n74.25\n74.50\n74.75\n75.00\nDinoCloudNet-S\nDinoCloudNet-B\nDinoCloudNet-L\nSAM-Adapter\nRein\nFig. 11.\nScatter plot of the relationship between the number of trainable\nparameters and mIoU. Comparison of parameter efficiency and segmentation\naccuracy of different methods on CloudSEN12 High L1C.",
+            "affect appearance, making thin clouds and shadows appear\nweak and difficult to detect. As seen in Table V and Figure 6,\nDinoCloudNet demonstrates strong performance, accurately\nfollowing the true thin cloud boundary and producing cleaner\nshadow masks with fewer holes, even for small semi-transparent  \n---",
+            "# Page 13  \n13\n0\n100\n200\n300\n400\n500\nGFLOPs\n40\n45\n50\n55\n60\n65\n70\n75\nmIoU (%)\nCDNetv1\nCDNetv2\nMCDNet\nKappaMask\nDBNet\nUNetMobv2\nHRCloudNet\nSegman\nRein\nSAM-Adapter\nDinoCloudNet-B\nDinoCloudNet-L\nDinoCloudNet-S\nFig. 10.\nScatter plot of GFLOPs vs. mIoU. Comparison of computa-\ntional overhead and segmentation accuracy of different methods on Cloud-\nSEN12 High L1C.\n0\n20\n40\n60\n80\n100\nParameters (M)\n40\n45\n50\n55\n60\n65\n70\n75\nmIoU (%)\nCDNetv1\nCDNetv2\nMCDNet\nKappaMask\nDBNet\nUNetMobv2\nHRCloudNet\nSegman"
+          ],
+          "retrieved_sources": [
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf"
+          ],
+          "error": "",
+          "answer": "DinoCloudNet 是一种双分支网络，专门设计用于遥感图像中的云分割。它基于一个冻结的 DINOv3 主干网络构建，并包含两个关键组件：\n\n*   **ECA-SPM (Efficient Channel Attention - Spatial Pyramid Module)**：这个模块负责从输入图像中提取多尺度局部空间细节。\n*   **MGFF Adapter (Multi-Granularity Feature Fusion Adapter)**：这个适配器自适应地对齐并融合从 DINOv3 主干网络获得的全局特征与 ECA-SPM 生成的多尺度局部特征。\n\n这种架构使得 DinoCloudNet 能够实现强大的泛化能力和精确的分割细节，同时只需要微调少量参数。选择 DINOv3 主干网络是因为其在准确性与参数之间的良好权衡，以及它能够提供适合云和云影分割的密集自监督表示。\n\nDinoCloudNet 在各种云分割数据集上始终表现出极具竞争力的性能，这些数据集涵盖了不同的卫星源、传感器系列、数据处理级别、地物覆盖场景和标注粒度。消融研究证实了 ECA-SPM 和 MGFF Adapter 模块的必要性和协同效应。\n\n该框架还展现出卓越的可扩展性，其不同变体在计算量、参数数量和 mIoU 之间提供了帕累托权衡：\n\n*   **DinoCloudNet-S (Small)**：实现 73.96% 的 mIoU，拥有 22.09M 可训练参数和 50.02 GFLOPs，非常适合边缘应用。\n*   **DinoCloudNet-B (Base)**：实现 74.14% 的 mIoU，拥有 23.55M 可训练参数和 125.57 GFLOPs。\n*   **DinoCloudNet-L (Large)**：实现 74.95% 的最先进 mIoU，拥有 24.50M 可训练参数和 380.71 GFLOPs，最适合需要最大准确性的服务器端部署。\n\nDinoCloudNet 在特定的二元云分割数据集上取得了最先进 (SOTA) 的性能，例如 HRC WHU (92.18% mIoU) 和 GF2MS WHU (87.13% mIoU)。它还在 GF1MS WHU 上取得了 93.15% 的高竞争力 mIoU。该模型能有效区分复杂场景中具有挑战性的薄云和云影与晴空，生成更清晰的阴影掩膜并准确地遵循薄云边界。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        }
+      ],
+      "ragas": {
+        "enabled": true,
+        "available": true,
+        "evaluated_cases": 3,
+        "scores": {
+          "answer_relevancy": 0.3078938394890404,
+          "faithfulness": 0.20652173913043478
+        }
+      }
+    },
+    {
+      "config": "router_simple_cost",
+      "cases": [
+        {
+          "id": "paper_multi_aspect",
+          "collection": "paper_test",
+          "question": "这篇论文的背景、主要内容、创新点、数据集和指标是什么？",
+          "ground_truth": "【背景】云分割是遥感图像分析的基础任务，但云的空间分布复杂、光谱特征因传感器不同而差异显著，且现有视觉基础模型（VFM）在自然图像上预训练，存在明显的领域迁移鸿沟，导致其直接应用于遥感云分割效果有限。【主要内容】论文提出 DinoCloudNet，一种基于双分支参数高效微调（PEFT）的云分割网络。模型以冻结的 DINOv3 ViT 为语义主干，配合专用卷积分支提取局部纹理特征，二者通过适配器模块融合，实现高效微调。【创新点】①ECA-SPM（Efficient Channel Attention Spatial Perception Module，高效通道注意力空间感知模块）：多尺度卷积结合通道注意力，专门捕捉云边界与局部纹理；②MGFF Adapter（Multi-Scale Global-Local Feature Fusion Adapter，多尺度全局-局部特征融合适配器）：采用可变形门控机制，将卷积分支特征注入冻结主干的选定层，是连接双分支的核心桥梁；③整体采用 PEFT 策略，重点训练 ECA-SPM 和 MGFF 等适配组件，保留 DINOv3 的泛化能力。【数据集】在 5 个遥感云分割基准上验证：HRC_WHU、GF1MS_WHU、GF2MS_WHU、L8 Biome、CloudSEN12 High（L1C 和 L2A）。【指标与结果】评估指标为 mIoU、mDice、mAcc、aAcc。在 5 个数据集中达到 4 个 SOTA：HRC_WHU mIoU 92.18%、GF2MS_WHU mIoU 87.13%、GF1MS_WHU mIoU 93.15%（第 2）；CloudSEN12 High L1C mIoU 74.95%、mDice 85.02%，L2A mIoU 74.53%，L8 Biome mIoU 75.78%，均达到最优。",
+          "latency_ms": 41272.91,
+          "answer_length": 3231,
+          "keyword_coverage": 1.0,
+          "hit_keywords": [
+            "DinoCloudNet",
+            "DINOv3",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "expected_keywords": [
+            "DinoCloudNet",
+            "DINOv3",
+            "ECA-SPM",
+            "MGFF",
+            "CloudSEN12",
+            "mIoU",
+            "mDice"
+          ],
+          "active_skill": "paper_qa_zh",
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "skill:paper_qa_zh",
+            "multi_aspect_or_research_query"
+          ],
+          "worker_roles": [
+            "paper_overview_worker",
+            "research_worker",
+            "method_worker",
+            "data_eval_worker",
+            "data_eval_worker"
+          ],
+          "worker_count": 5,
+          "tool_call_count": 11,
+          "reflection_count": 0,
+          "reflection_search_count": 0,
+          "retrieved_contexts": [
+            "He\n:is::::::\ncurrently::::\nwith ::\nthe::::\nHefei::::::\nInstitutes::\nof::::::\nPhysical ::::::\nScience, :::::\nChinese:::::::\nAcademy :of\n::::::\nSciences,:::\nand ::\nthe:::\nKey::::::::\nLaboratory ::\nof :::::\nOptical :::::::\nCalibration:::\nand::::::::::::\nCharacterization,\n:::::\nChinese:::::::\nAcademy::\nof:::::::\nSciences, ::::\nHefei,:::::\nChina.:::\nHis::::::\nresearch::::::\ninterests:::::\ninclude\n::::\nimage::::::::\nprocessing, :::\ndeep::::::\nlearning,:::::\nobject:::::::\ndetection, :::\nand ::::",
+            "Hefei:::::::\nUniversity::of:::::::::\nTechnology,\n::::\nHefei,:::::\nChina,::in:::::\n2024.:::\nHe ::\nis ::::::\ncurrently:::::::\npursuing\n::\nthe::::\nM.S.:::::\ndegree::in::::::::\nelectronic ::::::::\ninformation::at:::\nthe\n:::::::\nUniversity ::\nof::::::\nScience:::\nand:::::::::\nTechnology ::\nof:::::\nChina,\n::::\nHefei,:::::\nChina. :::\nHis ::::::\nresearch ::::::\ninterests :::::\ninclude:::::\nremote\n:::::\nsensing :::::\nimage ::::::::\nprocessing,:::::::\ncomputer::::::\nvision, :::\nand\n::::::",
+            "He:::\nhas:::::::\npublished :::\nmore::::\nthan ::\n12\n::::\nSCI/EI::::::\narticles ::\nand::::\nholds:::\nfive::::::::\nauthorized :::::\npatents.:::\nDr. ::\nQiu::is:a::::::\nmember::\nof::\nthe\n::::\nYouth:::::::\nInnovation::::::::\nPromotion ::::::::\nAssociation,::::::\nChinese ::::::\nAcademy::of:::::::\nSciences.:\nJin Hong :::::\nreceived::\nthe:::\nB.S.:::::\ndegree::\nin ::::::::::\ncommunication\n::::::::\nengineering ::::\nfrom ::::::\nZhejiang::::::::\nUniversity,::::::::\nHangzhou,\n::::\nChina,::\nin::::\n1987.::::",
+            "Academy::of:::::::\nSciences,:::::\nHefei, :::::\nChina, :::\nand\n::\nthe::::\nKey ::::::::\nLaboratory::of::::::\nOptical::::::::\nCalibration::::\nand\n:::::::::::\nCharacterization,::::::\nChinese::::::::\nAcademy ::\nof:::::::\nSciences,\n::::\nHefei,:::::\nChina.:::\nHis ::::::\nresearch::::::\ninterests:::::\ninclude:::::\nimage\n:::::::\nprocessing,::::\ndeep:::::::\nlearning,:::::\nobject::::::::\ndetection, :::\nand\n::::\nimage:::::::::\nsegmentation.:\nHaoran Liu :::::\nreceived:::\nthe :::\nM.S.:::::\ndegree::in:::::::",
+            "China.::::\nHis::::::\nresearch:::::::\ninterests\n:::::\ninclude :::::::::\natmospheric::::::::\ncorrection,::::::\nremote ::::::\nsensing\n::::\nimage:::::::\nprocessing:::\nand:::::\nquality::::::::\nassessment,:::\nand::::\ndeep\n:::::\nlearning:::\nfor :::::\nremote :::::\nsensing:::::::::\napplications.\nShuming Shi ::::::\ngraduated::::\nfrom::::\nAnhui:::::::::\nAgricultural :::::::\nUniversity,::::\nHefei,:::::\nChina.::\nHe\n:is::::::\ncurrently::::\nwith ::\nthe::::\nHefei::::::\nInstitutes::\nof::::::\nPhysical ::::::"
+          ],
+          "retrieved_sources": [
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf"
+          ],
+          "error": "",
+          "answer": "这篇论文（JSTARS-2025-04970_Tracked_Manuscript.pdf）主要关注遥感图像中的云分割问题。\n\n### 背景与动机\n云分割是遥感图像分析和处理中的一个基础步骤，直接影响大气校正、土地覆盖和土地利用等许多下游应用的准确性。研究动机在于寻找一种有效的策略，将通用视觉基础模型（Vision Foundation Models, VFM）应用于遥感任务。然而，将预训练的VFM直接应用于遥感云分割时，由于领域差异（如视角几何、空间分辨率、目标尺度），性能往往不佳。\n\n### 主要内容与创新点\n论文提出了一种名为 **DinoCloudNet** 的新型模型，用于遥感云语义分割，其核心创新点和架构如下：\n\n1.  **DinoCloudNet 架构**：\n    *   该模型基于一个**冻结的 DINOv3 主干网络**，旨在解决自然图像与遥感图像之间显著的领域差距，避免直接迁移模型时性能不佳的问题。\n    *   采用**双分支设计**：冻结的主干网络提取全局语义，并行的 ECA-SPM 分支捕获边缘感知、多尺度的局部空间细节。\n\n2.  **高效通道注意力空间感知模块 (ECA-SPM)**：\n    *   **目的**：增强局部空间和通道辨别能力，并提供多尺度上下文信息，特别关注薄云丝和狭窄阴影痕迹等局部边缘细节。\n    *   **架构**：通过三个深度可分离卷积阶段（步长 S=2）构建 1/4、1/8 和 1/16 分辨率的特征。每个尺度都应用残差 ECA 重校准和 1x1 通道投影，最粗糙的特征图平均到 1/32。\n    *   **贡献**：消融研究表明，仅 ECA-SPM 就能在 CloudSEN12 High L1C 数据集上将 mIoU 提高 0.80 个百分点（达到 74.43%），将 mAcc 提高 1.70 个百分点（从 84.20% 提高到 85.90%）。它能产生互补的空间响应，在高分辨率下强调精细的边界细节和薄云结构，在低分辨率下强调更粗糙的区域模式。\n\n3.  **多尺度全局-局部特征融合适配器 (MGFF Adapter)**：\n    *   **目的**：自适应地对齐和融合来自冻结主干网络和 ECA-SPM 分支的多尺度信息，并将融合后的特征注入到主干网络的选定层中，协同融合全局一致性和局部精度。\n    *   **组成**：\n        *   **查询增强 (Mona 算子)**：对主干网络的补丁令牌 (Xl) 应用轻量级的 Mona 算子，生成几何敏感的查询特征 (Ql)。\n        *   **多尺度可变形注意力 (Multi-Scale Deformable Attention, MSDA)**：使用增强的令牌 (Ql) 作为查询，ECA-SPM 提供的多尺度上下文 (C) 作为键和值。MSDA 的计算复杂度为 O(BNSK)，并允许注意力头学习稀疏采样偏移，从而关注相关的局部区域。\n        *   **FiLM 门控和残差注入**：引入 FiLM 风格的自适应门控机制，预测通道级的尺度 (γ) 和偏移 (β) 参数，调制交互特征 (A)。这些调制后的特征以残差形式 (∆) 和可学习的尺度 (α) 注入到增强的令牌 (Ql) 中。\n    *   **贡献**：消融研究表明，仅 MGFF Adapter 就能将 mIoU 提高 0.82 个百分点（从 73.63% 提高到 74.45%），将 mDice 提高 0.60 个百分点（从 84.05% 提高到 84.65%）。它激活了模型的特征融合和调制能力。\n\n4.  **协同效应与优势**：\n    *   当 ECA-SPM 和 MGFF Adapter 结合使用时，在 CloudSEN12 High L1C 数据集上实现了最佳的整体性能，mIoU 达到 74.95%，mDice 达到 85.02%，表明两者之间存在强大的互补关系，并能持续稳定地提高分割质量。\n    *   该方法具有参数效率高、能有效适应云分割任务同时保留冻结主干网络的强大泛化能力，并能提高准确性等优点。实验表明，DinoCloudNet 在多个云分割基准测试中取得了极具竞争力的性能，在不同的卫星平台、传感器系列和地物覆盖条件下，其性能始终优于大多数现有方法。例如，在某些指标上，DinoCloudNet 达到了 96.10、92.18、95.86、95.92，优于 SegMAN (95.62、91.24、95.31、95.41) 和 Rein (95.89、91.78、95.63、95.70)。\n\n### 数据集\n该论文使用了以下数据集进行实验：\n\n*   **HRC WHU**：来源于 Google Earth，地面分辨率为 0.5 m - 15 m。包含 120 个训练集和 30 个测试集，图像块大小为 256×256，分为 2 个类别。\n*   **GF1MS WHU**：来源于 GF-1 卫星，地面分辨率为 8 m。包含 6,344 个训练集和 4,086 个测试集，图像块大小为 256×256，分为 2 个类别，用于二分类任务。\n*   **GF2MS WHU**：来源于 GF-2 卫星，地面分辨率为 4 m。包含 14,357 个训练集和 7,560 个测试集，图像块大小为 256×256，分为 2 个类别，用于二分类任务。\n*   **CloudSEN12 High**：来源于 Sentinel-2 卫星，地面分辨率为 10 m。包含 8,490 个训练集和 975 个测试集，图像块大小为 512×512，分为 4 个类别。\n*   **L8 Biome**：来源于 Landsat 8 卫星，地面分辨率为 30 m。包含 7,931 个训练集和 2,643 个测试集，图像块大小为 512×512，分为 4 个类别。\n\n其中，GF1MS WHU 和 GF2MS WHU 的图像主要来自中国不同地区，涵盖 2014 年 6 月至 2020 年 12 月期间，包含多样的地貌和季节。多类别云分割任务的数据集要求模型将每个像素标记为晴空 (Clear Sky)、薄云 (Thin Cloud)、厚云 (Thick Cloud) 或云影 (Cloud Shadow)，所有图像都被裁剪成 512 × 512 大小的切片。\n\n### 评估指标\n该论文使用了以下评估指标来评估云和云影分割：\n\n*   **总体准确度 (Overall Accuracy, aAcc)**：反映整体正确性。\n*   **平均交并比 (Mean Intersection over Union, mIoU)**：衡量区域重叠质量。\n*   **平均准确度 (Mean Accuracy, mAcc)**：计算每个类别的平均准确度，有助于缓解类别不平衡问题。其计算公式为：mAcc = (1/C) * Σ(TPi / (TPi + FNi))，其中 C 是类别数量，TPi 是真阳性，FNi 是假阴性。\n*   **平均 Dice 系数 (Mean Dice Coefficient, mDice)**：提供精确度和召回率的调和度量，对边界和小目标分割特别敏感。其计算公式为：mDice = (1/C) * Σ((2 * TPi) / (2 * TPi + FPi + FNi))，其中 C 是类别数量，TPi 是真阳性，FPi 是假阳性，FNi 是假阴性。\n\n这些指标是互补的：aAcc 反映整体正确性，mIoU 和 mDice 衡量区域重叠质量。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        },
+        {
+          "id": "paper_method",
+          "collection": "paper_test",
+          "question": "这篇论文的方法创新具体体现在哪些模块上？",
+          "ground_truth": "DinoCloudNet 的方法创新集中在三个核心模块：①冻结的 DINOv3 主干（backbone）：直接复用大规模预训练的视觉基础模型作为全局语义特征提取器，参数全程冻结，保留其跨域泛化能力，避免灾难性遗忘；②ECA-SPM（Efficient Channel Attention Spatial Perception Module）：独立卷积分支，采用多尺度卷积叠加高效通道注意力（ECA），专门提取云边界和局部纹理等细粒度特征，弥补 ViT 对局部结构感知不足的缺陷；③MGFF Adapter（Multi-Scale Global-Local Feature Fusion Adapter）：双分支融合的关键组件，内置可变形门控机制，将 ECA-SPM 的局部特征注入 DINOv3 选定层，实现跨分支多尺度全局-局部特征对齐与融合。整个框架重点训练 ECA-SPM 和 MGFF Adapter 等适配组件，属于参数高效微调（PEFT）范式，大幅降低训练成本同时保持强大性能。",
+          "latency_ms": 18443.24,
+          "answer_length": 698,
+          "keyword_coverage": 1.0,
+          "hit_keywords": [
+            "ECA-SPM",
+            "MGFF",
+            "DINOv3",
+            "backbone",
+            "Adapter"
+          ],
+          "expected_keywords": [
+            "ECA-SPM",
+            "MGFF",
+            "DINOv3",
+            "backbone",
+            "Adapter"
+          ],
+          "active_skill": "paper_qa_zh",
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "skill:paper_qa_zh",
+            "multi_aspect_or_research_query"
+          ],
+          "worker_roles": [
+            "method_worker"
+          ],
+          "worker_count": 1,
+          "tool_call_count": 2,
+          "reflection_count": 0,
+          "reflection_search_count": 0,
+          "retrieved_contexts": [
+            "He\n:is::::::\ncurrently::::\nwith ::\nthe::::\nHefei::::::\nInstitutes::\nof::::::\nPhysical ::::::\nScience, :::::\nChinese:::::::\nAcademy :of\n::::::\nSciences,:::\nand ::\nthe:::\nKey::::::::\nLaboratory ::\nof :::::\nOptical :::::::\nCalibration:::\nand::::::::::::\nCharacterization,\n:::::\nChinese:::::::\nAcademy::\nof:::::::\nSciences, ::::\nHefei,:::::\nChina.:::\nHis::::::\nresearch::::::\ninterests:::::\ninclude\n::::\nimage::::::::\nprocessing, :::\ndeep::::::\nlearning,:::::\nobject:::::::\ndetection, :::\nand ::::",
+            "He:::\nhas:::::::\npublished :::\nmore::::\nthan ::\n12\n::::\nSCI/EI::::::\narticles ::\nand::::\nholds:::\nfive::::::::\nauthorized :::::\npatents.:::\nDr. ::\nQiu::is:a::::::\nmember::\nof::\nthe\n::::\nYouth:::::::\nInnovation::::::::\nPromotion ::::::::\nAssociation,::::::\nChinese ::::::\nAcademy::of:::::::\nSciences.:\nJin Hong :::::\nreceived::\nthe:::\nB.S.:::::\ndegree::\nin ::::::::::\ncommunication\n::::::::\nengineering ::::\nfrom ::::::\nZhejiang::::::::\nUniversity,::::::::\nHangzhou,\n::::\nChina,::\nin::::\n1987.::::",
+            "Academy::of:::::::\nSciences,:::::\nHefei, :::::\nChina, :::\nand\n::\nthe::::\nKey ::::::::\nLaboratory::of::::::\nOptical::::::::\nCalibration::::\nand\n:::::::::::\nCharacterization,::::::\nChinese::::::::\nAcademy ::\nof:::::::\nSciences,\n::::\nHefei,:::::\nChina.:::\nHis ::::::\nresearch::::::\ninterests:::::\ninclude:::::\nimage\n:::::::\nprocessing,::::\ndeep:::::::\nlearning,:::::\nobject::::::::\ndetection, :::\nand\n::::\nimage:::::::::\nsegmentation.:\nHaoran Liu :::::\nreceived:::\nthe :::\nM.S.:::::\ndegree::in:::::::",
+            "Hefei:::::::\nUniversity::of:::::::::\nTechnology,\n::::\nHefei,:::::\nChina,::in:::::\n2024.:::\nHe ::\nis ::::::\ncurrently:::::::\npursuing\n::\nthe::::\nM.S.:::::\ndegree::in::::::::\nelectronic ::::::::\ninformation::at:::\nthe\n:::::::\nUniversity ::\nof::::::\nScience:::\nand:::::::::\nTechnology ::\nof:::::\nChina,\n::::\nHefei,:::::\nChina. :::\nHis ::::::\nresearch ::::::\ninterests :::::\ninclude:::::\nremote\n:::::\nsensing :::::\nimage ::::::::\nprocessing,:::::::\ncomputer::::::\nvision, :::\nand\n::::::",
+            "interests::::::\ninclude ::::::::\nmechanical\n:::::\ndesign, :::\nfinite::::::\nelement::::::\nanalysis,:::\nand:::::\ndiscrete::::::\nelement\n:::::::\nsimulation.:\nYinan Xu\n:::::\nreceived:::\nthe :::\nB.E.:::::\ndegree::in::::::::\nmechanical\n:::::\ndesign, ::::::::::\nmanufacturing :::\nand :::::::\nautomation::::\nfrom:::::\nAnhui\n::::::::\nAgricultural::::::::\nUniversity, ::::\nHefei,:::::\nChina,::in::::\n2023.:::\nHe\n:is:::::::\ncurrently::::::\npursuing:::\nthe:::::\nM.S. :::::\ndegree::in:::::\noptics\n:at:::"
+          ],
+          "retrieved_sources": [
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf"
+          ],
+          "error": "",
+          "answer": "这篇论文提出的 DinoCloudNet 方法主要在以下模块上体现了创新：\n\n1.  **冻结的 DINOv3 主干网络 (frozen DINOv3 backbone)**：该方法以一个冻结的 DINOv3 主干网络为基础，旨在保留其强大的通用特征提取和跨域泛化能力。\n2.  **高效通道注意力空间感知模块 (Efficient Channel Attention Spatial Perception Module, ECA-SPM)**：这是一个轻量级且可训练的空间感知模块。它的主要创新在于通过多尺度卷积和通道注意力来捕获多尺度精细空间特征，例如云边界和纹理，从而提取多尺度局部空间细节。\n3.  **多尺度全局-局部特征融合适配器 (Multi-Scale Global-Local Feature Fusion Adapter, MGFF Adapter)**：该适配器负责自适应地对齐并融合来自冻结主干网络和 ECA-SPM 分支的多尺度信息，并将融合后的特征注入到主干网络的选定层中。\n\nDinoCloudNet 采用了**双分支设计**：第一个分支是冻结的 VFM (Vision Foundation Model) 主干网络 (DINOv3)，而另一个并行分支是轻量级的 ECA-SPM，用于捕获边缘感知、多尺度的局部空间细节。这种设计实现了参数高效性，并且消融研究表明 ECA-SPM 和 MGFF Adapter 这两个模块是协同工作且相互增强的。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        },
+        {
+          "id": "simple_definition",
+          "collection": "paper_test",
+          "question": "DinoCloudNet 是什么？",
+          "ground_truth": "DinoCloudNet 是一种面向遥感图像的双分支云分割网络，基于参数高效微调（PEFT）范式设计。它以冻结的 DINOv3 视觉 Transformer 为全局语义主干，同时引入卷积分支（ECA-SPM）捕捉局部云纹理特征，并通过 MGFF Adapter 将两个分支的特征进行多粒度融合。该模型仅训练适配器和卷积分支，在 HRC_WHU 等多个遥感云分割基准上达到 SOTA 水平。",
+          "latency_ms": 21624.72,
+          "answer_length": 1099,
+          "keyword_coverage": 1.0,
+          "hit_keywords": [
+            "DinoCloudNet",
+            "云分割",
+            "DINOv3"
+          ],
+          "expected_keywords": [
+            "DinoCloudNet",
+            "云分割",
+            "DINOv3"
+          ],
+          "active_skill": null,
+          "selected_model": "gemini-2.5-flash",
+          "model_route_reasons": [
+            "simple_query"
+          ],
+          "worker_roles": [
+            "research_worker"
+          ],
+          "worker_count": 1,
+          "tool_call_count": 3,
+          "reflection_count": 0,
+          "reflection_search_count": 0,
+          "retrieved_contexts": [
+            "tuned. DinoCloudNet consistently achieves highly competitive\nperformance across various cloud segmentation datasets from\nmultiple satellite sources, sensor series, data processing levels,\nland cover scenarios, and annotation granularities. Ablation\nstudies demonstrate that both modules are necessary and\nreinforce each other. In summary, DinoCloudNet is effective  \n---",
+            "DinoCloudNet\nOurs\n96.10\n92.18\n95.86\n95.92\nsensors, so the spatial resolution, viewing geometry, and\nradiometric properties are not the same. GF1MS WHU often\ncontains medium-sized bright clouds over darker backgrounds\nsuch as vegetation or bare soil. In this case accurate cloud\nboundaries are important. GF2MS WHU includes scenes with\nlarge uniform cloud decks, where almost the entire tile is\ncloud. Models that are not stable tend to cut artificial “holes”",
+            "40\n45\n50\n55\n60\n65\n70\n75\nmIoU (%)\nCDNetv1\nCDNetv2\nMCDNet\nKappaMask\nDBNet\nUNetMobv2\nHRCloudNet\nSegman\nSAM-Adapter\nRein\nDinoCloudNet-B\nDinoCloudNet-L\nDinoCloudNet-S\n21\n22\n23\n24\n73.00\n73.25\n73.50\n73.75\n74.00\n74.25\n74.50\n74.75\n75.00\nDinoCloudNet-S\nDinoCloudNet-B\nDinoCloudNet-L\nSAM-Adapter\nRein\nFig. 11.\nScatter plot of the relationship between the number of trainable\nparameters and mIoU. Comparison of parameter efficiency and segmentation\naccuracy of different methods on CloudSEN12 High L1C.",
+            "affect appearance, making thin clouds and shadows appear\nweak and difficult to detect. As seen in Table V and Figure 6,\nDinoCloudNet demonstrates strong performance, accurately\nfollowing the true thin cloud boundary and producing cleaner\nshadow masks with fewer holes, even for small semi-transparent  \n---",
+            "# Page 13  \n13\n0\n100\n200\n300\n400\n500\nGFLOPs\n40\n45\n50\n55\n60\n65\n70\n75\nmIoU (%)\nCDNetv1\nCDNetv2\nMCDNet\nKappaMask\nDBNet\nUNetMobv2\nHRCloudNet\nSegman\nRein\nSAM-Adapter\nDinoCloudNet-B\nDinoCloudNet-L\nDinoCloudNet-S\nFig. 10.\nScatter plot of GFLOPs vs. mIoU. Comparison of computa-\ntional overhead and segmentation accuracy of different methods on Cloud-\nSEN12 High L1C.\n0\n20\n40\n60\n80\n100\nParameters (M)\n40\n45\n50\n55\n60\n65\n70\n75\nmIoU (%)\nCDNetv1\nCDNetv2\nMCDNet\nKappaMask\nDBNet\nUNetMobv2\nHRCloudNet\nSegman"
+          ],
+          "retrieved_sources": [
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf",
+            "JSTARS-2025-04970_Tracked_Manuscript.pdf"
+          ],
+          "error": "",
+          "answer": "DinoCloudNet 是一种双分支网络，专门设计用于遥感图像中的云分割。它建立在冻结的 DINOv3 主干网络之上，并包含两个关键组件：\n\n*   **ECA-SPM (Efficient Channel Attention - Spatial Pyramid Module)：** 这个模块负责从输入图像中提取多尺度局部空间细节。\n*   **MGFF Adapter (Multi-Granularity Feature Fusion Adapter)：** 这个适配器自适应地对齐并融合从 DINOv3 主干网络获得的全局特征与 ECA-SPM 生成的多尺度局部特征。\n\n这种架构使得 DinoCloudNet 能够实现强大的泛化能力和精确的分割细节，同时只需要微调少量参数。选择 DINOv3 主干网络是因为其在准确性-参数权衡方面的优势，以及它能够提供适合云和云影分割的密集自监督表示。\n\nDinoCloudNet 在各种云分割数据集上始终表现出极具竞争力的性能，这些数据集涵盖了不同的卫星来源、传感器系列、数据处理级别、土地覆盖场景和标注粒度。消融研究证实了 ECA-SPM 和 MGFF Adapter 模块的必要性和协同效应。\n\n该模型还展现出卓越的可扩展性，具有针对不同计算需求量身定制的变体：\n\n*   **DinoCloudNet-S (Small)：** 实现了 73.96% 的 mIoU，拥有 22.09M 可训练参数和 50.02 GFLOPs，非常适合边缘应用。\n*   **DinoCloudNet-B (Base)：** 实现了 74.14% 的 mIoU，拥有 23.55M 可训练参数和 125.57 GFLOPs。\n*   **DinoCloudNet-L (Large)：** 实现了 74.95% 的最先进 mIoU，拥有 24.50M 可训练参数和 380.71 GFLOPs，最适合需要最高准确度的服务器端部署。\n\nDinoCloudNet 在计算工作量、参数数量和 mIoU 之间保持了良好的帕累托权衡。它在 HRC WHU (92.18% mIoU) 和 GF2MS WHU (87.13% mIoU) 等数据集上取得了最先进的性能，并在 GF1MS WHU (93.15% mIoU) 上取得了极具竞争力的结果。该模型在复杂场景中区分具有挑战性的薄云和云影与晴空方面特别有效，能够生成边界平滑、伪影较少的精确云掩模。\n\n---\n**Sources:**\n* JSTARS-2025-04970_Tracked_Manuscript.pdf"
+        }
+      ],
+      "ragas": {
+        "enabled": true,
+        "available": true,
+        "evaluated_cases": 3,
+        "scores": {
+          "answer_relevancy": 0.24660433609866517,
+          "faithfulness": 0.4383838383838384
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "generated_at": "2026-03-19T17:15:02",
+  "benchmark_type": "light_answer",
+  "retrieval_mode": "baseline_hybrid",
+  "model": "qwen3:14b",
+  "provider": "ollama",
+  "reranker_enabled": true,
+  "reranker_model": "BAAI/bge-reranker-base",
+  "top_k": 4,
+  "summary": {
+    "dataset_path": "/home/suity/worksapce/PycharmProjects/FindJob/agentic-rag-for-dummies-main/project/evaluation/datasets/public_light_pollution_answer_eval_lightrag_mini.jsonl",
+    "mode": "baseline_hybrid",
+    "case_count": 3,
+    "avg_latency_ms": 4712.55,
+    "p95_latency_ms": 6204.3,
+    "avg_answer_length": 221.67,
+    "ragas": {
+      "enabled": true,
+      "available": true,
+      "evaluated_cases": 3,
+      "scores": {
+        "answer_relevancy": 0.5401504072705953,
+        "faithfulness": 0.6666666666666666
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "mini-lightrag-001",
+      "collection": "public_light_pollution_mini",
+      "question": "哪篇文档把 artificial light at night 描述为 global disruptor of the nighttime environment？",
+      "answer": "文档 [Context 1] 中的标题明确将 \"artificial light at night\" 描述为 \"a global disruptor of the nighttime environment\"。该文档对应的文章由 Bará 和 Falchi 于 2023 年发表在《Phil. Trans. R. Soc. B》期刊，标题与问题中的表述完全一致。其他上下文未提供相关描述。",
+      "ground_truth": "《08_artificial_light_at_night_global_disruptor_arxiv.pdf》这篇文档把 artificial light at night 描述为 nighttime environment 的 global disruptor。",
+      "expected_sources": [
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf"
+      ],
+      "notes": "title-level identification",
+      "retrieval_latency_ms": 32.0,
+      "answer_latency_ms": 3822.23,
+      "latency_ms": 3854.23,
+      "answer_length": 194,
+      "retrieved_contexts": [
+        "# 08_artificial_light_at_night_global_disruptor_arxiv  \n## Page 1  \nThis is the Accepted Author Manuscript of an article whose version of record has been\npublished as Bará S, Falchi F. 2023 Artificial light at night: a global disruptor of the night-\ntime environment. Phil. Trans. R. Soc. B 378: 20220352. doi: 10.1098/rstb.2022.0352  \n1\nArtificial light at night: a global disruptor of the\nnighttime environment\nSalvador Bará1,* and Fabio Falchi1,2",
+        "Keywords: Light pollution, artificial light at night, environmental pollutants  \nSummary  \nLight pollution is the alteration of the natural levels of darkness by an increased concentration of light\nparticles in the nighttime environment, resulting from human activity. Light pollution is changing in a deep\nway the environmental conditions of the night in wide areas of the planet, and is a relevant stressor whose",
+        "## Page 2  \n2  \n1. Introduction\nArtificial light at night is a key factor for the improvement of the living conditions of\nhumankind. Its production and control have provided us an essential level of freedom,\nenabling many activities at nighttime that otherwise would be limited by the low\nperformance of the human visual system under typical natural night light levels. Artificial\nlight at night is also a longtime recognized air pollutant. Already in 1979, the UN",
+        "restricted to local disturbances, but give rise to a global, multiscale disruption of the nighttime environment.  \n1. Introduction  \nArtificial light is a key resource for humankind. It provides our societies with an unprecedented freedom from\nthe natural illumination cycles, enabling the extension of human activities into nighttime and the use during\nthe day of many indoor spaces lacking enough natural light. A long and rich history of technological"
+      ],
+      "retrieved_sources": [
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf"
+      ]
+    },
+    {
+      "id": "mini-lightrag-002",
+      "collection": "public_light_pollution_mini",
+      "question": "哪篇文档讨论了 natural night sky brightness including Gaia and Hipparcos integrated starlight？",
+      "answer": "文档标题为《A multi-band map of the natural night sky brightness including Gaia and Hipparcos integrated starlight》，由Eduard Masana等人于2021年发表在《Monthly Notices of the Royal Astronomical Society》（卷501，页5443–5456）。该研究利用Gaia和Hipparcos星表数据，绘制了包含星体光辐射的自然夜空亮度多波段地图。",
+      "ground_truth": "《10_natural_night_sky_brightness_gaia_arxiv.pdf》讨论了包含 Gaia 和 Hipparcos integrated starlight 的 natural night sky brightness 地图。",
+      "expected_sources": [
+        "10_natural_night_sky_brightness_gaia_arxiv.pdf"
+      ],
+      "notes": "astronomy reference identification",
+      "retrieval_latency_ms": 27.35,
+      "answer_latency_ms": 6176.95,
+      "latency_ms": 6204.3,
+      "answer_length": 251,
+      "retrieved_contexts": [
+        "# 10_natural_night_sky_brightness_gaia_arxiv  \n## Page 1  \nMNRAS 000, 1–15 (2020)\nPreprint 6 January 2021\nCompiled using MNRAS LATEX style ﬁle v3.0\nA multi-band map of the natural night sky brightness including Gaia\nand Hipparcos integrated starlight\nEduard Masana,1★Josep Manel Carrasco,1 Salvador Bará,2 and Salvador J. Ribas3,1\n1Departament Física Quàntica i Astrofìsica. Institut de Ciències del Cosmos (ICC-UB-IEEC), C Martí Franquès 1, Barcelona 08028, Spain",
+        "Marín, C., Jafari, J., 2008. StarLight: A Common Heritage; StarLight Initiative La Palma\nBiosphere Reserve. Instituto De Astrofísica De Canarias, Government of The Canary\nIslands, Spanish Ministry of The Environment, UNESCO-MaB, Canary Islands, Spain.\nMasana, E., Carrasco, J.M., Bará, S., Ribas, S.J., 2021. A multi-band map of the natural\nnight sky brightness including Gaia and Hipparcos integrated starlight. Monthly\nNotices\nof\nthe\nRoyal\nAstronomical\nSociety\n501,\n5443–5456.\ndoi:",
+        "determined the sky brightness for the Johnson 𝑉and human-vision\nphotopic and scotopic passbands. All together constitutes the ﬁrst\nversion of GAMBONS model of the natural night sky brightness.\nThe novelty of this work is the determination of the radiance\noutside the Earth’s atmosphere using Gaia and Hipparcos cata-\nlogues. However, a complete sky brightness model requires the\nmodeling of the other components, as zodiacal light, airglow or",
+        "## Page 15  \nMap of the natural sky brightness\n15\nKocifaj M., Kránicz B., 2011, Lighting Research & Technology, 43, 497\nKolláth Z., Cool A., Jechow A., Kolláth K., Száz D., Tong K. P., 2020,\nJ. Quant. Spectrosc. Radiative Transfer, 253, 107162\nKwon S. M., 1989, Journal of Korean Astronomical Society, 22, 141\nKwon S. M., Hong S. S., Weinberg J. L., 2004, New Astron., 10, 91\nLaureĳs R. J., Mattila K., Schnur G., 1987, A&A, 184, 269"
+      ],
+      "retrieved_sources": [
+        "10_natural_night_sky_brightness_gaia_arxiv.pdf",
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+        "10_natural_night_sky_brightness_gaia_arxiv.pdf",
+        "10_natural_night_sky_brightness_gaia_arxiv.pdf"
+      ]
+    },
+    {
+      "id": "mini-lightrag-003",
+      "collection": "public_light_pollution_mini",
+      "question": "哪篇文档把光污染表述为大气中 anthropogenic photons 的浓度？",
+      "answer": "文档 [Context 2] 的标题明确提到“光污染与大气中人为光子的浓度”，即“Light pollution and the concentration of anthropogenic photons in the terrestrial atmosphere”。该文档由 Salvador Bará 等人撰写，直接将光污染表述为大气中 anthropogenic photons 的浓度。其他上下文未提供更具体的文档名称或标题信息。",
+      "ground_truth": "《11_anthropogenic_photons_light_pollution_arxiv.pdf》把光污染表述为 terrestrial atmosphere 中 anthropogenic photons 的浓度。",
+      "expected_sources": [
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf"
+      ],
+      "notes": "physics framing identification",
+      "retrieval_latency_ms": 26.95,
+      "answer_latency_ms": 4052.17,
+      "latency_ms": 4079.12,
+      "answer_length": 220,
+      "retrieved_contexts": [
+        "grayscale, shows the large increase of the volume concentration of anthropogenic\nphotons in and around metropolitan areas, as well as its pervasive presence in wide\ninhabited regions, including the coastal waters of the Atlantic Ocean and the",
+        "# 11_anthropogenic_photons_light_pollution_arxiv  \n## Page 1  \n1  \nLight pollution and the concentration of anthropogenic\nphotons in the terrestrial atmosphere  \nSalvador Bará1,*, Carmen Bao-Varela2, and Fabio Falchi2,3\n1 A. Astronómica 'Ío', 15005 A Coruña, Galicia (Spain)\n2 Photonics4Life Research Group, Applied Physics Department, Universidade de\nSantiago de Compostela, Campus Vida, E-15782 Santiago de Compostela, Spain",
+        "the volume concentration of anthropogenic photons (in 𝑝ℎ𝑜𝑡𝑜𝑛𝑠· 𝑚−3). This\nformulation\ngives\nthe\nsame\nquantitative\nresults\nas\nthe\ntraditional\nradiometric/photometric descriptions in terms of surface flux densities and helps to\nhighlight the fundamental similarity between light pollution and other pollution types.\nThe quantitative relations linking the surface flux and the volume concentration\nformulations are explicited in this paper. Section 2 contains the main transformation",
+        "Transkript.\n6. Bará S, Bao-Varela C, Falchi F. 2022 Light\npollution and the concentration of\nanthropogenic photons in the terrestrial\natmosphere. Atmos. Pollut. Res. 13(9), 101541.\n(doi: 10.1016/j.apr.2022.101541)\n7. Bará S, Lima RC. 2018 Photons without\nborders: quantifying light pollution transfer\nbetween territories, Int. J. Sustain. Light. 20(2),\n51-61. (doi :10.26607/ijsl.v20i2.87)\n8. Cinzano P, Falchi F. 2012 The propagation of\nlight pollution in the atmosphere. Mon. Notices"
+      ],
+      "retrieved_sources": [
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf"
+      ]
+    }
+  ]
+}

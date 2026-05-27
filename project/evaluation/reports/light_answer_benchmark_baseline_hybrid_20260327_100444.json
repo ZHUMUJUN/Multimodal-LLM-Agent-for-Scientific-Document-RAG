@@ -1,0 +1,292 @@
+{
+  "generated_at": "2026-03-27T10:05:29",
+  "benchmark_type": "light_answer",
+  "retrieval_mode": "baseline_hybrid",
+  "model": "qwen2.5:1.5b",
+  "provider": "ollama",
+  "reranker_enabled": true,
+  "reranker_model": "BAAI/bge-reranker-base",
+  "top_k": 4,
+  "summary": {
+    "dataset_path": "/home/suity/worksapce/PycharmProjects/FindJob/agentic-rag-for-dummies-main/project/evaluation/datasets/public_light_pollution_router_eval_6_real.jsonl",
+    "mode": "baseline_hybrid",
+    "case_count": 6,
+    "avg_latency_ms": 783.57,
+    "p95_latency_ms": 1280.63,
+    "avg_answer_length": 186,
+    "source_hit_rate": 1,
+    "avg_keyword_hit_rate": 0.5,
+    "question_type_summary": {
+      "single_hop": {
+        "case_count": 4,
+        "avg_latency_ms": 774.21,
+        "source_hit_rate": 1,
+        "avg_keyword_hit_rate": 0.6667
+      },
+      "multi_hop_relation": {
+        "case_count": 2,
+        "avg_latency_ms": 802.28,
+        "source_hit_rate": 1,
+        "avg_keyword_hit_rate": 0.1666
+      }
+    },
+    "routing": {
+      "expected_route_coverage": 6,
+      "route_hit_rate": 0.6667,
+      "route_distribution": {
+        "baseline_hybrid": 6
+      },
+      "route_hit_rate_by_type": {
+        "single_hop": 1,
+        "multi_hop_relation": 0
+      }
+    },
+    "ragas": {
+      "enabled": true,
+      "available": true,
+      "evaluated_cases": 6,
+      "scores": {
+        "answer_relevancy": 0.2864463101444802,
+        "faithfulness": 0.36666666666666664
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "router-001",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档把 artificial light at night 描述为 global disruptor，并强调 nighttime environment？",
+      "question_type": "single_hop",
+      "answer": "根据提供的上下文，没有找到描述\"artificial light at night\"为\"global disruptor\"并强调\"nighttime environment\"的文档。请提供更多详细信息或重新检查问题描述。",
+      "ground_truth": "《08_artificial_light_at_night_global_disruptor_arxiv.pdf》把 artificial light at night 描述为 nighttime environment 的 global disruptor。",
+      "expected_sources": [
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "global disruptor",
+        "nighttime environment",
+        "artificial light at night"
+      ],
+      "expected_route": "baseline_hybrid",
+      "notes": "single-doc title identification",
+      "resolved_mode": "baseline_hybrid",
+      "route_reasons": [],
+      "route_hit": true,
+      "retrieval_latency_ms": 115.97,
+      "answer_latency_ms": 512.26,
+      "latency_ms": 628.23,
+      "answer_length": 110,
+      "source_hit": true,
+      "keyword_hit_rate": 1.0,
+      "retrieved_contexts": [
+        "# 08_artificial_light_at_night_global_disruptor_arxiv  \n## Page 1  \nThis is the Accepted Author Manuscript of an article whose version of record has been\npublished as Bará S, Falchi F. 2023 Artificial light at night: a global disruptor of the night-\ntime environment. Phil. Trans. R. Soc. B 378: 20220352. doi: 10.1098/rstb.2022.0352  \n1\nArtificial light at night: a global disruptor of the\nnighttime environment\nSalvador Bará1,* and Fabio Falchi1,2",
+        "Keywords: Light pollution, artificial light at night, environmental pollutants  \nSummary  \nLight pollution is the alteration of the natural levels of darkness by an increased concentration of light\nparticles in the nighttime environment, resulting from human activity. Light pollution is changing in a deep\nway the environmental conditions of the night in wide areas of the planet, and is a relevant stressor whose",
+        "## Page 2  \n2  \n1. Introduction\nArtificial light at night is a key factor for the improvement of the living conditions of\nhumankind. Its production and control have provided us an essential level of freedom,\nenabling many activities at nighttime that otherwise would be limited by the low\nperformance of the human visual system under typical natural night light levels. Artificial\nlight at night is also a longtime recognized air pollutant. Already in 1979, the UN",
+        "restricted to local disturbances, but give rise to a global, multiscale disruption of the nighttime environment.  \n1. Introduction  \nArtificial light is a key resource for humankind. It provides our societies with an unprecedented freedom from\nthe natural illumination cycles, enabling the extension of human activities into nighttime and the use during\nthe day of many indoor spaces lacking enough natural light. A long and rich history of technological"
+      ],
+      "retrieved_sources": [
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf"
+      ]
+    },
+    {
+      "id": "router-003",
+      "collection": "public_light_pollution_corpus",
+      "question": "自然夜空亮度地图那篇文档依赖哪些核心星表数据？",
+      "question_type": "single_hop",
+      "answer": "根据提供的上下文，自然夜空亮度地图那篇文档依赖的核心星表数据包括光谱带（Λ(𝜆)）和方向角（𝛂）。具体来说，核心星表数据是通过积分计算得到的，即：\n\n\\[ N = \\int∫ n_\\lambda(\\beta) \\Lambda(\\lambda) d\\lambda cos\\theta d\\Omega \\]\n\n其中：\n- \\( N \\) 是单位体积内的光子浓度（每平方米·每秒^-3）。\n- \\( n_\\lambda(\\beta) \\) 是从方向角为 β 的位置传播到表面元素的光子密度，单位是每单位波长间隔内单位体积中的光子数。\n- \\( cos\\theta \\) 表示与表面法线成的角度。\n\n这些数据依赖于特定的星表来精确计算和表示。",
+      "ground_truth": "《10_natural_night_sky_brightness_gaia_arxiv.pdf》依赖 Gaia 和 Hipparcos integrated starlight 数据。",
+      "expected_sources": [
+        "10_natural_night_sky_brightness_gaia_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "Gaia",
+        "Hipparcos",
+        "integrated starlight"
+      ],
+      "expected_route": "baseline_hybrid",
+      "notes": "single-doc data source",
+      "resolved_mode": "baseline_hybrid",
+      "route_reasons": [],
+      "route_hit": true,
+      "retrieval_latency_ms": 56.7,
+      "answer_latency_ms": 1223.93,
+      "latency_ms": 1280.63,
+      "answer_length": 317,
+      "source_hit": true,
+      "keyword_hit_rate": 0.0,
+      "retrieved_contexts": [
+        "𝐸= ℎ𝑐2𝐾0 ∫∫𝑛𝜆(𝛂) Λ(𝜆)\n𝜆\nd𝜆cos 𝑧dΩ\nΩ\n𝑊· 𝑚−2                  (10)\nwhich can be read as\n𝐸= ℎ𝑐2𝐾0 𝑁                                                              (11)\nwhere\n𝑁= ∫∫𝑛𝜆(𝛂) Λ(𝜆)\n𝜆\nd𝜆cos 𝑧dΩ =\nΩ\n∫𝑁(𝛂) cos 𝑧dΩ\nΩ\n(12)\nis the photon concentration per unit volume (𝑝ℎ𝑜𝑡𝑜𝑛𝑠· 𝑚−3) within the spectral band\nΛ(𝜆), propagating along all directions from the front-facing hemisphere (0 ≤𝑧≤\n90°, 0 ≤𝜙< 360°;  Ω = 2𝜋 𝑠𝑟) towards the element of surface on which the irradiance",
+        "is the exact value of the speed of light (BIPM, 2018).  \nFigure 1. Geometry of the light propagation. The quantity 𝑛𝜆(𝛂) is the volume density\nof photons propagating towards the surface d𝑆 per unit solid angle along the direction\n𝛂 (at an angle 𝑧 with the normal to the surface) and per unit wavelength interval. The\nslanted cylinder volume is d𝑉=  d𝑆 𝑐 d𝑡cos 𝑧.  \nSince the energy d𝑄 is the same in Eqs.(1) and (4), and 𝜈= 𝑐/𝜆 we get\n𝐿𝜆(𝛂) = ℎ𝑐2",
+        "𝑀(𝑧) =\n1\ncos(𝑧) + 0.50572 (96.07995 −𝑧)−1.6364\n(30)\nwith 𝑧in degrees.\nLight from all other sky directions is also absorbed and scat-\ntered. When interacting with the atmospheric constituents located\nalong the line of sight a fraction of this light gets scattered into the\nobserver’s ﬁeld of view, adding to the detected radiance. Denot-\ning by 𝐿0(𝜆, 𝜶s) the extra-atmospheric radiance from a diﬀerential\npatch of the sky of solid angle 𝑑𝜔around the generic direction 𝜶s,",
+        "sky as seen by the observer as follows:\n• it produces a direct (attenuated) radiance 𝐿d(𝜆, 𝜶, ℎ)\n=\n𝐿0(𝜆, 𝜶) 𝑇(𝜆, 𝑧, ℎ) in the direction of observation 𝜶.\n• it introduces a scattered radiance 𝐿s(𝜆, 𝜶s, 𝜶, ℎ) in the remain-\ning pixels of the sky, including the pixel 𝜶= 𝜶s itself.\n𝑇(𝜆, 𝑧, ℎ) is the eﬀective atmospheric transmittance at wave-\nlength𝜆, accounting for the radiance reduction due to the attenuation\nalong the beam path from the limits of the atmosphere to the location\nof the observer."
+      ],
+      "retrieved_sources": [
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+        "10_natural_night_sky_brightness_gaia_arxiv.pdf",
+        "10_natural_night_sky_brightness_gaia_arxiv.pdf"
+      ]
+    },
+    {
+      "id": "router-004",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档把光污染严格表述为 terrestrial atmosphere 中 anthropogenic photons 的浓度？",
+      "question_type": "single_hop",
+      "answer": "根据提供的上下文，没有找到关于光污染严格表述为 \"terrestrial atmosphere 中 anthropogenic photons 的浓度\" 的文档。原文中提到的是光污染可以被描述为在地表大气中的人造光子（光量子）的浓度，但并没有具体提到这种表述方式。",
+      "ground_truth": "《11_anthropogenic_photons_light_pollution_arxiv.pdf》把光污染表述为 terrestrial atmosphere 中 anthropogenic photons 的体积浓度。",
+      "expected_sources": [
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "anthropogenic photons",
+        "terrestrial atmosphere",
+        "volume concentration"
+      ],
+      "expected_route": "baseline_hybrid",
+      "notes": "single-doc physics formulation",
+      "resolved_mode": "baseline_hybrid",
+      "route_reasons": [],
+      "route_hit": true,
+      "retrieval_latency_ms": 88.36,
+      "answer_latency_ms": 500.46,
+      "latency_ms": 588.82,
+      "answer_length": 132,
+      "source_hit": true,
+      "keyword_hit_rate": 0.6667,
+      "retrieved_contexts": [
+        "Transkript.\n6. Bará S, Bao-Varela C, Falchi F. 2022 Light\npollution and the concentration of\nanthropogenic photons in the terrestrial\natmosphere. Atmos. Pollut. Res. 13(9), 101541.\n(doi: 10.1016/j.apr.2022.101541)\n7. Bará S, Lima RC. 2018 Photons without\nborders: quantifying light pollution transfer\nbetween territories, Int. J. Sustain. Light. 20(2),\n51-61. (doi :10.26607/ijsl.v20i2.87)\n8. Cinzano P, Falchi F. 2012 The propagation of\nlight pollution in the atmosphere. Mon. Notices",
+        "# 11_anthropogenic_photons_light_pollution_arxiv  \n## Page 1  \n1  \nLight pollution and the concentration of anthropogenic\nphotons in the terrestrial atmosphere  \nSalvador Bará1,*, Carmen Bao-Varela2, and Fabio Falchi2,3\n1 A. Astronómica 'Ío', 15005 A Coruña, Galicia (Spain)\n2 Photonics4Life Research Group, Applied Physics Department, Universidade de\nSantiago de Compostela, Campus Vida, E-15782 Santiago de Compostela, Spain",
+        "Abstract\nLight pollution can be rigorously described in terms of the volume concentration of\nanthropogenic photons (light quanta) in the terrestrial atmosphere. This formulation,\nconsistent with the basic physics of the emission, scattering and absorption of light,\nallows one to express light pollution levels in terms of particle volume concentrations,\nin a completely analogous way as it is currently done with other classical pollutants, like",
+        "c=299 792 458 m·s-1 in vacuum. The average time spent by a photon in the terrestrial atmosphere is short,\ntypically ranging from microseconds to milliseconds before they interact with atmospheric constituents,\nterrain, built environment, any form of living matter, or leave for outer space. Notwithstanding these short\neffective lives, the concentration of artificial photons in the atmosphere is often stationary or slowly varying in"
+      ],
+      "retrieved_sources": [
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf"
+      ]
+    },
+    {
+      "id": "router-008",
+      "collection": "public_light_pollution_corpus",
+      "question": "哪篇文档强调 light pollution 是一个 environmental pollutant 和 relevant stressor？",
+      "question_type": "single_hop",
+      "answer": "根据提供的上下文，没有直接提到强调 \"light pollution 是一个 environmental pollutant 和 relevant stressor\" 的文档。但是，可以推测这可能是在讨论关于光污染作为环境污染物和相关压力源的论述。因此，需要进一步查找具体的文献或文章来确认这一陈述是否准确。",
+      "ground_truth": "《08_artificial_light_at_night_global_disruptor_arxiv.pdf》强调 light pollution 是 environmental pollutant，并且是 relevant stressor。",
+      "expected_sources": [
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "environmental pollutant",
+        "relevant stressor",
+        "light pollution"
+      ],
+      "expected_route": "baseline_hybrid",
+      "notes": "single-doc pollutant framing",
+      "resolved_mode": "baseline_hybrid",
+      "route_reasons": [],
+      "route_hit": true,
+      "retrieval_latency_ms": 86.3,
+      "answer_latency_ms": 512.86,
+      "latency_ms": 599.16,
+      "answer_length": 154,
+      "source_hit": true,
+      "keyword_hit_rate": 1.0,
+      "retrieved_contexts": [
+        "Keywords: Light pollution, artificial light at night, environmental pollutants  \nSummary  \nLight pollution is the alteration of the natural levels of darkness by an increased concentration of light\nparticles in the nighttime environment, resulting from human activity. Light pollution is changing in a deep\nway the environmental conditions of the night in wide areas of the planet, and is a relevant stressor whose",
+        "environmental problem were made in the second half of the 20th century [37-40]. This approach gained\nwidespread recognition in 2004, when Travis Longcore and Catherine Rich coined the concept \"ecological light\npollution\" [41] paving the way for a wider and better appraisal of the polluting character of artificial light.\nNowadays, environmental light pollution studies are a thriving field of research [32-34, 42-48] whose findings",
+        "pollutant. Light pollution is caused by an increase of the concentration of light particles (photons) above the\nnatural nighttime levels as a consequence of human activity. Light pollution is a multiscale disruptor of the\nnighttime environment, affecting from molecular processes to ecosystems, from the immediate vicinity of the\nsources up to hundreds of km away, with time scales ranging from seconds or less to decades, and with",
+        "provides some relevant insights that help to identify artificial light at night as a standard\npollutant. It also enables a complementary way of expressing artificial light exposures\nfor environmental and public health research and regulatory purposes.  \nKeywords\nLight pollution ; nocturnal environment ; radiometry ; photometry ; air pollution  \nCC-BY-NC-ND This is an author-formatted version of the accepted manuscript whose version of"
+      ],
+      "retrieved_sources": [
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf"
+      ]
+    },
+    {
+      "id": "router-018",
+      "collection": "public_light_pollution_corpus",
+      "question": "比较 review 文档和 anthropogenic photons 文档：它们分别如何把 artificial light at night 解释成污染物？",
+      "question_type": "multi_hop_relation",
+      "answer": "从提供的上下文中，我们可以比较 review 文档和 anthropogenic photons 文档。review 文档主要讨论了人工夜间光作为污染物的基本方面，包括其特性、影响范围、分布情况以及与当前照明技术及社会使用之间的关系。anthropogenic photons 文档则更详细地探讨了人造光对生态系统健康的影响，并提供了系统性文献综述。两者都关注了人工光污染的负面影响，但 review 文档侧重于将其解释为污染物的基本概念和影响因素，而 anthropogenic photons 文档则深入研究了其具体效应及其对人类及生态系统的潜在危害。",
+      "ground_truth": "《08_artificial_light_at_night_global_disruptor_arxiv.pdf》从 ecological disruption 和 environmental pollutant 角度解释，《11_anthropogenic_photons_light_pollution_arxiv.pdf》从 anthropogenic photons volume concentration 和与传统污染物类比的物理量角度解释。",
+      "expected_sources": [
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "environmental pollutant",
+        "anthropogenic photons",
+        "volume concentration"
+      ],
+      "expected_route": "lightrag",
+      "notes": "cross-doc conceptual comparison",
+      "resolved_mode": "baseline_hybrid",
+      "route_reasons": [],
+      "route_hit": false,
+      "retrieval_latency_ms": 60.49,
+      "answer_latency_ms": 758.18,
+      "latency_ms": 818.67,
+      "answer_length": 278,
+      "source_hit": true,
+      "keyword_hit_rate": 0.3333,
+      "retrieved_contexts": [
+        "effects on life are being unveiled by a compelling body of research. In this paper we briefly review the basic\naspects of artificial light at night as a pollutant, describing its character, magnitude and extent, its worldwide\ndistribution, its temporal and spectral change trends, as well as its dependence on current light production\ntechnologies and prevailing social uses of light. It is shown that the overall effects of light pollution are not",
+        "Int. 32(8), 1029-1048. (doi:\n10.3109/07420528.2015.1072002)\n57. Rich C, Longcore T. editors. 2006 Ecological\nconsequences of artificial night lighting.\n(Washington, D.C.: Island Press).\n58. Svechkina A, Portnov BA, Trop T. 2020 The\nimpact of artificial light at night on human and\necosystem health: a systematic literature\nreview. Landscape Ecol. 35, 1725–1742. (doi:\n10.1007/s10980-020-01053-1)\n59. Artificial light at night literature database.\nhttps://www.zotero.org/groups/2913367/alan",
+        "add to a growing body of knowledge on the disruptive effects of artificial light at night in ground-based\nastronomy [49, 50], cultural heritage [51, 52], and public health [53-56]. A comprehensive review of the\nenvironmental light pollution literature since its modern onset up to present times would clearly demand\nmore space than is available in this paper [57, 58]. An updated list of references can be found in the Artificial\nlight at night literature database [59].",
+        "# 08_artificial_light_at_night_global_disruptor_arxiv  \n## Page 1  \nThis is the Accepted Author Manuscript of an article whose version of record has been\npublished as Bará S, Falchi F. 2023 Artificial light at night: a global disruptor of the night-\ntime environment. Phil. Trans. R. Soc. B 378: 20220352. doi: 10.1098/rstb.2022.0352  \n1\nArtificial light at night: a global disruptor of the\nnighttime environment\nSalvador Bará1,* and Fabio Falchi1,2"
+      ],
+      "retrieved_sources": [
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf",
+        "08_artificial_light_at_night_global_disruptor_arxiv.pdf"
+      ]
+    },
+    {
+      "id": "router-extra-001",
+      "collection": "public_light_pollution_corpus",
+      "question": "比较 natural night sky brightness 地图文档和 anthropogenic photons 文档：一个给 baseline，一个给物理量定义，它们分别回答什么问题？",
+      "question_type": "multi_hop_relation",
+      "answer": "比较自然夜空亮度地图文档和人为光子文档，前者回答了如何测量夜间天空的自然亮度以及相关的关键测量设备和定量模型的问题。后者则关注的是这种自然亮度在天文观测站等“几乎无人工光污染”的地方对散射夜空亮度（NSB）的影响大小，与地面的人为光源产生的光线相比。",
+      "ground_truth": "《10_natural_night_sky_brightness_gaia_arxiv.pdf》回答自然夜空 baseline 与 sky brightness 建模问题，《11_anthropogenic_photons_light_pollution_arxiv.pdf》回答如何用 anthropogenic photons volume concentration 定义光污染的问题。",
+      "expected_sources": [
+        "10_natural_night_sky_brightness_gaia_arxiv.pdf",
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf"
+      ],
+      "expected_keywords": [
+        "baseline",
+        "anthropogenic photons",
+        "volume concentration"
+      ],
+      "expected_route": "lightrag",
+      "notes": "cross-doc baseline vs physical definition",
+      "resolved_mode": "baseline_hybrid",
+      "route_reasons": [],
+      "route_hit": false,
+      "retrieval_latency_ms": 108.32,
+      "answer_latency_ms": 677.58,
+      "latency_ms": 785.9,
+      "answer_length": 125,
+      "source_hit": true,
+      "keyword_hit_rate": 0.0,
+      "retrieved_contexts": [
+        "the anthropogenic brightness of the night sky, and several key measuring devices (Hänel\net al., 2018) and iconic light pollution quantitative models (Falchi et al., 2016) are\ndesigned and built based on it.  \nThe photon volume concentration corresponding to the irradiance in this band can\nbe easily calculated from Equation (11), taking into account that in this case the function\n𝑉𝐽(𝜆)/𝜆 peaks at 𝜆0 =  526.5 𝑛𝑚, resulting in 𝐾0 = 𝑉𝐽(𝜆0)/𝜆0  = 1.8959 × 106  𝑚−1.",
+        "expected to be small, it is otherwise unknown how its con-\ntribution to diﬀuse night sky brightness (NSB) compares to\nnatural sources of light in the night sky that ultimately de-\ntermine the sky luminance over ‘pristine’ locations nearly\ndevoid of anthropogenic skyglow, such as the sites of astro-\nnomical research observatories.\nWe decided to estimate the present-day diﬀuse NSB\ncontribution from space objects, before the ongoing deploy-",
+        "diﬀuse night sky brightness, similar to the one that would\nbe produced by light pollution from atmospheric scattering\nof the radiance emitted by anthropogenic light sources on\nthe ground.\nThe estimated strength of this eﬀect, as per direct ap-\nplication of Eq. (9), is currently of order 16.2 µcd m−2. Note\nthat this value was obtained from Eq. (9) by integrating the\ncontributions of the objects located toward the observer’s\nlocal zenith with a lower integration limit of 200 km, con-",
+        "from the Gaia bands are available. In particular, we present the expected sky brightness for\n𝑉(Johnson), and visual photopic and scotopic passbands.\nKey words: light pollution - scattering - radiative transfer - atmospheric eﬀects - instrumen-\ntation: photometers - site testing\n1\nINTRODUCTION\nThe natural brightness of the night sky in diﬀerent photometric\npassbands is a relevant parameter for site characterization and light\npollution research, since it allows establishing a baseline against"
+      ],
+      "retrieved_sources": [
+        "11_anthropogenic_photons_light_pollution_arxiv.pdf",
+        "12_space_objects_artificial_night_sky_brightness_arxiv.pdf",
+        "12_space_objects_artificial_night_sky_brightness_arxiv.pdf",
+        "10_natural_night_sky_brightness_gaia_arxiv.pdf"
+      ]
+    }
+  ]
+}
