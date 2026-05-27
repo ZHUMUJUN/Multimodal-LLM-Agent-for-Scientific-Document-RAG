@@ -1,4 +1,4 @@
-# 多模态 LLM Agent 与科研文档检索增强系统
+# Multimodal LLM Agent for Scientific Document RAG
 
 一个面向科研论文和技术文档的多模态 Agentic RAG 平台。项目围绕长文档问答、论文图表检索、多路混合召回、Agent 任务规划、答案自检、评测与可观测性构建，提供 FastAPI、Gradio、MCP filesystem tools、Skill registry 和离线评测脚本。
 
@@ -254,4 +254,3 @@ project/core/observability.py
 ## License
 
 MIT. See `LICENSE`.
-
