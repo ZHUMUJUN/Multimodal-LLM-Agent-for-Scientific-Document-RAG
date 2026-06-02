@@ -15,6 +15,11 @@ def keep_first_non_empty(existing: str, new: str) -> str:
         return existing
     return new or ""
 
+def keep_first_list(existing: List[str], new: List[str]) -> List[str]:
+    if existing:
+        return existing
+    return new or []
+
 class State(MessagesState):
     """State for main agent graph"""
     questionIsClear: bool = False
@@ -24,6 +29,7 @@ class State(MessagesState):
     worker_tasks: List[dict] = []
     active_skill: Annotated[str, keep_first_non_empty] = ""
     skill_context: Annotated[str, keep_first_non_empty] = ""
+    skill_allowed_tools: Annotated[List[str], keep_first_list] = []
     agent_answers: Annotated[List[dict], accumulate_or_reset] = []
 
 class AgentState(MessagesState):
@@ -33,8 +39,11 @@ class AgentState(MessagesState):
     worker_role: str = "research_worker"
     search_query: str = ""
     expected_output: str = ""
+    allowed_tools: List[str] = []
+    max_tool_calls: int = 8
     active_skill: Annotated[str, keep_first_non_empty] = ""
     skill_context: Annotated[str, keep_first_non_empty] = ""
+    skill_allowed_tools: Annotated[List[str], keep_first_list] = []
     context_summary: str = ""
     reflection_should_search: bool = False
     reflection_count: Annotated[int, operator.add] = 0

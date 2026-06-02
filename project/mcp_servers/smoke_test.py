@@ -1,6 +1,4 @@
 from pathlib import Path
-import os
-import sys
 
 import anyio
 from mcp import ClientSession
@@ -8,12 +6,12 @@ from mcp.client.stdio import StdioServerParameters, stdio_client
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 PROJECT_DIR = REPO_ROOT / "project"
-PYTHON = os.environ.get("MCP_SMOKE_PYTHON", sys.executable)
+VENV_PYTHON = REPO_ROOT / ".venv" / "bin" / "python"
 
 
 async def _run() -> None:
     server = StdioServerParameters(
-        command=PYTHON,
+        command=str(VENV_PYTHON),
         args=["mcp_servers/filesystem_server.py"],
         cwd=PROJECT_DIR,
     )

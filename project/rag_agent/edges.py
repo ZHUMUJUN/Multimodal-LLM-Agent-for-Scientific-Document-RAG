@@ -15,6 +15,8 @@ def route_after_planner(state: State) -> Literal["agent"]:
             "task": query,
             "search_query": query,
             "expected_output": "Answer the question using retrieved evidence.",
+            "allowed_tools": [],
+            "max_tool_calls": config.MAX_TOOL_CALLS,
         }
         for query in state.get("rewrittenQuestions", [])
     ]
@@ -27,9 +29,12 @@ def route_after_planner(state: State) -> Literal["agent"]:
                 "worker_role": task.get("role", "research_worker"),
                 "search_query": task.get("search_query", ""),
                 "expected_output": task.get("expected_output", ""),
+                "allowed_tools": task.get("allowed_tools", []),
+                "max_tool_calls": int(task.get("max_tool_calls", config.MAX_TOOL_CALLS) or config.MAX_TOOL_CALLS),
                 "messages": [],
                 "active_skill": state.get("active_skill", ""),
                 "skill_context": state.get("skill_context", ""),
+                "skill_allowed_tools": state.get("skill_allowed_tools", []),
             },
         )
         for idx, task in enumerate(tasks)
@@ -38,8 +43,9 @@ def route_after_planner(state: State) -> Literal["agent"]:
 def route_after_orchestrator_call(state: AgentState) -> Literal["tool", "fallback_response", "reflect_answer", "collect_answer"]:
     iteration = state.get("iteration_count", 0)
     tool_count = state.get("tool_call_count", 0)
+    max_tool_calls = int(state.get("max_tool_calls", config.MAX_TOOL_CALLS) or config.MAX_TOOL_CALLS)
 
-    if iteration >= config.MAX_ITERATIONS or tool_count > config.MAX_TOOL_CALLS:
+    if iteration >= config.MAX_ITERATIONS or tool_count > max_tool_calls:
         return "fallback_response"
 
     last_message = state["messages"][-1]

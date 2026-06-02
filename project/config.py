@@ -90,6 +90,7 @@ LIGHTRAG_CHUNK_TOP_K = int(os.environ.get("LIGHTRAG_CHUNK_TOP_K", "10"))
 # --- Agent Configuration ---
 SKILLS_ENABLED = os.environ.get("SKILLS_ENABLED", "true").lower() == "true"
 SKILL_RETRIEVAL_MODES = {"baseline_hybrid", "hybrid_rerank", "lightrag", "router"}
+WORKER_SPECS_DIR = os.environ.get("AGENT_WORKER_SPECS_DIR", os.path.join(_BASE_DIR, "agents", "specs"))
 REFLECTION_ENABLED = os.environ.get("REFLECTION_ENABLED", "true").lower() == "true"
 MAX_REFLECTION_ROUNDS = int(os.environ.get("MAX_REFLECTION_ROUNDS", "1"))
 MIN_EVIDENCE_SCORE = float(os.environ.get("MIN_EVIDENCE_SCORE", "0.7"))
@@ -99,6 +100,50 @@ MAX_ITERATIONS = 10
 GRAPH_RECURSION_LIMIT = 50
 BASE_TOKEN_THRESHOLD = 2000
 TOKEN_GROWTH_FACTOR = 0.9
+
+# --- Agent Harness Runtime ---
+MEMORY_ENABLED = os.environ.get("AGENT_MEMORY_ENABLED", "true").lower() == "true"
+MEMORY_DB_PATH = os.environ.get("AGENT_MEMORY_DB_PATH", os.path.join(_BASE_DIR, "agent_memory.db"))
+MEMORY_INJECTION_ENABLED = os.environ.get("AGENT_MEMORY_INJECTION_ENABLED", "true").lower() == "true"
+MEMORY_INJECTION_LIMIT = int(os.environ.get("AGENT_MEMORY_INJECTION_LIMIT", "4"))
+MEMORY_MAX_CONTEXT_CHARS = int(os.environ.get("AGENT_MEMORY_MAX_CONTEXT_CHARS", "2500"))
+BADCASE_DATASET_PATH = os.environ.get(
+    "AGENT_BADCASE_DATASET_PATH",
+    os.path.join(_BASE_DIR, "evaluation", "datasets", "agent_badcases.jsonl"),
+)
+BADCASE_EVAL_DATASET_PATH = os.environ.get(
+    "AGENT_BADCASE_EVAL_DATASET_PATH",
+    os.path.join(_BASE_DIR, "evaluation", "datasets", "agent_badcase_eval.jsonl"),
+)
+TOOL_POLICY_ENABLED = os.environ.get("AGENT_TOOL_POLICY_ENABLED", "true").lower() == "true"
+TOOL_POLICY_ENFORCE_WORKER_ALLOWED_TOOLS = os.environ.get("AGENT_TOOL_POLICY_ENFORCE_WORKER_ALLOWED_TOOLS", "true").lower() == "true"
+TOOL_APPROVAL_ENABLED = os.environ.get("AGENT_TOOL_APPROVAL_ENABLED", "true").lower() == "true"
+TOOL_APPROVAL_REQUIRED_RISKS = {
+    risk.strip().lower()
+    for risk in os.environ.get("AGENT_TOOL_APPROVAL_REQUIRED_RISKS", "high").split(",")
+    if risk.strip()
+}
+TOOL_POLICY_ALLOW_HIGH_RISK = os.environ.get("AGENT_TOOL_POLICY_ALLOW_HIGH_RISK", "false").lower() == "true"
+TOOL_POLICY_MAX_QUERY_CHARS = int(os.environ.get("AGENT_TOOL_POLICY_MAX_QUERY_CHARS", "2000"))
+TOOL_POLICY_MAX_PATH_CHARS = int(os.environ.get("AGENT_TOOL_POLICY_MAX_PATH_CHARS", "500"))
+
+# --- Worker Runtime Controls ---
+WORKER_MAX_RETRIES = int(os.environ.get("AGENT_WORKER_MAX_RETRIES", "1"))
+WORKER_TIMEOUT_SECONDS = float(os.environ.get("AGENT_WORKER_TIMEOUT_SECONDS", "60"))
+WORKER_MAX_CONCURRENCY = int(os.environ.get("AGENT_WORKER_MAX_CONCURRENCY", "4"))
+
+# --- Workspace Sandbox ---
+WORKSPACE_ROOT = os.environ.get("AGENT_WORKSPACE_ROOT", os.path.dirname(_BASE_DIR))
+WORKSPACE_WRITE_ROOT = os.environ.get("AGENT_WORKSPACE_WRITE_ROOT", os.path.join(_BASE_DIR, "workspace"))
+MCP_FILESYSTEM_WRITE_ENABLED = os.environ.get("MCP_FILESYSTEM_WRITE_ENABLED", "false").lower() == "true"
+WORKSPACE_BLOCKED_PATH_PATTERNS = [
+    pattern.strip()
+    for pattern in os.environ.get(
+        "AGENT_WORKSPACE_BLOCKED_PATH_PATTERNS",
+        ".env,.env.*,id_rsa,id_ed25519,*.pem,*.key,*secret*,*token*,*.sqlite,*.db",
+    ).split(",")
+    if pattern.strip()
+]
 
 # --- Text Splitter Configuration ---
 CHILD_CHUNK_SIZE = 500

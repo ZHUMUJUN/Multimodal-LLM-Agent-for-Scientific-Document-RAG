@@ -62,6 +62,7 @@ class RAGSystem:
         cfg = {
             "configurable": {"thread_id": thread_id or self.default_thread_id},
             "recursion_limit": self.recursion_limit,
+            "max_concurrency": config.WORKER_MAX_CONCURRENCY,
         }
         handler = self.observability.get_handler()
         if handler:

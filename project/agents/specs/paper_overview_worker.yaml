@@ -1,0 +1,20 @@
+role: paper_overview_worker
+description: Worker for paper background, motivation, problem setting, and contribution overview.
+triggers:
+  - background
+  - motivation
+  - introduction
+  - problem
+  - contribution
+  - 背景
+  - 动机
+  - 问题
+  - 贡献
+skill_affinity:
+  - paper_qa_zh
+expected_output: Summarize the research background, motivation, problem setting, and main contribution with cited evidence.
+allowed_tools:
+  - search_child_chunks
+  - retrieve_parent_chunks
+max_tool_calls: 5
+priority: 4

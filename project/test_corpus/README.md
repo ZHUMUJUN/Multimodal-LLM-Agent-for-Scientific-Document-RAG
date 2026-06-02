@@ -1,8 +1,6 @@
 # Public PDF Test Corpus
 
-This folder stores public document metadata and markdown-cache snapshots used for retrieval and RAG evaluation.
-
-The original public PDFs are not committed to keep the repository lightweight. The ingestion script can use the included `markdown_cache/` files directly. If you place the original PDFs under `pdfs/`, the script can rebuild the markdown cache before ingestion.
+This folder stores public PDF documents used for retrieval and RAG evaluation.
 
 ## Verified Ingestable Documents
 
@@ -52,7 +50,7 @@ source .venv/bin/activate
 python project/test_corpus/ingest_public_corpus.py --collection public_light_pollution_corpus --clear
 ```
 
-If `pdfs/` exists, the ingestion script first rebuilds a `markdown_cache/` snapshot from the PDFs and then ingests those markdown files. If `pdfs/` is absent, it directly ingests the committed `markdown_cache/` files.
+The ingestion script first builds a `markdown_cache/` snapshot from the PDFs and then ingests those markdown files. This avoids the unstable direct PDF-to-Markdown path for several public documents.
 
 ## Retrieval Benchmark Dataset
 

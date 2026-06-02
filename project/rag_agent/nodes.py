@@ -3,6 +3,7 @@ from typing import Literal, Set
 import config
 from core.logging_utils import log_event
 from core.tracing import add_span_attributes, start_span
+from core.worker_registry import WorkerRegistry
 from langchain_core.messages import SystemMessage, HumanMessage, RemoveMessage, AIMessage, ToolMessage
 from langgraph.types import Command
 from .graph_state import State, AgentState
@@ -12,8 +13,20 @@ from utils import estimate_context_tokens
 from config import BASE_TOKEN_THRESHOLD, TOKEN_GROWTH_FACTOR
 
 logger = logging.getLogger(__name__)
+_worker_registry: WorkerRegistry | None = None
+
+
+def _get_worker_registry() -> WorkerRegistry:
+    global _worker_registry
+    if _worker_registry is None:
+        _worker_registry = WorkerRegistry(config.WORKER_SPECS_DIR)
+    return _worker_registry
 
 def _worker_role_for_query(query: str, active_skill: str) -> str:
+    registry = _get_worker_registry()
+    if registry.specs:
+        return registry.select_role(query, active_skill)
+
     text = (query or "").lower()
     if active_skill == "literature_compare" or any(key in text for key in ["compare", "comparison", "difference", "versus", "related work", "对比", "比较"]):
         return "comparison_worker"
@@ -29,6 +42,10 @@ def _worker_role_for_query(query: str, active_skill: str) -> str:
 
 
 def _expected_output_for_role(role: str) -> str:
+    registry = _get_worker_registry()
+    if registry.specs:
+        return registry.expected_output_for_role(role)
+
     outputs = {
         "paper_overview_worker": "Summarize the research background, motivation, problem setting, and main paper content with cited evidence.",
         "method_worker": "Extract the method, architecture, key modules, and innovations with exact technical terms.",
@@ -38,6 +55,21 @@ def _expected_output_for_role(role: str) -> str:
         "research_worker": "Answer the assigned question using retrieved evidence.",
     }
     return outputs.get(role, outputs["research_worker"])
+
+
+def _worker_spec_payload(role: str) -> dict:
+    spec = _get_worker_registry().get(role)
+    if spec is None:
+        return {"allowed_tools": [], "max_tool_calls": config.MAX_TOOL_CALLS}
+    return {"allowed_tools": spec.allowed_tools, "max_tool_calls": spec.max_tool_calls}
+
+
+def _intersect_allowed_tools(worker_tools: list[str], skill_tools: list[str]) -> list[str]:
+    if worker_tools and skill_tools:
+        return [tool_name for tool_name in worker_tools if tool_name in set(skill_tools)]
+    if skill_tools:
+        return skill_tools
+    return worker_tools
 
 def summarize_history(state: State, llm):
     if len(state["messages"]) < 4:
@@ -100,14 +132,19 @@ def plan_worker_tasks(state: State):
         return {"worker_tasks": []}
 
     tasks = []
+    skill_allowed_tools = state.get("skill_allowed_tools", [])
     for question in questions:
         role = _worker_role_for_query(question, active_skill) if config.MULTI_AGENT_PLANNER_ENABLED else "research_worker"
+        worker_spec = _worker_spec_payload(role)
+        allowed_tools = _intersect_allowed_tools(worker_spec["allowed_tools"], skill_allowed_tools)
         tasks.append(
             WorkerTask(
                 role=role,
                 task=question,
                 search_query=question,
                 expected_output=_expected_output_for_role(role),
+                allowed_tools=allowed_tools,
+                max_tool_calls=worker_spec["max_tool_calls"],
             ).model_dump()
         )
 
@@ -137,7 +174,9 @@ def orchestrator(state: AgentState, llm_with_tools):
                     f"Worker role: {state.get('worker_role', 'research_worker')}\n"
                     f"Worker task: {state['question']}\n"
                     f"Initial search query: {state.get('search_query') or state['question']}\n"
-                    f"Expected output: {state.get('expected_output') or 'Answer using retrieved evidence.'}"
+                    f"Expected output: {state.get('expected_output') or 'Answer using retrieved evidence.'}\n"
+                    f"Allowed tools for this worker: {', '.join(state.get('allowed_tools') or []) or 'Use the system tool policy.'}\n"
+                    f"Tool budget: {state.get('max_tool_calls') or config.MAX_TOOL_CALLS}"
                 )
             )
             force_tool = HumanMessage(

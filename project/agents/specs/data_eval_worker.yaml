@@ -1,0 +1,29 @@
+role: data_eval_worker
+description: Worker for datasets, benchmark setup, metrics, tables, and numerical results.
+triggers:
+  - dataset
+  - metric
+  - experiment
+  - benchmark
+  - result
+  - accuracy
+  - miou
+  - mdice
+  - 数据
+  - 指标
+  - 实验
+  - 结果
+skill_affinity:
+  - rag_eval
+  - paper_qa_zh
+default_for_skills:
+  - rag_eval
+expected_output: Extract datasets, benchmarks, metrics, numeric results, baselines, and evaluation setup; keep numbers verbatim.
+allowed_tools:
+  - search_child_chunks
+  - retrieve_parent_chunks
+  - filesystem_search_text
+  - filesystem_read_text_file
+  - search_figures
+max_tool_calls: 8
+priority: 10

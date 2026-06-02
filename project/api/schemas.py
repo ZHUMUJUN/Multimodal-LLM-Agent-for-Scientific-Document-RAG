@@ -9,6 +9,7 @@ class ChatRequest(BaseModel):
 
 
 class ChatResponse(BaseModel):
+    run_id: str | None = None
     collection: str
     session_id: str
     answer: str
@@ -17,6 +18,7 @@ class ChatResponse(BaseModel):
     routing_reasons: list[str] = Field(default_factory=list)
     active_skill: str | None = None
     skill_reasons: list[str] = Field(default_factory=list)
+    skill_version: str | None = None
     selected_model: str | None = None
     model_route_reasons: list[str] = Field(default_factory=list)
     model_complexity: str | None = None
@@ -51,4 +53,26 @@ class SkillResponse(BaseModel):
     retrieval_mode: str = "auto"
     triggers: list[str] = Field(default_factory=list)
     aliases: list[str] = Field(default_factory=list)
+    version: str | None = None
     path: str
+
+
+class MemoryWriteRequest(BaseModel):
+    scope: str
+    key: str
+    value: str
+    kind: str = "semantic"
+    importance: float = Field(default=0.5, ge=0.0, le=1.0)
+    ttl_seconds: int | None = Field(default=None, ge=1)
+    source_run_id: str | None = None
+
+
+class BadcaseRequest(BaseModel):
+    note: str = ""
+    expected_answer: str = ""
+    tags: list[str] = Field(default_factory=list)
+
+
+class ToolApprovalResolveRequest(BaseModel):
+    resolved_by: str = "user"
+    note: str = ""

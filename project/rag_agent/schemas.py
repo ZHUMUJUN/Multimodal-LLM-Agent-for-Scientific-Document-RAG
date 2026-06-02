@@ -18,6 +18,8 @@ class WorkerTask(BaseModel):
     task: str = Field(description="Specific worker task to complete.")
     search_query: str = Field(description="Retrieval query the worker should use first.")
     expected_output: str = Field(description="What the worker should return to the synthesizer.")
+    allowed_tools: List[str] = Field(default_factory=list, description="Tool names this worker is expected to use.")
+    max_tool_calls: int = Field(default=8, description="Per-worker tool budget.")
 
 
 class ReflectionDecision(BaseModel):

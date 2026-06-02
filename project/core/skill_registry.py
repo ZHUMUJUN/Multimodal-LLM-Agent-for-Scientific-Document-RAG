@@ -1,5 +1,6 @@
 import logging
 import re
+import hashlib
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -24,12 +25,14 @@ class AgentSkill:
     retrieval_mode: str
     triggers: list[str]
     aliases: list[str]
+    version: str
 
     def prompt_context(self) -> str:
         allowed = ", ".join(self.allowed_tools) if self.allowed_tools else "all project tools"
         return (
             f"# Active Agent Skill: {self.name}\n\n"
             f"Description: {self.description}\n"
+            f"Skill version: {self.version}\n"
             f"Preferred retrieval mode: {self.retrieval_mode}\n"
             f"Allowed tool family: {allowed}\n\n"
             f"{self.instructions.strip()}"
@@ -43,6 +46,7 @@ class AgentSkill:
             "retrieval_mode": self.retrieval_mode,
             "triggers": self.triggers,
             "aliases": self.aliases,
+            "version": self.version,
             "path": str(self.path),
         }
 
@@ -166,6 +170,7 @@ class SkillRegistry:
             retrieval_mode=str(metadata.get("retrieval_mode") or "auto").strip(),
             triggers=self._as_list(metadata.get("triggers")),
             aliases=self._as_list(metadata.get("aliases")),
+            version=str(metadata.get("version") or hashlib.sha256(raw.encode("utf-8")).hexdigest()[:12]),
         )
 
     @staticmethod

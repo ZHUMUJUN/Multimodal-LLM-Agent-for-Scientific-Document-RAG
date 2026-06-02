@@ -827,7 +827,7 @@ For a detailed comparison of observability platforms (LangSmith, Arize Phoenix, 
 
 ## Router Hardening
 
-当前项目提供 3 个配套脚本，用于拆分 router 评测集、运行 ablation，并汇总失败样例：
+为了让 `router` 结果更适合面试陈述，当前项目补了 3 个配套脚本：
 
 1. 切 `dev/test`
 

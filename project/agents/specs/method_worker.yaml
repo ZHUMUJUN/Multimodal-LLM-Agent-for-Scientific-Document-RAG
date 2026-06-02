@@ -1,0 +1,22 @@
+role: method_worker
+description: Worker for architecture, method pipeline, module design, and technical novelty.
+triggers:
+  - method
+  - architecture
+  - module
+  - innovation
+  - adapter
+  - pipeline
+  - 方法
+  - 架构
+  - 模块
+  - 创新
+skill_affinity:
+  - paper_qa_zh
+expected_output: Extract the method, architecture, key modules, design rationale, and innovations with exact technical terms.
+allowed_tools:
+  - search_child_chunks
+  - retrieve_parent_chunks
+  - search_figures
+max_tool_calls: 7
+priority: 8

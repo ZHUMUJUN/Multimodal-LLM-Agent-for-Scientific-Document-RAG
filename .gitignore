@@ -10,3 +10,5 @@ __pycache__/
 .env
 .venv
 *.pdf
+agent_memory.db*
+project/agent_memory.db*

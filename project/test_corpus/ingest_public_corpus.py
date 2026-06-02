@@ -68,22 +68,15 @@ def main() -> None:
     pdf_dir = Path(__file__).resolve().parent / "pdfs"
     document_paths = [pdf_dir / name for name in VALIDATED_FILES]
     missing = [str(path) for path in document_paths if not path.exists()]
+    if missing:
+        raise FileNotFoundError(f"Missing validated corpus files: {missing}")
 
     service = PlatformService()
 
     if args.clear:
         service.clear_collection(args.collection)
 
-    if missing:
-        markdown_paths = sorted(MARKDOWN_CACHE_DIR.glob("*.md"))
-        if not markdown_paths:
-            raise FileNotFoundError(
-                "Missing validated PDFs and markdown_cache is empty. "
-                f"Missing files: {missing}"
-            )
-        print("PDF files are not present; using existing markdown_cache files.")
-    else:
-        markdown_paths = build_markdown_cache(document_paths)
+    markdown_paths = build_markdown_cache(document_paths)
     result = service.add_documents(args.collection, [str(path) for path in markdown_paths])
 
     print(f"collection={result['collection']}")

@@ -1,5 +1,4 @@
 import fnmatch
-import os
 import sys
 from pathlib import Path
 from typing import Any
@@ -10,6 +9,7 @@ if str(PROJECT_DIR) not in sys.path:
     sys.path.insert(0, str(PROJECT_DIR))
 
 import config
+from core.workspace_sandbox import SandboxViolation, get_workspace_sandbox
 from mcp.server.fastmcp import FastMCP
 
 TEXT_EXTENSIONS = {
@@ -31,19 +31,8 @@ DEFAULT_IGNORES = {
 }
 
 
-def _normalize_roots() -> list[Path]:
-    roots: list[Path] = []
-    for raw_path in config.MCP_FILESYSTEM_ALLOWED_ROOTS:
-        resolved = Path(raw_path).expanduser().resolve()
-        if resolved.exists() and resolved not in roots:
-            roots.append(resolved)
-    if not roots:
-        roots.append(Path(os.path.dirname(config.__file__)).resolve().parent)
-    return roots
-
-
-ALLOWED_ROOTS = _normalize_roots()
-PROJECT_ROOT = PROJECT_DIR.parent
+SANDBOX = get_workspace_sandbox()
+ALLOWED_ROOTS = SANDBOX.read_roots
 
 server = FastMCP(
     name=config.MCP_FILESYSTEM_SERVER_NAME,
@@ -54,20 +43,11 @@ server = FastMCP(
 )
 
 
-def _path_is_allowed(candidate: Path) -> bool:
-    return any(candidate == root or root in candidate.parents for root in ALLOWED_ROOTS)
-
-
 def _resolve_user_path(user_path: str | None) -> Path:
-    raw = (user_path or ".").strip()
-    candidate = Path(raw).expanduser()
-    if not candidate.is_absolute():
-        candidate = PROJECT_ROOT / candidate
-    resolved = candidate.resolve()
-    if not _path_is_allowed(resolved):
-        allowed = ", ".join(str(root) for root in ALLOWED_ROOTS)
-        raise ValueError(f"Path '{raw}' is outside the allowed roots: {allowed}")
-    return resolved
+    try:
+        return SANDBOX.resolve_read_path(user_path, must_exist=False)
+    except SandboxViolation as exc:
+        raise ValueError(str(exc)) from exc
 
 
 def _is_text_file(path: Path) -> bool:
@@ -128,6 +108,23 @@ def read_text_file(path: str, max_chars: int = config.MCP_FILESYSTEM_MAX_READ_CH
     }
 
 
+@server.tool(description="Write a UTF-8 text file inside the configured workspace write root.")
+def write_text_file(path: str, content: str, overwrite: bool = False) -> dict[str, Any]:
+    if not config.MCP_FILESYSTEM_WRITE_ENABLED:
+        raise ValueError("Filesystem write tool is disabled. Set MCP_FILESYSTEM_WRITE_ENABLED=true to enable it.")
+    target = SANDBOX.resolve_write_path(path)
+    if target.exists() and not overwrite:
+        raise ValueError(f"Path already exists and overwrite=false: {target}")
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text(content, encoding="utf-8")
+    return {
+        "path": str(target),
+        "size_bytes": target.stat().st_size,
+        "overwritten": overwrite,
+        "write_root": str(SANDBOX.write_root),
+    }
+
+
 @server.tool(description="Search for a substring or glob-like pattern across text files in the allowed repository roots.")
 def search_text(
     query: str,
@@ -155,7 +152,11 @@ def search_text(
             continue
         if not fnmatch.fnmatch(candidate.name, glob):
             continue
-        if not _path_is_allowed(candidate.resolve()) or not _is_text_file(candidate):
+        try:
+            SANDBOX.resolve_read_path(str(candidate), must_exist=True)
+        except SandboxViolation:
+            continue
+        if not _is_text_file(candidate):
             continue
         if candidate.stat().st_size > config.MCP_FILESYSTEM_SEARCH_MAX_FILE_SIZE:
             continue

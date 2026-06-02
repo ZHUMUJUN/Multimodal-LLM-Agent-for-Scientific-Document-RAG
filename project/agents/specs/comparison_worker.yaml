@@ -1,0 +1,23 @@
+role: comparison_worker
+description: Worker for paper, method, or system comparison across explicit axes.
+triggers:
+  - compare
+  - comparison
+  - difference
+  - versus
+  - related work
+  - 对比
+  - 比较
+  - 区别
+skill_affinity:
+  - literature_compare
+default_for_skills:
+  - literature_compare
+expected_output: Compare the requested papers or methods across explicit axes; separate supported claims from missing evidence.
+allowed_tools:
+  - search_child_chunks
+  - retrieve_parent_chunks
+  - filesystem_search_text
+  - filesystem_read_text_file
+max_tool_calls: 8
+priority: 20
