@@ -4,8 +4,6 @@ A research-document RAG and Agent Harness platform for paper understanding, mult
 
 This project extends a basic Agentic RAG workflow into a more production-oriented system. The focus is not only on answering questions over PDFs, but on making each agent run traceable, controllable, evaluable, and reusable for data construction and model alignment.
 
-![Agentic RAG demo](assets/demo.gif)
-
 ## What This Project Does
 
 - Converts scientific PDFs into Markdown with structure-aware or fast parsing modes.
